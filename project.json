@@ -1,0 +1,41 @@
+{
+  "assets": [],
+  "build": {
+    "build_id": "5963F541-34",
+    "build_number": 34,
+    "build_time": 1653166307879,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "images/ic_app_logo.png",
+  "launchConfig": {
+    "displaySplash": false,
+    "hideLogs": true,
+    "splashIcon": "images/ic_splash.png",
+    "splashText": "@zzerx",
+    "stableMode": false
+  },
+  "main": "MainUi.js",
+  "name": "钉钉自动健康打卡",
+  "optimization": {
+    "obfuscateComponents": true,
+    "removeAccessibilityService": false,
+    "removeOpenCv": true,
+    "unusedResources": true
+  },
+  "packageName": "auto.dingtalk.checkin",
+  "permissionConfig": {
+    "requestListOnStartup": [
+      "android.permission.WRITE_EXTERNAL_STORAGE"
+    ]
+  },
+  "scripts": {},
+  "signingConfig": {
+    "alias": "zzerx_sign",
+    "keystore": "/storage/emulated/0/脚本/.keystore/autojspro.jks",
+    "uuid": "818f5d29-ff1b-4c3f-9627-65aa84413360"
+  },
+  "versionCode": 1853,
+  "versionName": "2.0.0"
+}
