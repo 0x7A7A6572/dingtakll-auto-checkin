@@ -7,7 +7,7 @@ importClass(android.view.View.OnClickListener);
 importClass(android.graphics.Typeface);
 importClass(android.text.TextWatcher);
 
-Util = require("../util.js");
+JavaUtil = require("../utils/JavaUtil.js");
 var tf = Typeface.createFromFile(java.io.File(files.path("./res/linux.ttf")));
 
 /* _____________

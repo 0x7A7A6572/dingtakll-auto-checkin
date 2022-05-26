@@ -5,22 +5,22 @@ let SystemUtil = require("utils/SystemUtil.js");
 let AutoJsUtil = require("utils/AutoJsUtil.js");
 let DateUtil = require("utils/DateUtil.js");
 let NotifyUtil = require("utils/NotifyUtil.js");
- //iConsole = require("components/iConsole.js");
+//iConsole = require("components/iConsole.js");
 // let BroadcastUtil = require("utils/BroadcastUtil.js");
 iConsole = require("components/consoleN.js");
 
-    //脚本退出监听
+//脚本退出监听
 events.on("exit", function() {
     console.log(">>>auto punch server EXit;")
     iConsole.close();
     //BroadcastUtil.send("iConsoleCloseView",true);
-    
-  });
+
+});
 
 
 config.init();
 
-iConsole.init(null,engines.myEngine());
+iConsole.init(null, engines.myEngine());
 
 SystemUtil.unlock(config.lock_password, {
     success: function() {
@@ -37,15 +37,21 @@ function serviceMain() {
     iConsole.info("启动钉钉智能填表页面");
     let missionAccomplished = false;
     let array_find_step = config.find_form_step_is_from_text.split("->");
-    for (let i = 0; i < array_find_step.length; i++) {
-        textContains(array_find_step[i]).waitFor();
-        click(array_find_step[i]);
-        if (array_find_step[i] == "填写") {
-            sleep(2000);
-            if (text("暂无数据").exists()) {
-                //如果表格未显示，就在"已完成"找
-                click("已完成");
+    let find_form_failure_limit = 5;
+    for (let i = 0; i < array_find_step.length; i++ ) {
+        
+        if (textContains(array_find_step[i]).findOne(2000) != null) {
+            click(array_find_step[i]);
+            if (array_find_step[i] == "填写") {
+                sleep(2000);
+                if (text("暂无数据").exists()) {
+                    //如果表格未显示，就在"已完成"找
+                    click("已完成");
+                }
             }
+        }else{
+            toastLog("未找到[" + array_find_step[i] + "]");
+            exit();
         }
     }
     iConsole.info("进入健康打卡表");
@@ -63,7 +69,7 @@ function serviceMain() {
   
     console.warn("GPS是否打开",locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
   */
-    waitForPackage(config.DING_TAILK_PAGE_NAME,3000);
+    waitForPackage(config.DING_TAILK_PAGE_NAME, 3000);
     iConsole.verbose("跳转回表格界面");
     //textContains("获取").waitFor();
     //toastLog("waitForPackage(DING_TAILK_PAGE_NAME) ok")
@@ -93,7 +99,7 @@ function serviceMain() {
             .findOne().clickCenter();
         sleep(1000);
     }*/
-    
+
     iConsole.info("点击获取√")
     toast("正在关闭定位");
     AppUtil.gpsCheck(config.DING_TAILK_PAGE_NAME, false, 5);
@@ -109,21 +115,21 @@ function serviceMain() {
     iConsole.info("你成功提交运营分公司每日健康打卡");
     //查看你(提交/修改)的表单
     textContains("的表单").waitFor();
-        
-    iConsole.watermarkModule(true);  
+
+    iConsole.watermarkModule(true);
     SystemUtil.autoScreenshot();
-    iConsole.watermarkModule(false);  
+    iConsole.watermarkModule(false);
     iConsole.info("已完成自动截屏，正在发送至" + config.group_name);
     DingTalkUtil.shareImageToDingTallk(config.group_name);
     sleep(1000);
     iConsole.info("打卡截图已发送");
     //记录日志 发送通知
     writeLog(DateUtil.getFormatLogDate() + "已完成" + DateUtil.getFormatDate() + "打卡");
-    
+
     let notifyTitle = "√已完成今日打卡";
     let notifyText = "已发送至打卡群 " + DateUtil.getFormatLogDate();
-    NotifyUtil.sendNotify(0x7A7A6573, notifyTitle, notifyText);  
-     iConsole.close();
+    NotifyUtil.sendNotify(0x7A7A6573, notifyTitle, notifyText);
+    iConsole.close();
     //结束所有脚本
     exit();
 
@@ -140,26 +146,25 @@ function writeLog(text) {
 }
 
 /* */
-function clickGetAddress(limit){
+function clickGetAddress(limit) {
     let stopCount = 0;
     while (!text("刷新").exists() || !text("地点微调").exists()) {
         console.log("点击获取.. (" + stopCount + "/" + limit + ")");
-        if(text("获取").exists()){
-        text("获取")
-            .findOne().clickCenter();
+        if (text("获取").exists()) {
+            text("获取")
+                .findOne().clickCenter();
             sleep(1000);
-        }else{
+        } else {
             console.log("[获取]按钮已不存在");
         }
         stopCount++;
-        if(stopCount >= limit){
+        if (stopCount >= limit) {
             break;
         }
     }
-    
+
 }
 
 
 
-setInterval( ()=> { 
-}, 2000);
+setInterval(() => {}, 2000);

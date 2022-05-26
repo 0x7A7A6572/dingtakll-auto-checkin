@@ -221,14 +221,14 @@ ui.unit_test.on("click", ()=>{
 
 ui.ps_accessibility.on("click", function() {
 if(auto.service == null){
-    app.startActivity({
-        action: "android.settings.ACCESSIBILITY_SETTINGS"
-    });
     toast("在「已下载应用」中找到「钉钉自动健康打卡」并授权");
   }else{
   toast("已授权无障碍权限");
   }
-    
+ //不管有没有都跳转
+ app.startActivity({
+        action: "android.settings.ACCESSIBILITY_SETTINGS"
+    });   
 })
 
 ui.ps_floatwindow.on("click", function() {

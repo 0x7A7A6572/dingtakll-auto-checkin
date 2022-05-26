@@ -32,7 +32,7 @@ let consoleN = {
         
         this.instacne = ui.inflate(
             <vertical bg="#FFFFFF">
-              <text id="logText" textSize="10sp" textColor="green" text="????"/>
+              <text id="logText" textSize="10sp" textColor="green" text=""/>
               <text text="POWER FOR zzerX →" textStyle="bold" textColor="green" textSize="16"/>
             </vertical>);
         wm = wm || getWindowManager();
