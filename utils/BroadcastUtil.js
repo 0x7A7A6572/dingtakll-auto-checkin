@@ -1,4 +1,10 @@
-
+/*
+ * @Author: zzerX
+ * @Date:
+ * @Last Modified by: zzerX
+ * @Last Modified time:
+ * @Description: 广播工具类
+ */
 importClass(android.content.IntentFilter);
 importClass(android.content.ContextWrapper);
 let BroadcastUtil = {

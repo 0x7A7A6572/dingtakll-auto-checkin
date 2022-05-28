@@ -1,3 +1,10 @@
+/*
+ * @Author: zzerX
+ * @Date:
+ * @Last Modified by: zzerX
+ * @Last Modified time:
+ * @Description: 悬浮穿透控制台，用于在脚本运行时显示关键操作日志
+ */
 importPackage(android.view);
 importClass(android.graphics.Color);
 importClass(android.content.Context);

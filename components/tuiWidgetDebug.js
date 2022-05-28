@@ -1,8 +1,10 @@
-/**
-*  TUI-weight 文本控件
-*  @zzerx
-*  写到一半没在写了
-*/
+/*
+ * @Author: zzerX
+ * @Date:
+ * @Last Modified by: zzerX
+ * @Last Modified time:
+ * @Description: Tui是一个文本控件，一切皆文本
+ */
 importClass(android.graphics.Color);
 importClass(android.text.style.BackgroundColorSpan);
 importClass(android.text.Spanned);

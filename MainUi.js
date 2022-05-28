@@ -14,12 +14,12 @@ ui.layout(
         <vertical>
             <linear bg="#ffffff" padding="0" h="40" w="*">
                 <tui-text  id="title_set" text="▍钉钉自动健康打卡" textSize="12sp" textStyle="bold" padding="5"  layout_weight="1"/>
-                <!--tui-button id="vip" text="[VIP]" textSize="16sp" gravity="right" color="#FFAA00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /--> 
+                <!--tui-button id="vip" text="[VIP]" textSize="16sp" gravity="right" color="#FFAA00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
                 <tui-button id="run_script" text="[>>>]" textSize="16sp" gravity="center" color="#00dd00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="stop_script" text="[停止]" textSize="18sp" color="#99cf00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
                     <tui-button id="exit_script" text="[X]" textSize="18sp" color="#ff2f00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="unit_test" text=">单元测试" textSize="12sp" layout_weight="1" color="#4ff2f6" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
                 </linear> <!--tui-text text="──── version 1.2.0 ───          ──── @zzerX ────" textSize="8sp" / -->
                 <ScrollView layout_gravity="center">
-                    <vertical w="*"> 
+                    <vertical w="*">
                         <vertical w="*" margin="0 20 0 0">
                             <linear w="*" gravity="center">
                                 <tui-text id="title_treaty" text=" 使用条约" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b" />
@@ -34,9 +34,9 @@ ui.layout(
                                         <tui-text id="ps_startauto" layout_weight="1" text="? 开机自启" textSize="12sp" color="red" textStyle="bold" padding="5" />
                                         <tui-text id="ps_battery_opt" layout_weight="1" text="x 电池优化" textSize="12sp" color="red" textStyle="bold" padding="5" />
                                     </linear>
-                                     <linear id="permission_status" w="*" margin="8 0 8 0" padding="10 0 10 12" bg="#FFF9C4">
+                                    <linear id="permission_status" w="*" margin="8 0 8 0" padding="10 0 10 12" bg="#FFF9C4">
                                         <tui-text id="ps_bgpop" text="? 后台弹出" textSize="12sp" color="red" textStyle="bold" padding="5" />
-                                        <tui-text id="ps_rw_storage"  text="x 读写存储" textSize="12sp" color="red" textStyle="bold" padding="5" />
+                                        <tui-text id="ps_rw_storage"  text="? 读写存储" textSize="12sp" color="red" textStyle="bold" padding="5" />
                                         <tui-text id="explain_ps" text="[?]" color="red" textSize="15sp" layout_weight="1" textStyle="bold" gravity="right"/>
                                     </linear>
                                 </vertical>
@@ -53,64 +53,64 @@ ui.layout(
                                             <tui-text text="锁屏数字密码:" color="#33CC66" padding="5" gravity="center" h="*" />
                                             <tui-editText id="lock_num" text="24568" inputType="textPassword" textSize="14sp" hint="当定时触发手机是锁屏时需要" prefKey="lock_num" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" password="true" />
                                         </linear>
-                                    <!--frame>
+                                        <!--frame>
                                         <vertical id="vip_func" w="*" margin="0 8 0 8" padding="12" bg="#BBFFF9C4">
-
-                                        <tui-text _weight="1" text="排班设置" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" />
-                                      <HorizontalScrollView >
-                                            <linear bg="#3333CC66" >
-                                        <tui-text   text="23" bg="#99FFFFFF" color="#33CC66" textSize="12sp"  textStyle="bold" padding="15" margin="5" />
-                                        <tui-text  text="24" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
-                                        <tui-text   text="25" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
-                                       <tui-text   text="26" bg="#99FFFFFF" color="#33CC66" textSize="12sp"  textStyle="bold" padding="15" margin="5" />
-                                        <tui-text  text="27" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
-                                        <tui-text  text="28" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
-                                          </linear>
-                                        </HorizontalScrollView>
-                                    </vertical>
-                                    <vertical gravity="center" bg="#A8FFFFFF" margin="0 8 0 8" >
-                                    <tui-text text=" - 仅限VIP用户  -"  w="*" h="*" color="#FFBB00" textSize="16sp" textStyle="bold"  gravity="center" layout_gravity="center"/>
-                                    </vertical>
+                                            
+                                            <tui-text _weight="1" text="排班设置" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" />
+                                            <HorizontalScrollView >
+                                                <linear bg="#3333CC66" >
+                                                    <tui-text   text="23" bg="#99FFFFFF" color="#33CC66" textSize="12sp"  textStyle="bold" padding="15" margin="5" />
+                                                    <tui-text  text="24" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
+                                                    <tui-text   text="25" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
+                                                    <tui-text   text="26" bg="#99FFFFFF" color="#33CC66" textSize="12sp"  textStyle="bold" padding="15" margin="5" />
+                                                    <tui-text  text="27" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
+                                                    <tui-text  text="28" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
+                                                </linear>
+                                            </HorizontalScrollView>
+                                        </vertical>
+                                        <vertical gravity="center" bg="#A8FFFFFF" margin="0 8 0 8" >
+                                            <tui-text text=" - 仅限VIP用户  -"  w="*" h="*" color="#FFBB00" textSize="16sp" textStyle="bold"  gravity="center" layout_gravity="center"/>
+                                        </vertical>
                                     </frame-->
-                                    </vertical>
-                                    <!--tui-checkBox id="logcat_float_window" text="打卡时显示实时日志悬浮窗" prefKey="logcat_float_window" bg="#2233CC66" textStyle="bold" padding="10" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" margin="0 10 0 0"/-->
-                                    <vertical layout_weight="1">
-                                        <linear marginTop="5" gravity="center">
-                                            <tui-text text="corpId:" color="#33CC66" textStyle="bold" padding="5" />
-                                            <tui-editText id="corp_id" textSize="14sp" hint="公司的cropid(通过抓包获取)" prefKey="corp_id" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
-                                        </linear>
-                                        <linear marginTop="5" gravity="center">
-                                            <tui-text text="打卡群名称:" color="#33CC66" textStyle="bold" padding="5" />
-                                            <tui-editText id="group_name"  textSize="14sp" hint="打卡截图之后需要发送的群聊名称" prefKey="group_name" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
-                                        </linear>
-                                        <linear marginTop="5" gravity="center">
-                                            <tui-text text="查找步骤:" color="#33CC66" textStyle="bold" padding="5" />
-                                            <tui-editText id="find_step" textSize="14sp" hint="查找表格步骤" prefKey="find_step" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
-                                        </linear>
-                                    </vertical> <!--/linear-->
                                 </vertical>
-                            </vertical> <!-- box4-->
-                            <vertical gravity="center" marginTop="10">
-                                <linear gravity="center">
-                                    <tui-text id="title_log" text="日志记录-Logcat" textSize="16sp" padding="8" textStyle="bold" /> <!--tui-text id="title_log_detail" text="detail" textColor="#66ff66" textSize="15sp" padding="8" textStyle="normal"   layout_gravity="bottom" marginLeft="0"/-->
-                                    <tui-text id="title_log_clear" text="[清除]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
-                                </linear>
-                                <vertical>
-                                    <vertical background="#3333CC66" margin="18 0 18 20">
-                                        <ScrollView minHeight="200">
-                                            <tui-text id="logText" height="300" textSize="13sp" padding="8" color="#00B800" />
-                                        </ScrollView>
-                                    </vertical>
+                                <!--tui-checkBox id="logcat_float_window" text="打卡时显示实时日志悬浮窗" prefKey="logcat_float_window" bg="#2233CC66" textStyle="bold" padding="10" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" margin="0 10 0 0"/-->
+                                <vertical layout_weight="1">
+                                    <linear marginTop="5" gravity="center">
+                                        <tui-text text="corpId:" color="#33CC66" textStyle="bold" padding="5" />
+                                        <tui-editText id="corp_id" textSize="14sp" hint="公司的cropid(通过抓包获取)" prefKey="corp_id" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
+                                    </linear>
+                                    <linear marginTop="5" gravity="center">
+                                        <tui-text text="打卡群名称:" color="#33CC66" textStyle="bold" padding="5" />
+                                        <tui-editText id="group_name"  textSize="14sp" hint="打卡截图之后需要发送的群聊名称" prefKey="group_name" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
+                                    </linear>
+                                    <linear marginTop="5" gravity="center">
+                                        <tui-text text="查找步骤:" color="#33CC66" textStyle="bold" padding="5" />
+                                        <tui-editText id="find_step" textSize="14sp" hint="查找表格步骤" prefKey="find_step" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
+                                    </linear>
+                                </vertical> <!--/linear-->
+                            </vertical>
+                        </vertical> <!-- box4-->
+                        <vertical gravity="center" marginTop="10">
+                            <linear gravity="center">
+                                <tui-text id="title_log" text="日志记录-Logcat" textSize="16sp" padding="8" textStyle="bold" /> <!--tui-text id="title_log_detail" text="detail" textColor="#66ff66" textSize="15sp" padding="8" textStyle="normal"   layout_gravity="bottom" marginLeft="0"/-->
+                                <tui-text id="title_log_clear" text="[清除]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
+                            </linear>
+                            <vertical>
+                                <vertical background="#3333CC66" margin="18 0 18 20">
+                                    <ScrollView minHeight="200">
+                                        <tui-text id="logText" height="300" textSize="13sp" padding="8" color="#00B800" />
+                                    </ScrollView>
                                 </vertical>
                             </vertical>
-                                <tui-text id="other_setting" text="其他-Other" textSize="16sp" padding="8" textStyle="bold" gravity="center" /> 
-                                <vertical background="#3333CC66" margin="18 0 18 20">
-                                        <tui-text id="unit_test" text="[功能测试]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" gravity="left" />
-                                    </vertical>
                         </vertical>
-                    </ScrollView>
-                </vertical> <tui-text text="──── v1.2.0 @zzerX ───" textSize="11sp" />
-            </frame>);
+                        <tui-text id="other_setting" text="其他-Other" textSize="16sp" padding="8" textStyle="bold" gravity="center" />
+                        <vertical background="#3333CC66" margin="18 0 18 20">
+                            <tui-button id="unit_test" text="[功能可用性测试]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left" bg="#FFFFFF" margin="8"/>
+                        </vertical>
+                    </vertical>
+                </ScrollView>
+            </vertical> <tui-text text="──── v1.2.0 @zzerX ───" textSize="11sp" />
+        </frame>);
 
 
 activity.getWindow().setStatusBarColor(Color.WHITE);
@@ -134,13 +134,13 @@ ui.exit_script.on("click", () => {
 });
 
 let _tmp_timing = "00:00";
-let itimepicker = ui.inflate('<timepicker id="spinner" timePickerMode="spinner"/ > ');
+let itimepicker = ui.inflate('<timepicker id="spinner" /> ');//timePickerMode="spinner
 let myDialog = DialogPlus.setView(itimepicker)
     .setTitle(null)
     .onTrue(function() {
         config.timing = _tmp_timing;
         ui.buttonToSetTiming.setText("定时打卡: " + config.timing);
-        addTimerIfNotExists(config.script_path);
+        tingChangedUpdateTask();
         config.updateAll();
         myDialog.dismiss()
     })
@@ -202,23 +202,23 @@ ui.title_treaty.on("click", (view) => {
     ui.explain.setText(getAgreement());
 });
 
-ui.unit_test.on("click", ()=>{
-  engines.execScriptFile("./testMain.js");
+ui.unit_test.on("click", () => {
+    engines.execScriptFile("./testMain.js");
 });
 
 
 //权限按钮
 
 ui.ps_accessibility.on("click", function() {
-if(auto.service == null){
-    toast("在「已下载应用」中找到「钉钉自动健康打卡」并授权");
-  }else{
-  toast("已授权无障碍权限");
-  }
- //不管有没有都跳转
- app.startActivity({
+    if (auto.service == null) {
+        toast("在「已下载应用」中找到「钉钉自动健康打卡」并授权");
+    } else {
+        toast("已授权无障碍权限");
+    }
+    //不管有没有都跳转
+    app.startActivity({
         action: "android.settings.ACCESSIBILITY_SETTINGS"
-    });   
+    });
 })
 
 ui.ps_floatwindow.on("click", function() {
@@ -253,7 +253,7 @@ ui.ps_battery_opt.on("click", function() {
     }
 })
 
-ui.explain_ps.on("click",()=>{
+ui.explain_ps.on("click", () => {
     toast(`
 点击权限进入授权界面手动授权:
 ________________
@@ -266,8 +266,8 @@ __________________
 √ ->已授权 
 x ->未授权
 ? ->无法判断
-    `,8000);
-    
+    `, 8000);
+
 });
 
 
@@ -276,7 +276,7 @@ initlze();
 
 
 function initlze() {
-   // console.warn(config.timers_id,$timers.getTimedTask(config.timers_id),$timers.queryTimedTasks({ path: $files.cwd() + "/mainService.js"}));
+    // console.warn(config.timers_id,$timers.getTimedTask(config.timers_id),$timers.queryTimedTasks({ path: $files.cwd() + "/mainService.js"}));
     ui.logText.setText(config.storage.get("log") || "无日志");
     ui.explain.setText(getExplain());
     ui.find_step.addTuiTextChangedListener(new TextWatcher() {
@@ -378,9 +378,26 @@ function timingFormat(timing) {
 }
 
 function checkTimedTaskChange(task_milis) {
-    console.warn("checkTimedTaskChange:",task_milis, new Date(task_milis));
+    console.warn("checkTimedTaskChange:", task_milis, new Date(task_milis));
 }
 
+function tingChangedUpdateTask() {
+    if(config.auto_run_on_timing){
+    let [_hours, _minute] = timingFormat(_tmp_timing);
+    // let new_time = new Date(0, 0, 0, _hours, _minute, 0).getTime();
+
+    //task.millis = new_time - new Date(0, 0, 0, 0, 0, 0).getTime();
+    console.warn("删除定时任务[", config.timers_id, "]", $timers.removeTimedTask(config.timers_id));
+    let new_task = $timers.addDailyTask({
+        path: config.script_path,
+        time: new Date(0, 0, 0, _hours, _minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
+    });
+    console.info("_tmp_timing 改变且开启定时状态", _hours, _minute, );
+    config.timers_id = new_task.id;
+    config.timing = _tmp_timing;
+    config.updateAll();
+    }
+}
 // function addTimerIfNotExists(script_path) {
 //     if (config.timers_id != null) {
 //         let task = $timers.getTimedTask(config.timers_id);
@@ -395,7 +412,7 @@ function checkTimedTaskChange(task_milis) {
 
 //         }
 //         /*else if(task != null && config.auto_run_on_timing && task.milis != new Date(0,0,0,)){ //时间不等
-               
+
 //              }*/
 //         else {
 //             config.timers_id = null;
@@ -430,23 +447,10 @@ function addTimerIfNotExists(script_path) {
             config.timers_id = null;
             config.updateAll();
             console.info("addTimerIfNotExists:", config.timers_id, task, config.auto_run_on_timing);
-        }else if(task != null && config.auto_run_on_timing && config.timing != _tmp_timing){ //在ui界面定时开启开启状态下修改定时
-            let [_hours, _minute] = timingFormat(_tmp_timing);
-           // let new_time = new Date(0, 0, 0, _hours, _minute, 0).getTime();
-            //task.millis = new_time - new Date(0, 0, 0, 0, 0, 0).getTime();
-            console.warn("删除定时任务[",config.timers_id,"]",$timers.removeTimedTask(config.timers_id));
-            let new_task =$timers.addDailyTask({
-                path: script_path,
-                time: new Date(0, 0, 0, _hours, _minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
-            });
-            console.info("_tmp_timing 改变且开启定时状态",_hours, _minute,);
-            config.timers_id = new_task.id;
-            config.timing = _tmp_timing;
-            config.updateAll();
-       }else {
+        }else {
             config.timers_id = null;
             config.updateAll();
-            console.info("if[true] -> if[false]:", config.timers_id, task, config.auto_run_on_timing);
+            console.info(" if[false(task=null or auto_run_on_timing=true)]:", config.timers_id, task, config.auto_run_on_timing);
         }
     } else if (config.timers_id == null && config.auto_run_on_timing) {
         let [hours, minute] = timingFormat(config.timing);
@@ -464,29 +468,29 @@ function addTimerIfNotExists(script_path) {
 
 }
 
-function updatePermissionStatusView(view, statu){
- let ownColor = colors.parseColor("#33CC66");
- let notOwned = colors.parseColor("red");
- let ownText = "√ ";
- let notOwnedText = "x ";
- // view.setTextColor(statu ? ownColor : notOwned);
-  view.textColor = statu ? ownColor : notOwned;
-  view.setText(view.getText().replace(/. /g,statu ? ownText : notOwnedText))
+function updatePermissionStatusView(view, statu) {
+    let ownColor = colors.parseColor("#33CC66");
+    let notOwned = colors.parseColor("red");
+    let ownText = "√ ";
+    let notOwnedText = "x ";
+    // view.setTextColor(statu ? ownColor : notOwned);
+    view.textColor = statu ? ownColor : notOwned;
+    view.setText(view.getText().replace(/. /g, statu ? ownText : notOwnedText))
 }
 
- //保活&动态更新一些东西
-    setInterval(function() {
-      
-        //检查权限状态并更新ui
-     
-      updatePermissionStatusView(ui.ps_floatwindow, $floaty.checkPermission());
-      updatePermissionStatusView(ui.ps_battery_opt, $power_manager.isIgnoringBatteryOptimizations() );
-     
-     if(auto.service == null){
-       updatePermissionStatusView(ui.ps_accessibility, false);
-     }else{
-       updatePermissionStatusView(ui.ps_accessibility, true);
-     }
-      
+//保活&动态更新一些东西
+setInterval(function() {
 
-    }, 2000);
+    //检查权限状态并更新ui
+
+    updatePermissionStatusView(ui.ps_floatwindow, $floaty.checkPermission());
+    updatePermissionStatusView(ui.ps_battery_opt, $power_manager.isIgnoringBatteryOptimizations());
+
+    if (auto.service == null) {
+        updatePermissionStatusView(ui.ps_accessibility, false);
+    } else {
+        updatePermissionStatusView(ui.ps_accessibility, true);
+    }
+
+
+}, 2000);

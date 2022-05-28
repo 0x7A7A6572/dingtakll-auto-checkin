@@ -1,28 +1,52 @@
+/*
+ * @Author: zzerX
+ * @Date:
+ * @Last Modified by: zzerX
+ * @Last Modified time:
+ * @Description: 操作系统的工具类
+ */
 importClass(android.net.ConnectivityManager);
-
+importClass(android.location.LocationManager);
+importClass(android.content.Context);
 SystemUtil = {
     XIAOMI: 0,
     HUAWEI: 1,
     OPPO: 2,
     VIVO: 3,
-    getGpsSwitchText: function(firm) {
-        let gps_switch_text = "定位服务"
-        switch (firm) {
+    Other: -1,
+
+    getBrand: function() {
+        let brands = ["xiaomi", "redmi", "huawei", "honor", "vivo", "oppo"];
+        for (let i = 0; i < brands.length; i++) {
+            if (device.brand.toLowerCase().match(brands[i]) != null) {
+                if (i < 2) {
+                    return this.XIAOMI;
+                }
+                if (i > 2 && i < 4) {
+                    return this.HUAWEI;
+                }
+            }
+        }
+        return this.Other;
+    },
+    getGpsSwitchText: function() {
+        let gps_switch_text = null;
+        switch (this.getBrand()) {
             case this.XIAOMI:
                 gps_switch_text = "开启位置服务";
                 break;
             case this.HUAWEI:
-
+                gps_switch_text = "访问我的位置信息";
                 break;
             case this.OPPO:
                 break;
             case this.VIVO:
-                gps_switch_text = "";
+                gps_switch_text = null;
                 break;
             default:
                 break;
         }
-        return GPS_SWITCH_TEXT;
+        return gps_switch_text;
     },
     /*
      * 解锁结果回调
@@ -150,6 +174,67 @@ SystemUtil = {
         } else {
             return true;
             // toastLog("网络连接可用!");
+        }
+    },
+    gpsCheckAndDo: function(returnPackageName, turnon, stopNumber) {
+        stopNumber = stopNumber == null ? 1 : stopNumber;
+        let stopCount = 0;
+        var locationManager = context.getSystemService(Context.LOCATION_SERVICE);
+        //console.log(turnon,locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+        if (turnon != locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            //sleep(1000)
+            //toast("需要开启定位");
+            intent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            console.verbose("跳转设置界面")
+            //waitForActivity("com.android.settings.Settings$LocationSettingsActivity",2000);
+            //click(955,508);
+            //swipe(900,1900,500,900,500);
+            while (this.gpsIsOpen() != turnon && stopCount < stopNumber) { /* autoX 偶然性的会跳转点击失败，故添加此循环 */
+                //console.log(stopCount < stopNumber);
+                if (this.getGpsSwitchText() != null) {
+                    text(this.getGpsSwitchText())
+                        .findOne().clickCenter();
+                } else {
+                    this._LimitSetGps();
+                }
+                stopCount++;
+                sleep(1500) /* 重要* 点击按钮后系统打开定位，但是isProviderEnabled获取未及时更新 ，所以需要sleep做停顿*/
+                console.verbose(">尝试点击开启位置服务 (" + stopCount + "/" + stopNumber + ")");
+            }
+            // console.warn("AutoJsUtil.clickCoordinate结束");
+            //.parent().parent().click();
+            //click(122, 174); //点击左上角返回(不精确，应跳转app)
+            if (returnPackageName != null) {
+
+                launch(returnPackageName);
+                //toast(returnPackageName);
+                //waitForActivity(returnActivity);
+            }
+        } else {
+            //toast("GPS可用");
+        }
+        return true;
+    },
+
+    gpsIsOpen: function() {
+        let locationManager = context.getSystemService(Context.LOCATION_SERVICE);
+        console.log(" GPS当前状态!", locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    },
+    /*
+     * 当无法判断型号，不知道特征的情况下，定位界面一般只有一个checkbox,利用这点进行开启
+     */
+    _LimitSetGps: function() {
+        let cb = className("android.widget.CheckBox").findOne(2000);
+        if (cb) {
+            cb.clickCenter();
+        } else {
+            let ca = checkable(true).findOne(2000);
+            if (ca) {
+                ca.clickCenter()
+            }
         }
     }
 

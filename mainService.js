@@ -57,7 +57,7 @@ function serviceMain() {
     //while ( text(FORM_TITLE).findOne()) {}
     // Util.gpsCheck(DING_TAILK_PAGE_NAME, true);
     //console.log(currentActivity());
-    AppUtil.gpsCheck(config.DING_TAILK_PAGE_NAME, true, 5);
+    SystemUtil.gpsCheckAndDo(config.DING_TAILK_PAGE_NAME, true, 5);
     iConsole.info("打开GPS定位成功");
     /* importClass(android.location.LocationManager);
 
@@ -100,7 +100,7 @@ function serviceMain() {
 
     iConsole.info("点击获取√")
     toast("正在关闭定位");
-    AppUtil.gpsCheck(config.DING_TAILK_PAGE_NAME, false, 5);
+    SystemUtil.gpsCheckAndDo(config.DING_TAILK_PAGE_NAME, false, 5);
     //获取定位之后直接拉到最后提交{控件"提交"没在页面显示时也存在}
     //有时候不存在 原因不明
     while (!text("提交").exists()) {

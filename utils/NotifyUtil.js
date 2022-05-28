@@ -1,3 +1,10 @@
+/*
+ * @Author: zzerX
+ * @Date:
+ * @Last Modified by: zzerX
+ * @Last Modified time:
+ * @Description: 发送通知栏通知工具类
+ */
 NotifyUtil = {
     id:null,
     sendNotify: function(id, notifyTitle, notifyText) {

@@ -1,5 +1,11 @@
+/*
+ * @Author: zzerX
+ * @Date:
+ * @Last Modified by: zzerX
+ * @Last Modified time:
+ * @Description: 时间工具类
+ */
 DateUtil = {
-
     getFormatDate: function() {
         let date = new Date();
         let month = date.getMonth() + 1; //月份0-11

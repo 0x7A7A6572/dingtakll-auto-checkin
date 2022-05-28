@@ -1,3 +1,10 @@
+/*
+ * @Author: zzerX
+ * @Date:
+ * @Last Modified by: zzerX
+ * @Last Modified time:
+ * @Description: 自定义Dialog
+ */
 //importClass(android.view.WindowManager);
 DialogPlus = {
     customView: null,

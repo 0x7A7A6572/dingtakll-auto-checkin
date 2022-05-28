@@ -10,7 +10,6 @@ let SystemUtil = require("./utils/SystemUtil.js");
 let AutoJsUtil = require("./utils/AutoJsUtil.js");
 let DateUtil = require("./utils/DateUtil.js");
 let NotifyUtil = require("./utils/NotifyUtil.js");
-let iConsole = require("./components/iConsole.js");
 
 
 events.on("exit", function() {
@@ -26,10 +25,10 @@ UnitsTest.setTitle("单元测试")
         unit: () => {
             //UnitsTest.setTestStatu(this.unitName, UnitsTest.TESTING);
             //console.info("开始测试")
-            //console.warn(AppUtil.gpsIsOpen());
-            let needto = AppUtil.gpsIsOpen() ? "关闭" : "打开";
-            toast("正在测试" + needto + "定位");
-            AppUtil.gpsCheck(null, !AppUtil.gpsIsOpen());
+            //console.warn(SystemUtil.gpsIsOpen());
+            let needto = SystemUtil.gpsIsOpen() ? "关闭" : "打开";
+            toastLog("正在测试" + needto + "定位,型号:" + SystemUtil.getBrand() + SystemUtil.getGpsSwitchText());
+            SystemUtil.gpsCheckAndDo(null, !SystemUtil.gpsIsOpen());
             let success = confirm("定位开关是否按照预期开启或关闭？");
             if (success) {
                 UnitsTest.setTestStatu(this.unitName, UnitsTest.SUCCESS);
@@ -71,8 +70,6 @@ UnitsTest.setTitle("单元测试")
             alert("截图保存路径",
                 "截图1:" + files.cwd() + "/screenshot.png" +
                 "\n\n截图2:" + config.image_path);
-
-
         }
     })
     .show()

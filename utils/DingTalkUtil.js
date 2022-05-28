@@ -1,8 +1,11 @@
-importClass(android.net.Uri);
 /*
- * DingTalkUtil 钉钉工具
- *
+ * @Author: zzerX
+ * @Date:
+ * @Last Modified by: zzerX
+ * @Last Modified time:
+ * @Description: 钉钉工具类
  */
+importClass(android.net.Uri);
 
 var DingTalkUtil = {
     listenUpdateDialogThread: null,
