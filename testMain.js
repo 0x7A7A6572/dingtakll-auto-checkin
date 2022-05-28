@@ -16,6 +16,7 @@ let iConsole = require("./components/iConsole.js");
 events.on("exit", function() {
     log("结束测试");
 });
+
 //config.init();
 let ctx = context;
 UnitsTest.setTitle("单元测试")
@@ -86,16 +87,3 @@ function lacksPermission() {
 
 }
 
-
-
-/*//Activity使⽤
-
-if (lacksPermissions()){//读写权限没开启
-
-ActivityCompat.requestPermissions(this,permissionsREAD,0);
-
-}else {
-
-//读写权限已开启
-
-}*/

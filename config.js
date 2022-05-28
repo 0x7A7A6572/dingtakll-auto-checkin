@@ -14,7 +14,8 @@ let config = {
     script_path: "./mainService.js",
     timing: "00:00",
     timers_id: null,
-    CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+   // timer_path: $files.cwd() + '/mainService.js', /* mainService mainUI config 都在同级目录所以这里直接用$files.cwd() */
+    CORP_ID: "", //ding00853d06912ba8d3bc961a6cb783455b
     TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
     DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
     log: "",

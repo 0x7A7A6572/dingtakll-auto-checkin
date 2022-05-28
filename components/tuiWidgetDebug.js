@@ -1,3 +1,8 @@
+/**
+*  TUI-weight 文本控件
+*  @zzerx
+*  写到一半没在写了
+*/
 importClass(android.graphics.Color);
 importClass(android.text.style.BackgroundColorSpan);
 importClass(android.text.Spanned);
@@ -347,3 +352,40 @@ var tuiCheckBox = (function() {
     return tuiCheckBox;
 })();
 
+/*
+ *  box行为
+ *
+ */
+/*
+//公共方法
+tuiBoxs.getItem(index).getTitleView();
+tuiBoxs.getItem(index).getTitle();
+tuiBoxs.getItem(index).getTitleFunctionsView();
+tuiBoxs.getItem(index).getTitleFunctions();
+tuiBoxs.getItem(index).getShowHideButton();
+tuiBoxs.getItem(index).isShow();
+
+   tuiBoxs.setTUIBoxData([
+     {
+     title: "Box1",
+     titleFunctions: [
+         {text: "func1",
+          onClick: fun1},
+         {text: "func2",
+          onClick: fun2},
+         {text: "func3",
+          onClick: fun3}
+         ],
+      showHideButton:true,
+      showHideButtonDefaultState:true, // <- 是否需要？
+      backgroundColor:"#ff0000",
+      miniHeight:200, // <- 是否需要？或许不开放
+      body:(<linear>
+              <tui-text text="test"/>
+            </linear>)
+     },
+     {
+     
+     }
+   ]);
+*/

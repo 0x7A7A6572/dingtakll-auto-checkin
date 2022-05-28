@@ -2,7 +2,6 @@ let config = require("config.js");
 let DingTalkUtil = require("utils/DingTalkUtil.js");
 let AppUtil = require("utils/AppUtil.js");
 let SystemUtil = require("utils/SystemUtil.js");
-let AutoJsUtil = require("utils/AutoJsUtil.js");
 let DateUtil = require("utils/DateUtil.js");
 let NotifyUtil = require("utils/NotifyUtil.js");
 //iConsole = require("components/iConsole.js");
@@ -19,7 +18,6 @@ events.on("exit", function() {
 
 
 config.init();
-
 iConsole.init(null, engines.myEngine());
 
 SystemUtil.unlock(config.lock_password, {
@@ -39,8 +37,8 @@ function serviceMain() {
     let array_find_step = config.find_form_step_is_from_text.split("->");
     let find_form_failure_limit = 5;
     for (let i = 0; i < array_find_step.length; i++ ) {
-        
-        if (textContains(array_find_step[i]).findOne(2000) != null) {
+        //findOne(5000) -> 可能因网络不佳，内存不足等多种问题造成延迟
+        if (textContains(array_find_step[i]).findOne(5000) != null) {
             click(array_find_step[i]);
             if (array_find_step[i] == "填写") {
                 sleep(2000);

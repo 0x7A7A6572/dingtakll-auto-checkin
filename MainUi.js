@@ -1,19 +1,11 @@
 "ui";
-//importClass(android.view.Gravity);
 importClass(android.widget.LinearLayout);
 importClass(android.widget.LinearLayout.LayoutParams);
 importClass(android.widget.TimePicker.OnTimeChangedListener);
+importClass("android.view.Gravity");
 let DialogPlus = require("components/DialogPlus.js");
 require('components/tuiWidgetDebug.js');
 let config = require("config.js");
-let DingTalkUtil = require("utils/DingTalkUtil.js");
-let AppUtil = require("utils/AppUtil.js");
-let SystemUtil = require("utils/SystemUtil.js");
-let AutoJsUtil = require("utils/AutoJsUtil.js");
-let DateUtil = require("utils/DateUtil.js");
-let NotifyUtil = require("utils/NotifyUtil.js");
-let iConsole = require("components/iConsole.js");
-
 config.init();
 
 
@@ -27,7 +19,7 @@ ui.layout(
                     <tui-button id="exit_script" text="[X]" textSize="18sp" color="#ff2f00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="unit_test" text=">单元测试" textSize="12sp" layout_weight="1" color="#4ff2f6" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
                 </linear> <!--tui-text text="──── version 1.2.0 ───          ──── @zzerX ────" textSize="8sp" / -->
                 <ScrollView layout_gravity="center">
-                    <vertical w="*"> <!-- box1--> <!-- box2-->
+                    <vertical w="*"> 
                         <vertical w="*" margin="0 20 0 0">
                             <linear w="*" gravity="center">
                                 <tui-text id="title_treaty" text=" 使用条约" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b" />
@@ -161,9 +153,6 @@ let myDialog = DialogPlus.setView(itimepicker)
 itimepicker.spinner.setOnTimeChangedListener(new android.widget.TimePicker.OnTimeChangedListener({
     onTimeChanged: function(view, hour, minute) {
         _tmp_timing = numTimeToTiming(hour, minute);
-        //toastLog(_tmp_timing)
-        //config.timing = hour + ":" + minute;
-        //  config.updateAll();
     }
 }));
 
@@ -177,6 +166,7 @@ ui.auto_run_ontiming.addOnCheckListen(function(checked) {
     config.auto_run_on_timing = checked;
     addTimerIfNotExists(config.script_path);
 });
+
 /*ui.stop_script.on("click", () => {
     toast("已为您停止启动脚本");
     SCRIPT_RUN_AUO = false; 
@@ -209,7 +199,7 @@ ui.title_device_info.on("click", (view) => {
 
 ui.title_treaty.on("click", (view) => {
     tabButtonAction(explain_views, 0);
-    ui.explain.setText("  一丶本软件只适用于代替正常情况下的手动打卡，不涉及「虚拟定位」等有虚拟数据填入表格内容的功能，使用本软件前确保表格内容无需改动，且提交内容符合自身情况，遵守防疫规定，如有不同，请停止使用并手动修改填报真实情况进行提交！\n  二丶使用者必须在遵守防疫规定下使用\n  三丶本软件不收集任何用户资料丶行为丶特征等\n  四丶使用即同意本条约.\n")
+    ui.explain.setText(getAgreement());
 });
 
 ui.unit_test.on("click", ()=>{
@@ -240,7 +230,7 @@ ui.ps_floatwindow.on("click", function() {
     } else {
         toast('已有悬浮窗权限');
     }
-    //app.openAppSetting("cn.zzerx.selfruler")
+    //app.openAppSetting("")
     /*app.startActivity({action: "android.settings.action.MANAGE_OVERLAY_PERMISSION"});*/
     //toast("在「权限管理」中找到「显示悬浮窗」并授权");
 })
@@ -256,7 +246,7 @@ ui.ps_battery_opt.on("click", function() {
         toast("未开启忽略电池优化");
         $power_manager.requestIgnoreBatteryOptimizations();
         /*app.startActivity({action: "android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS"});*/
-        //app.openAppSetting("cn.zzerx.selfruler");
+        //app.openAppSetting("");
         //toast("在「省电策略」中授权「无限制」");
     } else {
         toast("已开启忽略电池优化");
@@ -281,14 +271,12 @@ x ->未授权
 });
 
 
-/*ui.unit_test.on("click", (view) => {
 
-});*/
-//_____
 initlze();
 
 
 function initlze() {
+   // console.warn(config.timers_id,$timers.getTimedTask(config.timers_id),$timers.queryTimedTasks({ path: $files.cwd() + "/mainService.js"}));
     ui.logText.setText(config.storage.get("log") || "无日志");
     ui.explain.setText(getExplain());
     ui.find_step.addTuiTextChangedListener(new TextWatcher() {
@@ -304,8 +292,6 @@ function initlze() {
 
 function runService() {
     engines.execScriptFile("./mainService.js");
-    //使用线程的方式启动自动打卡服务
-    //ServiceThread.start(ServiceThread.run);
 }
 
 
@@ -330,59 +316,26 @@ function getExplain() {
     return str;
 }
 
-
-
-/*
- *  box行为
- *
- */
-/*
-//公共方法
-tuiBoxs.getItem(index).getTitleView();
-tuiBoxs.getItem(index).getTitle();
-tuiBoxs.getItem(index).getTitleFunctionsView();
-tuiBoxs.getItem(index).getTitleFunctions();
-tuiBoxs.getItem(index).getShowHideButton();
-tuiBoxs.getItem(index).isShow();
-
-   tuiBoxs.setTUIBoxData([
-     {
-     title: "Box1",
-     titleFunctions: [
-         {text: "func1",
-          onClick: fun1},
-         {text: "func2",
-          onClick: fun2},
-         {text: "func3",
-          onClick: fun3}
-         ],
-      showHideButton:true,
-      showHideButtonDefaultState:true, // <- 是否需要？
-      backgroundColor:"#ff0000",
-      miniHeight:200, // <- 是否需要？或许不开放
-      body:(<linear>
-              <tui-text text="test"/>
-            </linear>)
-     },
-     {
-     
-     }
-   ]);
-*/
-
-
-
-function boxShowStateBind(view) {
-    let pview = view.getParent()
-        .getParent()
-        .getParent()
-        .getChildAt(1);
-    //获取控件的布局参数，设置控件的宽高
-    params = pview.getLayoutParams();
-    params.height = params.height > 0 ? -1 : 200;
-    pview.setLayoutParams(params);
-    // view.setRotation(params.height > 0 ? 90 : 0)
+function getAgreement() {
+    let str = `
+   一丶本软件只适用于代替正常情况下的手动打卡，不涉及「虚拟定位」等有虚拟数据填入表格内容的功能，使用本软件前确保表格内容无需改动，且提交内容符合自身情况，遵守防疫规定，如有不同，请停止使用并手动修改填报真实情况进行提交！
+   二丶使用者必须在遵守防疫规定下使用
+   三丶本软件不收集任何用户资料丶行为丶特征等
+   四丶使用即同意以上协议.`
+    return str;
 }
+
+// function boxShowStateBind(view) {
+//     let pview = view.getParent()
+//         .getParent()
+//         .getParent()
+//         .getChildAt(1);
+//     //获取控件的布局参数，设置控件的宽高
+//     params = pview.getLayoutParams();
+//     params.height = params.height > 0 ? -1 : 200;
+//     pview.setLayoutParams(params);
+//     // view.setRotation(params.height > 0 ? 90 : 0)
+// }
 
 function tabButtonAction(tabs, index) {
     var headText = "->"
@@ -425,26 +378,72 @@ function timingFormat(timing) {
 }
 
 function checkTimedTaskChange(task_milis) {
-    console.warn(task_milis, new Date(task_milis));
+    console.warn("checkTimedTaskChange:",task_milis, new Date(task_milis));
 }
+
+// function addTimerIfNotExists(script_path) {
+//     if (config.timers_id != null) {
+//         let task = $timers.getTimedTask(config.timers_id);
+//         console.warn(config.timers_id, task)
+//         checkTimedTaskChange(task.millis);
+//         if (task != null && !config.auto_run_on_timing) {
+
+//             $timers.removeTimedTask(config.timers_id);
+//             config.timers_id = null;
+//             config.updateAll();
+//             console.info("addTimerIfNotExists:", config.timers_id, task, config.auto_run_on_timing);
+
+//         }
+//         /*else if(task != null && config.auto_run_on_timing && task.milis != new Date(0,0,0,)){ //时间不等
+               
+//              }*/
+//         else {
+//             config.timers_id = null;
+//             config.updateAll();
+//             console.info("if[true] -> if[false]:", config.timers_id, task, config.auto_run_on_timing);
+//         }
+//     } else if (config.timers_id == null && config.auto_run_on_timing) {
+//         let [hours, minute] = timingFormat(config.timing);
+//         //toastLog(hours + ": " +minute + new Date(0, 0, 0, hours, minute, 0));
+//         let task = $timers.addDailyTask({
+//             path: script_path,
+//             time: new Date(0, 0, 0, hours, minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
+//         });
+//         config.timers_id = task.id;
+//         config.updateAll();
+//         console.info("config.timers_id == null added");
+//     } else {
+//         console.info("addTimerIfNotExists:", config.timers_id, config.auto_run_on_timing);
+//     }
+
+// }
 
 function addTimerIfNotExists(script_path) {
     if (config.timers_id != null) {
         let task = $timers.getTimedTask(config.timers_id);
-        console.warn(config.timers_id, task)
-        checkTimedTaskChange(task.millis);
+        // let all_tasks =  $timers.queryTimedTasks({ path: config.timer_path});
+        // console.info(config.timers_id, task);
+        //checkTimedTaskChange(task.millis);
         if (task != null && !config.auto_run_on_timing) {
 
             $timers.removeTimedTask(config.timers_id);
             config.timers_id = null;
             config.updateAll();
-            console.info("意料之中:", config.timers_id, task, config.auto_run_on_timing);
-
-        }
-        /*else if(task != null && config.auto_run_on_timing && task.milis != new Date(0,0,0,)){ //时间不等
-               
-             }*/
-        else {
+            console.info("addTimerIfNotExists:", config.timers_id, task, config.auto_run_on_timing);
+        }else if(task != null && config.auto_run_on_timing && config.timing != _tmp_timing){ //在ui界面定时开启开启状态下修改定时
+            let [_hours, _minute] = timingFormat(_tmp_timing);
+           // let new_time = new Date(0, 0, 0, _hours, _minute, 0).getTime();
+            //task.millis = new_time - new Date(0, 0, 0, 0, 0, 0).getTime();
+            console.warn("删除定时任务[",config.timers_id,"]",$timers.removeTimedTask(config.timers_id));
+            let new_task =$timers.addDailyTask({
+                path: script_path,
+                time: new Date(0, 0, 0, _hours, _minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
+            });
+            console.info("_tmp_timing 改变且开启定时状态",_hours, _minute,);
+            config.timers_id = new_task.id;
+            config.timing = _tmp_timing;
+            config.updateAll();
+       }else {
             config.timers_id = null;
             config.updateAll();
             console.info("if[true] -> if[false]:", config.timers_id, task, config.auto_run_on_timing);
@@ -460,7 +459,7 @@ function addTimerIfNotExists(script_path) {
         config.updateAll();
         console.info("config.timers_id == null added");
     } else {
-        console.info("意料之外:", config.timers_id, config.auto_run_on_timing);
+        console.info("addTimerIfNotExists:", config.timers_id, config.auto_run_on_timing);
     }
 
 }
@@ -475,7 +474,7 @@ function updatePermissionStatusView(view, statu){
   view.setText(view.getText().replace(/. /g,statu ? ownText : notOwnedText))
 }
 
- //包活&动态更新一些东西
+ //保活&动态更新一些东西
     setInterval(function() {
       
         //检查权限状态并更新ui

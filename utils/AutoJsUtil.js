@@ -1,6 +1,6 @@
 var AutoJsUtil = {
     /*
-     * 点击控件中心坐标
+     * 点击控件中心坐标(autojs pro 中已自带点击中心方法，故这个暂时弃用)
      */
     clickCoordinate: function(uiselected, delay) {
         if (uiselected == null) {
