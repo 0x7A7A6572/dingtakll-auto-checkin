@@ -21,8 +21,8 @@ ui.layout(
     <frame>
         <vertical>
             <linear bg="#ffffff" padding="0" h="40" w="*">
-                <tui-text  id="title_set" text="▍钉钉自动健康打卡" textSize="12sp" textStyle="bold" padding="5" />
-                <tui-button id="vip" text="[VIP]" textSize="16sp" gravity="right" color="#FFAA00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> 
+                <tui-text  id="title_set" text="▍钉钉自动健康打卡" textSize="12sp" textStyle="bold" padding="5"  layout_weight="1"/>
+                <!--tui-button id="vip" text="[VIP]" textSize="16sp" gravity="right" color="#FFAA00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /--> 
                 <tui-button id="run_script" text="[>>>]" textSize="16sp" gravity="center" color="#00dd00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="stop_script" text="[停止]" textSize="18sp" color="#99cf00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
                     <tui-button id="exit_script" text="[X]" textSize="18sp" color="#ff2f00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="unit_test" text=">单元测试" textSize="12sp" layout_weight="1" color="#4ff2f6" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
                 </linear> <!--tui-text text="──── version 1.2.0 ───          ──── @zzerX ────" textSize="8sp" / -->
@@ -61,7 +61,7 @@ ui.layout(
                                             <tui-text text="锁屏数字密码:" color="#33CC66" padding="5" gravity="center" h="*" />
                                             <tui-editText id="lock_num" text="24568" inputType="textPassword" textSize="14sp" hint="当定时触发手机是锁屏时需要" prefKey="lock_num" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" password="true" />
                                         </linear>
-                                    <frame>
+                                    <!--frame>
                                         <vertical id="vip_func" w="*" margin="0 8 0 8" padding="12" bg="#BBFFF9C4">
 
                                         <tui-text _weight="1" text="排班设置" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" />
@@ -79,7 +79,7 @@ ui.layout(
                                     <vertical gravity="center" bg="#A8FFFFFF" margin="0 8 0 8" >
                                     <tui-text text=" - 仅限VIP用户  -"  w="*" h="*" color="#FFBB00" textSize="16sp" textStyle="bold"  gravity="center" layout_gravity="center"/>
                                     </vertical>
-                                    </frame>
+                                    </frame-->
                                     </vertical>
                                     <!--tui-checkBox id="logcat_float_window" text="打卡时显示实时日志悬浮窗" prefKey="logcat_float_window" bg="#2233CC66" textStyle="bold" padding="10" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" margin="0 10 0 0"/-->
                                     <vertical layout_weight="1">
