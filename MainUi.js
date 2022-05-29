@@ -114,7 +114,7 @@ ui.layout(
                                     </vertical>
                                 </vertical>
                             </ScrollView>
-                        </vertical> <tui-text text="──── v1.2.0 @zzerX ───" textSize="11sp" />
+                        </vertical> <tui-text text="──── {{config.version}} @zzerX ───" textSize="11sp" />
                     </frame>);
 
 
@@ -381,7 +381,7 @@ function getExplain() {
    2.软件开启无障碍权限丶自启权限(定时任务需要)丶电池优化白名单(后台存活，确保定时服务能正常运行)丶后台弹出权限(自动打开钉钉及定位需要)
    3.必须之前有提交过数据,暂时只帮点定位;
    4.定时任务需要锁屏密码且是数字密码或无密码(暂不支持手势密码);
-   5.使用前先运行 其他->可行性测试 并逐项测试，可减少失败概率
+   5.使用前先运行 其他->功能可用性测试 并逐项测试，可减少失败概率
    
 已测试环境(钉钉6.5.10.11 MIUI12.5)`
     return str;
@@ -389,21 +389,15 @@ function getExplain() {
 
 function getAgreementColorfuls() {
     let colorfuls = [{
-            start: 26,
-            end: 35,
-            color: 0xffff0000
-        },
-        {
-            start: 80,
-            end: 86,
-            color: 0xffff0000
-        }
-    ];
+            start: 87,
+            end: 149,
+            color: 0xffff6666
+         }];
     return colorfuls;
 }
 
 function getAgreement() {
-    let str = `
+    let str = config.last_release_time + `
    一丶本软件只适用于代替正常情况下的手动打卡，不涉及「虚拟定位」等有虚拟数据填入表格内容的功能，使用本软件前确保表格内容无需改动，且提交内容符合自身情况，遵守防疫规定，如有不同，请停止使用并手动修改填报真实情况进行提交！
    二丶使用者必须在遵守防疫规定下使用
    三丶本软件不收集任何用户资料丶行为丶特征等

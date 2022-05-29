@@ -6919,3 +6919,909 @@ checkTimedTaskExists: [Function],
 2022-05-29 18:04:47.342/TRACE: 
 ------------
 [/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时18.170000秒
+2022-05-29 18:15:12.864/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 18:15:13.013/INFO: 配置初始化完毕!
+2022-05-29 18:15:13.014/TRACE: {
+_last_update: Sun May 29 2022 18:15:12 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: true,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: 114,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 18:18:49.443/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 18:18:55.904/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时6.459000秒
+2022-05-29 18:18:55.907/DEBUG: 结束测试
+2022-05-29 18:19:41.359/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时268.495000秒
+2022-05-29 18:19:41.391/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时268.527000秒
+2022-05-29 18:22:58.105/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 18:22:58.359/INFO: 配置初始化完毕!
+2022-05-29 18:22:58.362/TRACE: {
+_last_update: Sun May 29 2022 18:22:58 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 18:26:41.620/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时223.514000秒
+2022-05-29 19:30:23.621/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 19:30:23.746/INFO: 配置初始化完毕!
+2022-05-29 19:30:23.747/TRACE: {
+version: "v2.0.2",
+_last_update: Sun May 29 2022 19:30:23 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 19:30:23.749/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时0.125000秒
+2022-05-29 19:30:23.749/ERROR: TypeError: name expected (position:START_TAG <tui-text text='──── '>@102:59 in java.io.StringReader@68955f1) 
+    at /storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js:15:0
+
+2022-05-29 19:31:04.349/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 19:31:04.466/INFO: 配置初始化完毕!
+2022-05-29 19:31:04.467/TRACE: {
+version: "v2.0.2",
+_last_update: Sun May 29 2022 19:31:04 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 19:38:17.248/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:38:29.876/DEBUG: 唤醒设备...
+2022-05-29 19:38:31.419/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 19:38:31.419/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 19:38:31.420/DEBUG: 解锁完成
+2022-05-29 19:38:33.058/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 19:38:33.060/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 19:38:33.073/DEBUG: 解锁完成
+2022-05-29 19:38:34.724/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 19:38:34.724/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 19:38:34.725/DEBUG: 解锁完成
+2022-05-29 19:38:36.398/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 19:38:36.399/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 19:38:36.399/DEBUG: 解锁完成
+2022-05-29 19:38:38.197/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 19:38:38.197/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 19:38:38.198/DEBUG: 解锁完成
+2022-05-29 19:38:43.579/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时459.228000秒
+2022-05-29 19:38:43.581/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时26.332000秒
+2022-05-29 19:38:43.614/DEBUG: 结束测试
+2022-05-29 19:42:15.279/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:42:30.838/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时15.558000秒
+2022-05-29 19:42:30.846/ERROR: Error: 不能在ui线程执行阻塞操作，请使用setTimeout代替
+    at <init>:43:0
+
+2022-05-29 19:42:30.852/DEBUG: 结束测试
+2022-05-29 19:45:31.839/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:45:36.363/ERROR: UnitTest[自动解锁] Error: ReferenceError: "y" is not defined.
+2022-05-29 19:45:45.811/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时13.972000秒
+2022-05-29 19:45:45.815/DEBUG: 结束测试
+2022-05-29 19:46:22.655/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:46:36.374/DEBUG: 唤醒设备...
+2022-05-29 19:46:37.922/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 19:46:37.923/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 19:46:38.077/INFO: click数字 true
+2022-05-29 19:46:38.234/INFO: click数字 true
+2022-05-29 19:46:38.400/INFO: click数字 true
+2022-05-29 19:46:38.559/INFO: click数字 true
+2022-05-29 19:46:38.721/INFO: click数字 true
+2022-05-29 19:46:38.723/DEBUG: 解锁完成
+2022-05-29 19:46:47.722/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时25.066000秒
+2022-05-29 19:46:47.727/DEBUG: 结束测试
+2022-05-29 19:47:54.513/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:48:06.157/DEBUG: 唤醒设备...
+2022-05-29 19:48:07.667/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 19:48:07.669/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 19:48:07.822/INFO: click数字 true
+2022-05-29 19:48:07.977/INFO: click数字 true
+2022-05-29 19:48:08.131/INFO: click数字 true
+2022-05-29 19:48:08.285/INFO: click数字 true
+2022-05-29 19:48:08.440/INFO: click数字 true
+2022-05-29 19:48:08.445/DEBUG: 解锁完成
+2022-05-29 19:48:14.190/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时19.676000秒
+2022-05-29 19:48:14.194/DEBUG: 结束测试
+2022-05-29 19:50:38.203/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:52:18.734/ERROR: UnitTest[自动解锁] Error: JavaException: com.stardust.autojs.runtime.exception.ScriptInterruptedException: null
+2022-05-29 19:52:22.235/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时104.030000秒
+2022-05-29 19:52:22.244/DEBUG: 结束测试
+2022-05-29 19:54:09.270/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:54:16.541/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时7.271000秒
+2022-05-29 19:54:16.544/DEBUG: 结束测试
+2022-05-29 19:55:08.052/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:55:20.791/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时12.738000秒
+2022-05-29 19:55:20.794/DEBUG: 结束测试
+2022-05-29 19:55:58.272/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:56:27.252/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时28.979000秒
+2022-05-29 19:56:27.255/DEBUG: 结束测试
+2022-05-29 19:58:21.525/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 19:58:33.588/DEBUG: 唤醒设备...
+2022-05-29 19:58:35.054/TRACE: 是数字解锁 true {}
+2022-05-29 19:58:35.054/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 19:58:35.055/ERROR: UnitTest[自动解锁] Error: TypeError: Cannot read property "0" from undefined
+2022-05-29 19:59:25.917/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时64.391000秒
+2022-05-29 19:59:25.920/DEBUG: 结束测试
+2022-05-29 20:15:47.878/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 20:16:00.040/DEBUG: 唤醒设备...
+2022-05-29 20:16:01.522/TRACE: 是数字解锁 true {}
+2022-05-29 20:16:01.523/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 20:16:01.525/ERROR: UnitTest[自动解锁] Error: TypeError: Cannot read property "0" from undefined
+2022-05-29 20:16:10.538/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时22.658000秒
+2022-05-29 20:16:10.548/DEBUG: 结束测试
+2022-05-29 20:24:11.122/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/unit/UnitsTest.js]
+2022-05-29 20:24:11.130/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/unit/UnitsTest.js]运行结束，用时0.008000秒
+2022-05-29 20:24:11.131/ERROR: ReferenceError: "module" is not defined.
+    at /storage/emulated/0/AutoProProject/dingtakll-auto-checkin/unit/UnitsTest.js:126:0
+
+2022-05-29 20:24:16.299/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 20:24:28.848/DEBUG: 唤醒设备...
+2022-05-29 20:24:30.263/TRACE: 是数字解锁 true {}
+2022-05-29 20:24:30.264/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 20:24:37.083/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时20.784000秒
+2022-05-29 20:24:37.084/ERROR: Java class "java.lang.System" has no public instance field or method named "Diagnostics".
+    at file:/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/unit/UnitsTest.js:77:0
+    at /storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js:78:0
+
+2022-05-29 20:24:37.088/DEBUG: 结束测试
+2022-05-29 20:32:59.622/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 20:33:12.617/DEBUG: 唤醒设备...
+2022-05-29 20:33:14.014/TRACE: 是数字解锁 true {}
+2022-05-29 20:33:14.014/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 20:33:14.016/ERROR: UnitTest[自动解锁:line:	at file:/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/utils/SystemUtil.js:104
+	at /storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js:49
+	at file:/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/unit/UnitsTest.js:75
+	at /storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js:78
+] Error: TypeError: Cannot read property "0" from undefined
+2022-05-29 20:33:22.082/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时22.457000秒
+2022-05-29 20:33:22.094/DEBUG: 结束测试
+2022-05-29 20:40:58.752/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 20:41:10.175/DEBUG: 唤醒设备...
+2022-05-29 20:41:11.759/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 20:41:11.760/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 20:41:11.921/INFO: click数字 true
+2022-05-29 20:41:12.078/INFO: click数字 true
+2022-05-29 20:41:12.233/INFO: click数字 true
+2022-05-29 20:41:12.391/INFO: click数字 true
+2022-05-29 20:41:12.546/INFO: click数字 true
+2022-05-29 20:41:12.548/DEBUG: 解锁完成
+2022-05-29 20:41:18.145/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时19.391000秒
+2022-05-29 20:41:18.152/DEBUG: 结束测试
+2022-05-29 20:50:25.041/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 20:50:36.546/DEBUG: 唤醒设备...
+2022-05-29 20:50:37.934/INFO: Rect(510, 1834 - 570, 1966)
+2022-05-29 20:50:37.942/INFO: Rect(229, 1276 - 268, 1408)
+2022-05-29 20:50:37.949/INFO: Rect(511, 1276 - 569, 1408)
+2022-05-29 20:50:37.956/INFO: Rect(804, 1276 - 861, 1408)
+2022-05-29 20:50:37.979/INFO: Rect(218, 1462 - 279, 1594)
+2022-05-29 20:50:37.995/INFO: Rect(511, 1462 - 569, 1594)
+2022-05-29 20:50:38.007/INFO: Rect(803, 1462 - 862, 1594)
+2022-05-29 20:50:38.019/INFO: Rect(221, 1648 - 275, 1780)
+2022-05-29 20:50:38.025/INFO: Rect(511, 1648 - 570, 1780)
+2022-05-29 20:50:38.033/INFO: Rect(802, 1648 - 862, 1780)
+2022-05-29 20:50:38.040/TRACE: 是数字解锁 true { '0': [ 540, 1900 ],
+  '1': [ 248, 1342 ],
+  '2': [ 540, 1342 ],
+  '3': [ 832, 1342 ],
+  '4': [ 248, 1528 ],
+  '5': [ 540, 1528 ],
+  '6': [ 832, 1528 ],
+  '7': [ 248, 1714 ],
+  '8': [ 540, 1714 ],
+  '9': [ 832, 1714 ] }
+2022-05-29 20:50:38.040/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 20:50:38.194/INFO: click数字 true
+2022-05-29 20:50:38.349/INFO: click数字 true
+2022-05-29 20:50:38.503/INFO: click数字 true
+2022-05-29 20:50:38.659/INFO: click数字 true
+2022-05-29 20:50:38.817/INFO: click数字 true
+2022-05-29 20:50:38.820/DEBUG: 解锁完成
+2022-05-29 20:50:44.143/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时19.099000秒
+2022-05-29 20:50:44.150/DEBUG: 结束测试
+2022-05-29 20:51:20.647/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 20:51:32.105/DEBUG: 唤醒设备...
+2022-05-29 20:51:33.482/TRACE: 是数字解锁 true {}
+2022-05-29 20:51:33.483/DEBUG: 解锁界面为数字密码[ 24568 ]
+2022-05-29 20:51:33.484/ERROR: UnitTest[自动解锁:line:	at file:/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/utils/SystemUtil.js:104
+	at /storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js:49
+	at file:/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/unit/UnitsTest.js:75
+	at /storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js:78
+] Error: TypeError: Cannot read property "0" from undefined
+2022-05-29 20:51:53.895/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时33.248000秒
+2022-05-29 20:51:53.898/DEBUG: 结束测试
+2022-05-29 21:49:45.336/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 21:49:45.510/INFO: 配置初始化完毕!
+2022-05-29 21:49:45.511/TRACE: {
+version: "v2.0.2",
+_last_update: Sun May 29 2022 21:49:45 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 21:50:50.822/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 21:51:04.650/DEBUG:  GPS当前状态! false
+2022-05-29 21:51:04.657/DEBUG: 正在测试打开定位,型号:0开启位置服务
+2022-05-29 21:51:04.663/DEBUG:  GPS当前状态! false
+2022-05-29 21:51:04.736/TRACE: 跳转设置界面
+2022-05-29 21:51:04.738/DEBUG:  GPS当前状态! false
+2022-05-29 21:51:07.078/TRACE: >尝试点击开启位置服务 (1/1)
+2022-05-29 21:51:07.097/DEBUG:  GPS当前状态! true
+2022-05-29 21:51:20.994/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时30.169000秒
+2022-05-29 21:51:21.005/DEBUG: 结束测试
+2022-05-29 21:52:56.118/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]
+2022-05-29 21:53:00.416/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/testMain.js]运行结束，用时4.295000秒
+2022-05-29 21:53:00.429/DEBUG: 结束测试
+2022-05-29 21:53:47.863/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时242.524000秒
+2022-05-29 21:53:47.895/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时242.556000秒
+2022-05-29 21:58:31.941/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 21:58:32.117/INFO: 配置初始化完毕!
+2022-05-29 21:58:32.118/TRACE: {
+version: "v2.0.2",
+last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+_last_update: Sun May 29 2022 21:58:32 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 21:58:43.484/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时11.543000秒
+2022-05-29 21:58:43.515/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时11.573000秒
+2022-05-29 21:59:02.600/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 21:59:02.768/INFO: 配置初始化完毕!
+2022-05-29 21:59:02.769/TRACE: {
+version: "v2.0.2",
+last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+_last_update: Sun May 29 2022 21:59:02 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 21:59:13.527/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时10.926000秒
+2022-05-29 21:59:13.564/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时10.963000秒
+2022-05-29 21:59:25.852/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 21:59:25.995/INFO: 配置初始化完毕!
+2022-05-29 21:59:25.996/TRACE: {
+version: "v2.0.2",
+last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+_last_update: Sun May 29 2022 21:59:25 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 22:00:15.535/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时49.682000秒
+2022-05-29 22:01:01.376/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 22:01:01.517/INFO: 配置初始化完毕!
+2022-05-29 22:01:01.518/TRACE: {
+version: "v2.0.2",
+last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+_last_update: Sun May 29 2022 22:01:01 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 22:01:12.247/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时10.870000秒
+2022-05-29 22:01:12.272/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时10.895000秒
+2022-05-29 22:01:23.673/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 22:01:23.832/INFO: 配置初始化完毕!
+2022-05-29 22:01:23.835/TRACE: {
+version: "v2.0.2",
+last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+_last_update: Sun May 29 2022 22:01:23 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 22:01:42.764/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时19.089000秒
+2022-05-29 22:01:42.787/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时19.114000秒
+2022-05-29 22:01:48.329/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 22:01:48.481/INFO: 配置初始化完毕!
+2022-05-29 22:01:48.482/TRACE: {
+version: "v2.0.2",
+last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+_last_update: Sun May 29 2022 22:01:48 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 22:02:01.451/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时13.122000秒
+2022-05-29 22:02:14.094/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 22:02:14.242/INFO: 配置初始化完毕!
+2022-05-29 22:02:14.243/TRACE: {
+version: "v2.0.2",
+last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+_last_update: Sun May 29 2022 22:02:14 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 22:02:18.849/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时4.754000秒
+2022-05-29 22:02:18.868/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时4.773000秒
+2022-05-29 22:02:25.856/TRACE: 开始运行[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]
+2022-05-29 22:02:26.006/INFO: 配置初始化完毕!
+2022-05-29 22:02:26.007/TRACE: {
+version: "v2.0.2",
+last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+_last_update: Sun May 29 2022 22:02:25 GMT+0800 (GMT+08:00),
+auto_screenshot: true,
+auto_share_after_screenshot: true,
+auto_run_when_opened: false,
+auto_delete_image: false,
+auto_run_on_timing: false,
+show_logcat_flotwindow: true,
+find_form_step_is_from_text: "填写->运营有限公司员工每日健康打卡->今天",
+group_name: "每日健康打卡群",
+lock_password: "24568",
+image_path: "/sdcard/screenshot.png",
+script_path: "./mainService.js",
+timing: "00:05",
+timers_id: null,
+CORP_ID: "ding8899d97ca245143835c2f4657eb6378f",
+TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
+log: "[05-29 00:06:22]:已完成05月29日打卡
+[05-28 00:31:03]:已完成05月28日打卡
+[05-27 00:28:10]:已完成05月27日打卡
+[05-26 07:43:22]:已完成05月26日打卡
+[05-25 00:39:41]:已完成05月25日打卡
+[05-24 05:58:37]:已完成05月24日打卡
+[05-23 00:35:38]:已完成05月23日打卡
+[05-22 02:02:21]:已完成05月22日打卡
+undefined",
+storage: [object Object],
+tui_storage_edittext: [object Object],
+tui_storage_checkbox: [object Object],
+init: [Function],
+updateAll: [Function],
+addTimerIfNotExists: [Function],
+checkTimedTaskExists: [Function],
+
+},
+
+2022-05-29 22:02:37.195/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时11.339000秒
+2022-05-29 22:02:37.216/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/dingtakll-auto-checkin/MainUi.js]运行结束，用时11.359000秒
+2022-05-29 22:30:17.080/TRACE: 开始运行[/storage/emulated/0/AutoProProject/node_zzxzs/main.js]
+2022-05-29 22:30:18.578/DEBUG: Hello, World
+2022-05-29 22:30:18.588/DEBUG: versions: {
+  node: '16.14.0',
+  v8: '9.4.146.24-node.20',
+  uv: '1.43.0',
+  zlib: '1.2.11',
+  brotli: '1.0.9',
+  ares: '1.18.1',
+  modules: '93',
+  nghttp2: '1.45.1',
+  napi: '8',
+  llhttp: '6.0.4',
+  autojspro: 'Pro 9.1.16-0',
+  openssl: '1.1.1m+quic',
+  cldr: '40.0',
+  icu: '70.1',
+  tz: '2021a3',
+  unicode: '14.0',
+  ngtcp2: '0.1.0-DEV',
+  nghttp3: '0.1.0-DEV'
+}
+2022-05-29 22:30:18.622/DEBUG: process exit: 0
+2022-05-29 22:30:18.624/TRACE: 
+------------
+[/storage/emulated/0/AutoProProject/node_zzxzs/main.js]运行结束，用时1.543000秒

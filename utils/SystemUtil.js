@@ -272,11 +272,12 @@ function findAllNumber() {
             let numbon = text(i)
                 .findOne()
                 .bounds();
+           // console.info(numbon)
             numberPosition[i] = [numbon.centerX(), numbon.centerY()];
             sum++;
         }
     }
-    return (sum === 9) ? [false, null] : [true, numberPosition];
+    return (sum == 9) ? [false, null] : [true, numberPosition];
 }
 
 

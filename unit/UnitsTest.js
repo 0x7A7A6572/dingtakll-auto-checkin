@@ -1,3 +1,4 @@
+importClass(java.lang.System);
 /*
   testfunc = {
       unitName:[String], 测试单元名
@@ -73,7 +74,9 @@ UnitsTest = {
                         this.setTestStatu(this.unitList[select].unitName, this.TESTING);
                         this.unitList[select].unit();
                     } catch (e) {
-                        console.error("UnitTest[" + this.unitList[select].unitName + "] Error: " + e);
+                        //let trace = new System.Diagnostics.StackTrace(e, true);            
+                        //console.WriteLine("Line: " + trace.GetFrame(0).GetFileLineNumber());
+                        console.error("UnitTest[" + this.unitList[select].unitName + ":line:"+ e.stack +"] Error: " + e);
                         this.setTestStatu(this.unitList[select].unitName, this.FAILED);
                     } finally {
                         

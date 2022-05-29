@@ -42,18 +42,21 @@ UnitsTest.setTitle("单元测试")
     .addUnitTest({
         unitName: "自动解锁",
         unit: () => {
-            let password = dialogs.input("请输入你的锁屏密码进行测试,点击确认之后手动锁屏等待5s ～ 8s", null);
-            toast("现在请锁屏等待，如果开启了面部识别，请遮挡过斜视")
-            sleep(5000);
-            SystemUtil.unlock(password, {
-                success: function() {
-                    UnitsTest.setTestStatu(this.unitName, UnitsTest.SUCCESS);
-                },
-                failed: function(log) {
-                    UnitsTest.setTestStatu(this.unitName, UnitsTest.FAILED);
-                }
-            });
-
+            let password = dialogs.input("请输入你的锁屏数字密码进行测试,点击确认之后手动锁屏等待5s ～ 8s \n(如果开启了面部识别，请遮挡或斜视)", null);
+            if (password != null) {
+                toast("现在请锁屏等待触发")
+                sleep(6000);
+                SystemUtil.unlock(password.toString(), {
+                    success: function() {
+                        UnitsTest.setTestStatu(this.unitName, UnitsTest.SUCCESS);
+                    },
+                    failed: function(log) {
+                        UnitsTest.setTestStatu(this.unitName, UnitsTest.FAILED);
+                    }
+                });
+            } else {
+                toast("取消")
+            }
 
         }
     })
@@ -83,4 +86,3 @@ function lacksPermission() {
     return context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED;
 
 }
-
