@@ -10,16 +10,16 @@ iConsole = require("components/consoleN.js");
 
 //脚本退出监听
 events.on("exit", function() {
-    console.log(">>>auto punch server EXit;")
+    console.log(">>>auto punch in server EXit;")
     iConsole.close();
     //BroadcastUtil.send("iConsoleCloseView",true);
-
 });
 
 
 config.init();
-iConsole.init(null, engines.myEngine());
-
+if (config.show_logcat_flotwindow) {
+    iConsole.init(null, engines.myEngine());
+}
 SystemUtil.unlock(config.lock_password, {
     success: function() {
         serviceMain();
@@ -36,7 +36,7 @@ function serviceMain() {
     let missionAccomplished = false;
     let array_find_step = config.find_form_step_is_from_text.split("->");
     let find_form_failure_limit = 5;
-    for (let i = 0; i < array_find_step.length; i++ ) {
+    for (let i = 0; i < array_find_step.length; i++) {
         //findOne(5000) -> 可能因网络不佳，内存不足等多种问题造成延迟
         if (textContains(array_find_step[i]).findOne(5000) != null) {
             click(array_find_step[i]);
@@ -47,8 +47,9 @@ function serviceMain() {
                     click("已完成");
                 }
             }
-        }else{
+        } else {
             toastLog("未找到[" + array_find_step[i] + "]");
+            iConsole.error("未找到[" + array_find_step[i] + "]");
             exit();
         }
     }

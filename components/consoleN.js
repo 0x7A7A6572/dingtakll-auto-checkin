@@ -60,7 +60,6 @@ let consoleN = {
         
         ui.post(() => {
             wm.addView(this.instacne, lp);
-            
         });
 
          /*  threads.start(() => {
@@ -95,6 +94,10 @@ let consoleN = {
     info: function() {
         this.updateLogView([].slice.call(arguments));
         console.info(arguments);
+    },
+    error: function(){
+        this.updateLogView([].slice.call(arguments));
+        console.error(arguments);
     },
     updateLogView: function(){
         let arg = "";

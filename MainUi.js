@@ -1,19 +1,22 @@
 "ui";
+importClass(android.text.method.ScrollingMovementMethod);
 importClass(android.widget.LinearLayout);
 importClass(android.widget.LinearLayout.LayoutParams);
 importClass(android.widget.TimePicker.OnTimeChangedListener);
 importClass("android.view.Gravity");
+importClass("android.view.View");
 let DialogPlus = require("components/DialogPlus.js");
+let JavaUtil = require("utils/JavaUtil.js");
 require('components/tuiWidgetDebug.js');
 let config = require("config.js");
+let detail_is_show = false;
 config.init();
-
 
 ui.layout(
     <frame>
         <vertical>
             <linear bg="#ffffff" padding="0" h="40" w="*">
-                <tui-text  id="title_set" text="▍钉钉自动健康打卡" textSize="12sp" textStyle="bold" padding="5"  layout_weight="1"/>
+                <tui-text  id="title_set" text="▍钉钉自动健康打卡" textSize="12sp" textStyle="bold" padding="5"  layout_weight="1" color="#2b2b2b"/>
                 <!--tui-button id="vip" text="[VIP]" textSize="16sp" gravity="right" color="#FFAA00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
                 <tui-button id="run_script" text="[>>>]" textSize="16sp" gravity="center" color="#00dd00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="stop_script" text="[停止]" textSize="18sp" color="#99cf00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
                     <tui-button id="exit_script" text="[X]" textSize="18sp" color="#ff2f00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="unit_test" text=">单元测试" textSize="12sp" layout_weight="1" color="#4ff2f6" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
@@ -43,19 +46,19 @@ ui.layout(
                             </vertical> <!-- box3-->
                             <vertical>
                                 <linear gravity="center">
-                                    <tui-text id="title_share" text="打卡设置-PunchInSet" textSize="16sp" padding="8" textStyle="bold" /> <!--tui-text id="title_log_control" text="reset" textColor="#55ccff" textSize="12sp" textStyle="normal"  layout_gravity="bottom" marginLeft="0"/-->
+                                    <tui-text id="title_share" text="打卡设置-PunchInSet" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b"/> <!--tui-text id="title_log_control" text="reset" textColor="#55ccff" textSize="12sp" textStyle="normal"  layout_gravity="bottom" marginLeft="0"/-->
                                 </linear>
                                 <vertical margin="10" padding="10" bg="#2233CC66">
+                                    <tui-checkBox id="show_logcat_flotwindow" text="显示日志悬浮窗" prefKey="show_logcat_flotwindow"  textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" />
                                     <vertical layout_weight="1" bg="#3333CC66" padding="5" layout_gravity="center" gravity="center">
                                         <tui-checkBox id="auto_run_ontiming" text="定时打卡" prefKey="auto_run_on_timing"  textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" />
                                         <tui-button id="buttonToSetTiming" text="设定时间: AM 00:00 " color="#33CC66" margin="0" textStyle="bold" background="#ffffffff" />
                                         <linear marginTop="5">
-                                            <tui-text text="锁屏数字密码:" color="#33CC66" padding="5" gravity="center" h="*" />
-                                            <tui-editText id="lock_num" text="24568" inputType="textPassword" textSize="14sp" hint="当定时触发手机是锁屏时需要" prefKey="lock_num" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" password="true" />
+                                            <tui-text text="锁屏数字密码:" color="#33CC66" padding="5" gravity="center" h="*" textStyle="bold"/>
+                                            <tui-editText id="lock_num" text="24568"  inputType="textPassword" textSize="14sp" hint="当定时触发手机是锁屏时需要" prefKey="lock_num" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" password="true" />
                                         </linear>
                                         <!--frame>
                                         <vertical id="vip_func" w="*" margin="0 8 0 8" padding="12" bg="#BBFFF9C4">
-                                            
                                             <tui-text _weight="1" text="排班设置" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" />
                                             <HorizontalScrollView >
                                                 <linear bg="#3333CC66" >
@@ -76,7 +79,7 @@ ui.layout(
                                 <!--tui-checkBox id="logcat_float_window" text="打卡时显示实时日志悬浮窗" prefKey="logcat_float_window" bg="#2233CC66" textStyle="bold" padding="10" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" margin="0 10 0 0"/-->
                                 <vertical layout_weight="1">
                                     <linear marginTop="5" gravity="center">
-                                        <tui-text text="corpId:" color="#33CC66" textStyle="bold" padding="5" />
+                                        <tui-text text="CORPID:" color="#33CC66" textStyle="bold" padding="5" />
                                         <tui-editText id="corp_id" textSize="14sp" hint="公司的cropid(通过抓包获取)" prefKey="corp_id" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
                                     </linear>
                                     <linear marginTop="5" gravity="center">
@@ -92,25 +95,27 @@ ui.layout(
                         </vertical> <!-- box4-->
                         <vertical gravity="center" marginTop="10">
                             <linear gravity="center">
-                                <tui-text id="title_log" text="日志记录-Logcat" textSize="16sp" padding="8" textStyle="bold" /> <!--tui-text id="title_log_detail" text="detail" textColor="#66ff66" textSize="15sp" padding="8" textStyle="normal"   layout_gravity="bottom" marginLeft="0"/-->
+                                <tui-text id="title_log" text="日志-Logcat" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b"/> <!--tui-text id="title_log_detail" text="detail" textColor="#66ff66" textSize="15sp" padding="8" textStyle="normal"   layout_gravity="bottom" marginLeft="0"/-->
+                                <tui-text id="title_log_detail" text="[详细]" textColor="#6666ff" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
                                 <tui-text id="title_log_clear" text="[清除]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
                             </linear>
-                            <vertical>
-                                <vertical background="#3333CC66" margin="18 0 18 20">
-                                    <ScrollView minHeight="200">
-                                        <tui-text id="logText" height="300" textSize="13sp" padding="8" color="#00B800" />
-                                    </ScrollView>
-                                </vertical>
-                            </vertical>
+                                <!--ScrollView minHeight="200"-->
+                                    <vertical background="#3333CC66" margin="18 0 18 20" height="200" padding="8">
+                                        <tui-text id="logText" textSize="13sp" padding="0" color="#00B800" scrollbars="vertical"/>
+                                        <globalconsole id="console" visibility="gone" textSize="13sp" bg="#002b36" padding="5"/>
+                                    </vertical>
+                                <!--/ScrollView-->
                         </vertical>
-                        <tui-text id="other_setting" text="其他-Other" textSize="16sp" padding="8" textStyle="bold" gravity="center" />
+                        <tui-text id="other_setting" text="其他-Other" textSize="16sp" padding="8" textStyle="bold" gravity="center" color="#2b2b2b"/>
                         <vertical background="#3333CC66" margin="18 0 18 20">
-                            <tui-button id="unit_test" text="[功能可用性测试]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left" bg="#FFFFFF" margin="8"/>
-                        </vertical>
-                    </vertical>
-                </ScrollView>
-            </vertical> <tui-text text="──── v1.2.0 @zzerX ───" textSize="11sp" />
-        </frame>);
+                            <tui-text id="unit_test" text="[功能可用性测试 ->>]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left"/>
+                                <tui-text id="beg_thankyou" text="[赞赏 ->>]" textColor="#faba33" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left" />
+                                    <tui-text id="github" text="[开源相关 ->>]" textColor="#33aa33" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left" />
+                                    </vertical>
+                                </vertical>
+                            </ScrollView>
+                        </vertical> <tui-text text="──── v1.2.0 @zzerX ───" textSize="11sp" />
+                    </frame>);
 
 
 activity.getWindow().setStatusBarColor(Color.WHITE);
@@ -134,7 +139,7 @@ ui.exit_script.on("click", () => {
 });
 
 let _tmp_timing = "00:00";
-let itimepicker = ui.inflate('<timepicker id="spinner" /> ');//timePickerMode="spinner
+let itimepicker = ui.inflate('<timepicker id="spinner" /> '); //timePickerMode="spinner
 let myDialog = DialogPlus.setView(itimepicker)
     .setTitle(null)
     .onTrue(function() {
@@ -167,6 +172,10 @@ ui.auto_run_ontiming.addOnCheckListen(function(checked) {
     addTimerIfNotExists(config.script_path);
 });
 
+ui.show_logcat_flotwindow.addOnCheckListen(function(checked) {
+    config.show_logcat_flotwindow = checked;
+    // toastLog(checked)
+});
 /*ui.stop_script.on("click", () => {
     toast("已为您停止启动脚本");
     SCRIPT_RUN_AUO = false; 
@@ -181,6 +190,7 @@ ui.auto_run_ontiming.addOnCheckListen(function(checked) {
 ui.title_explain.on("click", (view) => {
     tabButtonAction(explain_views, 1);
     ui.explain.setText(getExplain());
+    ui.explain.setColourfulText(getExplainColorfuls());
 });
 
 
@@ -188,6 +198,20 @@ ui.title_log_clear.on("click", function() {
     ui.logText.setText("无日志");
     config.storage.remove("log");
     toastLog("清理日志完成!");
+});
+
+ui.title_log_detail.on("click", function() {
+    if (!detail_is_show) {
+        //ui.logText.setText($files.read("./log/log.txt"));
+        ui.logText.setVisibility(View.GONE);
+        ui.console.setVisibility(View.VISIBLE);
+        detail_is_show = true;
+    } else {
+        //ui.logText.setText(config.log);
+        ui.logText.setVisibility(View.VISIBLE);
+ ui.console.setVisibility(View.GONE);
+        detail_is_show = false;
+    }
 });
 
 ui.title_device_info.on("click", (view) => {
@@ -200,6 +224,7 @@ ui.title_device_info.on("click", (view) => {
 ui.title_treaty.on("click", (view) => {
     tabButtonAction(explain_views, 0);
     ui.explain.setText(getAgreement());
+    ui.explain.setColourfulText(getAgreementColorfuls());
 });
 
 ui.unit_test.on("click", () => {
@@ -226,7 +251,7 @@ ui.ps_floatwindow.on("click", function() {
         // 没有悬浮窗权限，提示用户并跳转请求
         // toast("本脚本需要悬浮窗权限来显示悬浮窗，请在随后的界面中允许并重新运行本脚本。");
         $floaty.requestPermission();
-        exit();
+        //exit();
     } else {
         toast('已有悬浮窗权限');
     }
@@ -276,9 +301,14 @@ initlze();
 
 
 function initlze() {
+    
     // console.warn(config.timers_id,$timers.getTimedTask(config.timers_id),$timers.queryTimedTasks({ path: $files.cwd() + "/mainService.js"}));
     ui.logText.setText(config.storage.get("log") || "无日志");
+    ui.logText.movementMethod = ScrollingMovementMethod.getInstance()
+   // ui.logText.setMovementMethod(ScrollingMovementMethod.getInstance());
+    
     ui.explain.setText(getExplain());
+    ui.explain.setColourfulText(getExplainColorfuls());
     ui.find_step.addTuiTextChangedListener(new TextWatcher() {
         //@Override
         afterTextChanged: function(s) {
@@ -305,15 +335,71 @@ function getDeviceInfo() {
     return str;
 }
 
+function getExplainColorfuls() {
+    let colorfuls = [{
+            start: 27,
+            end: 33,
+            background: 0xFFFFF9C4
+        },
+        {
+            start: 45,
+            end: 50,
+            color: 0xffff0000
+        },
+        {
+            start: 51,
+            end: 55,
+            color: 0xffff0000
+        },
+        {
+            start: 64,
+            end: 68,
+            color: 0xffff0000
+        },
+        {
+            start: 90,
+            end: 96,
+            color: 0xffff0000
+        },
+        {
+            start: 115,
+            end: 126,
+            background: 0xFFFFF9C4
+        },
+        {
+            start: 152,
+            end: 156,
+            background: 0xFFFFF9C4
+        }
+    ];
+    return colorfuls;
+}
+
 function getExplain() {
     let str = `使用自动打卡目前需要满足以下条件:
    1.打卡通过[智能填表]进入
    2.软件开启无障碍权限丶自启权限(定时任务需要)丶电池优化白名单(后台存活，确保定时服务能正常运行)丶后台弹出权限(自动打开钉钉及定位需要)
    3.必须之前有提交过数据,暂时只帮点定位;
-   4.定时任务需要锁屏密码且是数字密码(暂不支持手势密码);
+   4.定时任务需要锁屏密码且是数字密码或无密码(暂不支持手势密码);
+   5.使用前先运行 其他->可行性测试 并逐项测试，可减少失败概率
    
 已测试环境(钉钉6.5.10.11 MIUI12.5)`
     return str;
+}
+
+function getAgreementColorfuls() {
+    let colorfuls = [{
+            start: 26,
+            end: 35,
+            color: 0xffff0000
+        },
+        {
+            start: 80,
+            end: 86,
+            color: 0xffff0000
+        }
+    ];
+    return colorfuls;
 }
 
 function getAgreement() {
@@ -323,6 +409,60 @@ function getAgreement() {
    三丶本软件不收集任何用户资料丶行为丶特征等
    四丶使用即同意以上协议.`
     return str;
+}
+
+ui.github.on("click", () => {
+    showGithub();
+});
+
+function showGithub() {
+    let github_layout = ui.inflate(
+        <vertical padding="20">
+            <tui-text  text="👾dingtakll-auto-checkin" textStyle="bold" textSize="18sp" color="black"/>
+            <tui-text  text="开源地址：https://github.com/0x7A7A6572/dingtakll-auto-checkin" textStyle="italic" autoLink="web" bg="#cbcbcb" padding="10"/>
+            <tui-text  text="开源协议: MIT license" textStyle="bold"  bg="#cbcbcb" padding="10"/>
+            <tui-text  text="🧀autojs-tui-weight" textStyle="bold" textSize="18sp" color="black" marginTop="10"/>
+            <tui-text  text="内部包含" textStyle="italic" autoLink="web" bg="#cbcbcb" padding="10"/>
+            <tui-text  text=" zzerx@qq.com" textStyle="bold"/>
+        </vertical>
+    );
+
+    let github_dialog = DialogPlus.setView(github_layout)
+        .setTitle(null)
+        .onTrue(function() {
+            github_dialog.dismiss();
+        })
+        .onFalse(function() {
+            github_dialog.dismiss();
+        })
+        .build().show();
+}
+
+ui.beg_thankyou.on("click", () => {
+    showBag();
+});
+
+function showBag() {
+    let beg_layout = ui.inflate(
+        <HorizontalScrollView >
+            <linear >
+                <img src="file://./beg_wx.png" w="300"/>
+                <tui-text text="〉〉" textSize="20sp" layout_gravity="center" textStyle="bold" color="#88AACC"/>
+                <img src="file://./beg_zfb.png"  w="300"/>
+            </linear>
+        </HorizontalScrollView>
+    );
+    let beg_dialog = DialogPlus.setView(beg_layout)
+        .setTitle(null)
+        .onTrue(function() {
+            beg_dialog.dismiss();
+            toast("感谢支持！");
+        })
+        .onFalse(function() {
+            beg_dialog.dismiss();
+            toast("感谢支持！");
+        })
+        .build().show();
 }
 
 // function boxShowStateBind(view) {
@@ -353,13 +493,13 @@ function tabButtonAction(tabs, index) {
             tabs[i].setText(l.replace(" ", headText))
             //tabs[i].setTextSize(18);
             // tabs[i].setLayoutParams(action_params);
-            tabs[i].setTextColor(-13382554);
+            tabs[i].setTextColor(JavaUtil.toJavaInt(0xFF33CC66));
         } else {
             let l = tabs[i].getText();
             tabs[i].setText(l.replace(headText, " "))
             //tabs[i].setTextSize(15)
             //tabs[i].setLayoutParams(no_action_params);
-            tabs[i].setTextColor(-13948117);
+            tabs[i].setTextColor(JavaUtil.toJavaInt(0xFF2B2B2B));
             //-13,948,117 = 0xff2b2b2b (int 超过最大)
         }
     }
@@ -382,58 +522,22 @@ function checkTimedTaskChange(task_milis) {
 }
 
 function tingChangedUpdateTask() {
-    if(config.auto_run_on_timing){
-    let [_hours, _minute] = timingFormat(_tmp_timing);
-    // let new_time = new Date(0, 0, 0, _hours, _minute, 0).getTime();
+    if (config.auto_run_on_timing) {
+        let [_hours, _minute] = timingFormat(_tmp_timing);
+        // let new_time = new Date(0, 0, 0, _hours, _minute, 0).getTime();
 
-    //task.millis = new_time - new Date(0, 0, 0, 0, 0, 0).getTime();
-    console.warn("删除定时任务[", config.timers_id, "]", $timers.removeTimedTask(config.timers_id));
-    let new_task = $timers.addDailyTask({
-        path: config.script_path,
-        time: new Date(0, 0, 0, _hours, _minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
-    });
-    console.info("_tmp_timing 改变且开启定时状态", _hours, _minute, );
-    config.timers_id = new_task.id;
-    config.timing = _tmp_timing;
-    config.updateAll();
+        //task.millis = new_time - new Date(0, 0, 0, 0, 0, 0).getTime();
+        console.warn("删除定时任务[", config.timers_id, "]", $timers.removeTimedTask(config.timers_id));
+        let new_task = $timers.addDailyTask({
+            path: config.script_path,
+            time: new Date(0, 0, 0, _hours, _minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
+        });
+        console.info("_tmp_timing 改变且开启定时状态", _hours, _minute, );
+        config.timers_id = new_task.id;
+        config.timing = _tmp_timing;
+        config.updateAll();
     }
 }
-// function addTimerIfNotExists(script_path) {
-//     if (config.timers_id != null) {
-//         let task = $timers.getTimedTask(config.timers_id);
-//         console.warn(config.timers_id, task)
-//         checkTimedTaskChange(task.millis);
-//         if (task != null && !config.auto_run_on_timing) {
-
-//             $timers.removeTimedTask(config.timers_id);
-//             config.timers_id = null;
-//             config.updateAll();
-//             console.info("addTimerIfNotExists:", config.timers_id, task, config.auto_run_on_timing);
-
-//         }
-//         /*else if(task != null && config.auto_run_on_timing && task.milis != new Date(0,0,0,)){ //时间不等
-
-//              }*/
-//         else {
-//             config.timers_id = null;
-//             config.updateAll();
-//             console.info("if[true] -> if[false]:", config.timers_id, task, config.auto_run_on_timing);
-//         }
-//     } else if (config.timers_id == null && config.auto_run_on_timing) {
-//         let [hours, minute] = timingFormat(config.timing);
-//         //toastLog(hours + ": " +minute + new Date(0, 0, 0, hours, minute, 0));
-//         let task = $timers.addDailyTask({
-//             path: script_path,
-//             time: new Date(0, 0, 0, hours, minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
-//         });
-//         config.timers_id = task.id;
-//         config.updateAll();
-//         console.info("config.timers_id == null added");
-//     } else {
-//         console.info("addTimerIfNotExists:", config.timers_id, config.auto_run_on_timing);
-//     }
-
-// }
 
 function addTimerIfNotExists(script_path) {
     if (config.timers_id != null) {
@@ -447,7 +551,7 @@ function addTimerIfNotExists(script_path) {
             config.timers_id = null;
             config.updateAll();
             console.info("addTimerIfNotExists:", config.timers_id, task, config.auto_run_on_timing);
-        }else {
+        } else {
             config.timers_id = null;
             config.updateAll();
             console.info(" if[false(task=null or auto_run_on_timing=true)]:", config.timers_id, task, config.auto_run_on_timing);

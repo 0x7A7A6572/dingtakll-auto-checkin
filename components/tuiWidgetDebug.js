@@ -47,12 +47,12 @@ var tuiText = (function() {
         view.setColourfulText = function(colorfuls) {
             if (colorfuls instanceof Array) {
                 for (let i = 0; i < colorfuls.length; i++) {
-                    spannableString = new SpannableString(view.getText().toString());
+                    spannableString = new SpannableString(view.getText());;
                     if (colorfuls[i].color) {
-                        spannableString.setSpan(new ForegroundColorSpan(Util.toJavaInt(colorfuls[i].color)), colorfuls[i].start, colorfuls[i].end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        spannableString.setSpan(new ForegroundColorSpan(JavaUtil.toJavaInt(colorfuls[i].color)), colorfuls[i].start, colorfuls[i].end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
                     if (colorfuls[i].background) {
-                        spannableString.setSpan(new BackgroundColorSpan(Util.toJavaInt(colorfuls[i].background)), colorfuls[i].start, colorfuls[i].end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        spannableString.setSpan(new BackgroundColorSpan(JavaUtil.toJavaInt(colorfuls[i].background)), colorfuls[i].start, colorfuls[i].end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
                     view.setText(spannableString)
                 }
@@ -82,27 +82,27 @@ var tuiButton = (function() {
 
         //调用父类构造函数
         ui.Widget.call(this);
-      this.render = function() {
+        this.render = function() {
             return (
                 <button/>);
         };
         this.onFinishInflation = function(view) {
                 view.setTypeface(tf);
             },
-            
-        this.onViewCreated = function(view) {
-            view.setTypeface(tf);
-            view.setProgress = function(progre) {
-                Pro = java.lang.Float.parseFloat(progre);
-                progress = (java.lang.Math.round(Pro * 100)) / 100;
 
-                this.invalidate();
-            },
-            view.setStatus = function(text) {
-                statusText = text
-                this.invalidate();
+            this.onViewCreated = function(view) {
+                view.setTypeface(tf);
+                view.setProgress = function(progre) {
+                        Pro = java.lang.Float.parseFloat(progre);
+                        progress = (java.lang.Math.round(Pro * 100)) / 100;
+
+                        this.invalidate();
+                    },
+                    view.setStatus = function(text) {
+                        statusText = text
+                        this.invalidate();
+                    }
             }
-        }
 
     }
 
@@ -130,9 +130,17 @@ var tuiEditText = (function() {
             //print("tuiInput._prefkey:", tuiInput._prefkey)
         });
         this.defineAttr("textStyle", (view, attr, value, defineSetter) => {
-            // if(tuiInput.isAutoStorage() && null!=value && "" != value){
+            let style = Typeface.DEFAULT;
+            switch (value) {
+                case "bold":
+                    style = Typeface.DEFAULT_BOLD;
+                    break;
+                case "seriy":
+                    style = Typeface.SERIF;
+                    break;
+            }
             if (null != value && "" != value) {
-                textStyle = value;
+                view.setTypeface(style);
             }
             //print("tuiInput._prefkey:", tuiInput._prefkey)
         });
@@ -161,7 +169,7 @@ var tuiEditText = (function() {
                 }));
             }
             view.getPrefKey = function() {
-               // print("我被调用", pref_key)
+                // print("我被调用", pref_key)
                 return pref_key;
             }
         }
@@ -209,14 +217,14 @@ var tuiEditText = (function() {
  *  tuiCheckBox
  */
 var tuiCheckBox = (function() {
-    
+
     util.extend(tuiCheckBox, ui.Widget);
 
     function tuiCheckBox() {
         var pref_key;
         var checked = false;
         var isForbid = true;
-        var onCheck = function(checked){};
+        var onCheck = function(checked) {};
         ui.Widget.call(this);
         this.defineAttr("prefKey", (view, attr, value, defineSetter) => {
             if (null != value && "" != value) {
@@ -235,15 +243,31 @@ var tuiCheckBox = (function() {
                 view.getChildAt(1).setTextSize(value);
             }
         });
+        this.defineAttr("textStyle", (view, attr, value, defineSetter) => {
+            let style = Typeface.DEFAULT;
+            switch (value) {
+                case "bold":
+                    style = Typeface.DEFAULT_BOLD;
+                    break;
+                case "seriy":
+                    style = Typeface.SERIF;
+                    break;
+            }
+            if (null != value) {
+                // print(Util.sp2px(value))
+                view.getChildAt(0).setTypeface(style);
+                view.getChildAt(1).setTypeface(style);
+            }
+        });
         this.defineAttr("color", (view, attr, value, defineSetter) => {
             if (null != value) {
-              //  view.getChildAt(0).setTextColor(Color.parseColor(value));
+                //  view.getChildAt(0).setTextColor(Color.parseColor(value));
                 view.getChildAt(1).setTextColor(Color.parseColor(value));
             }
         });
         this.defineAttr("statuColor", (view, attr, value, defineSetter) => {
             if (null != value) {
-               view.getChildAt(0).setTextColor(Color.parseColor(value));
+                view.getChildAt(0).setTextColor(Color.parseColor(value));
                 //view.getChildAt(1).setTextColor(Color.parseColor(value));
             }
         });
@@ -270,37 +294,37 @@ var tuiCheckBox = (function() {
 
     tuiCheckBox.prototype.isForbid = true;
     tuiCheckBox.prototype.status_style = ["■", "□", "▧"];
-    
+
     tuiCheckBox.prototype.onFinishInflation = function(view) {
         var that = this;
         //print("onFinishInflation;", this.isForbid)
         if (null != this.getKey()) {
             that.setChecked(tuiCheckBox.getPref().get(that.getKey(), false));
         }
-        
-        view.addOnCheckListen = function(listenCheck){
-           that.onCheck = listenCheck;
-          }
-          
-        view.setChecked = function(statu){
+
+        view.addOnCheckListen = function(listenCheck) {
+            that.onCheck = listenCheck;
+        }
+
+        view.setChecked = function(statu) {
             that.setChecked(statu);
         }
-        
+
         if (this.isForbid) {
             view.setOnClickListener(new android.view.View.OnClickListener({
                 onClick: function(v) {
                     that.setChecked(!that.checked);
                     tuiCheckBox.getPref().put(that.getKey(), that.checked);
-                    if(that.onCheck != null){
-                    that.onCheck(that.checked);
+                    if (that.onCheck != null) {
+                        that.onCheck(that.checked);
                     }
                 }
             }));
         }
-        
-        
+
+
         view.isChecked = function() {
-           // toastLog("that.isChecked:"+that.checked)
+            // toastLog("that.isChecked:"+that.checked)
             return that.checked;
         }
         view.getIsForbid = function() {
@@ -347,7 +371,7 @@ var tuiCheckBox = (function() {
             <linear clickable="true" >
                             <tui-text text="□" checkable="false" layout_gravity="center" color="black"/>
                             <tui-text text="" checkable="false" color="black"/>
-            </linear>);
+                        </linear>);
     }
 
     ui.registerWidget("tui-checkBox", tuiCheckBox);
