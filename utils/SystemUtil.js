@@ -135,13 +135,15 @@ SystemUtil = {
             console.log("未检测到锁屏");
             toastLog("将在将在5s后运行打卡，途中请勿操作，如需取消按[音量上]键");
             sleep(5000);
+        } else {
+            toastLog("正在运行打卡，途中请勿操作，如需退出按[音量上]键");
         }
         iunlockListen.success();
 
-
     },
     autoScreenshot: function(image_path) {
-        image_path = image_path || files.cwd() + "/screenshot.png";
+        image_path = image_path || context.getExternalCacheDir() + "/screenshot.png";
+        console.warn("[autoScreenshot image_path:] -> " + image_path);
         let agree_thread = threads.start(function() {
             //  sleep(1000) //反悔时间
             var beginBtn;
@@ -272,7 +274,7 @@ function findAllNumber() {
             let numbon = text(i)
                 .findOne()
                 .bounds();
-           // console.info(numbon)
+            // console.info(numbon)
             numberPosition[i] = [numbon.centerX(), numbon.centerY()];
             sum++;
         }

@@ -12,6 +12,13 @@ let config = require("config.js");
 let detail_is_show = false;
 config.init();
 
+//脚本退出监听
+events.on("exit", function() {
+    if ($files.exists(config.temp_img_path)) {
+        $files.remove(config.temp_img_path);
+    }
+});
+
 ui.layout(
     <frame>
         <vertical>
@@ -80,7 +87,7 @@ ui.layout(
                                 <vertical layout_weight="1">
                                     <linear marginTop="5" gravity="center">
                                         <tui-text text="CORPID:" color="#33CC66" textStyle="bold" padding="5" />
-                                        <tui-editText id="corp_id" textSize="14sp" hint="公司的cropid(通过抓包获取)" prefKey="corp_id" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
+                                        <tui-editText id="corp_id" textSize="14sp" hint="公司的cropid" prefKey="corp_id" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
                                     </linear>
                                     <linear marginTop="5" gravity="center">
                                         <tui-text text="打卡群名称:" color="#33CC66" textStyle="bold" padding="5" />
@@ -99,12 +106,12 @@ ui.layout(
                                 <tui-text id="title_log_detail" text="[详细]" textColor="#6666ff" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
                                 <tui-text id="title_log_clear" text="[清除]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
                             </linear>
-                                <!--ScrollView minHeight="200"-->
-                                    <vertical background="#3333CC66" margin="18 0 18 20" height="200" padding="8">
-                                        <tui-text id="logText" textSize="13sp" padding="0" color="#00B800" scrollbars="vertical"/>
-                                        <globalconsole id="console" visibility="gone" textSize="13sp" bg="#002b36" padding="5"/>
-                                    </vertical>
-                                <!--/ScrollView-->
+                            <!--ScrollView minHeight="200"-->
+                            <vertical background="#3333CC66" margin="18 0 18 20" height="200" padding="8">
+                                <tui-text id="logText" textSize="13sp" padding="0" color="#00B800" scrollbars="vertical"/>
+                                <globalconsole id="console" visibility="gone" textSize="13sp" bg="#002b36" padding="5"/>
+                            </vertical>
+                            <!--/ScrollView-->
                         </vertical>
                         <tui-text id="other_setting" text="其他-Other" textSize="16sp" padding="8" textStyle="bold" gravity="center" color="#2b2b2b"/>
                         <vertical background="#3333CC66" margin="18 0 18 20">
@@ -139,21 +146,7 @@ ui.exit_script.on("click", () => {
 });
 
 let _tmp_timing = "00:00";
-let itimepicker = ui.inflate('<timepicker id="spinner" /> '); //timePickerMode="spinner
-let myDialog = DialogPlus.setView(itimepicker)
-    .setTitle(null)
-    .onTrue(function() {
-        config.timing = _tmp_timing;
-        ui.buttonToSetTiming.setText("定时打卡: " + config.timing);
-        tingChangedUpdateTask();
-        config.updateAll();
-        myDialog.dismiss()
-    })
-    .onFalse(function() {
-        toast("取消")
-        myDialog.dismiss()
-    })
-    .build()
+let itimepicker = ui.inflate('<timepicker id="spinner" timePickerMode="spinner" /> '); //timePickerMode="spinner"
 
 itimepicker.spinner.setOnTimeChangedListener(new android.widget.TimePicker.OnTimeChangedListener({
     onTimeChanged: function(view, hour, minute) {
@@ -163,18 +156,32 @@ itimepicker.spinner.setOnTimeChangedListener(new android.widget.TimePicker.OnTim
 
 
 ui.buttonToSetTiming.on("click", function() {
-    myDialog.show();
+    let timepickDialog = DialogPlus.setView(itimepicker)
+        .setTitle(null)
+        .onTrue(function() {
+            config.timing = _tmp_timing;
+            ui.buttonToSetTiming.setText("定时打卡: " + config.timing);
+            config.tingChangedUpdateTask(_tmp_timing);
+            timepickDialog.dismiss()
+        })
+        .onFalse(function() {
+            toast("取消")
+            timepickDialog.dismiss()
+        })
+        .build()
+    timepickDialog.show();
 });
 
 
 ui.auto_run_ontiming.addOnCheckListen(function(checked) {
     config.auto_run_on_timing = checked;
-    addTimerIfNotExists(config.script_path);
+    config.addTimerIfNotExists(config.script_path);
+    toast((checked ? "开启" : "关闭") + "定时任务");
 });
 
 ui.show_logcat_flotwindow.addOnCheckListen(function(checked) {
     config.show_logcat_flotwindow = checked;
-    // toastLog(checked)
+    toast((checked ? "开启" : "关闭") + "悬浮窗日志");
 });
 /*ui.stop_script.on("click", () => {
     toast("已为您停止启动脚本");
@@ -209,7 +216,7 @@ ui.title_log_detail.on("click", function() {
     } else {
         //ui.logText.setText(config.log);
         ui.logText.setVisibility(View.VISIBLE);
- ui.console.setVisibility(View.GONE);
+        ui.console.setVisibility(View.GONE);
         detail_is_show = false;
     }
 });
@@ -301,12 +308,12 @@ initlze();
 
 
 function initlze() {
-    
+
     // console.warn(config.timers_id,$timers.getTimedTask(config.timers_id),$timers.queryTimedTasks({ path: $files.cwd() + "/mainService.js"}));
     ui.logText.setText(config.storage.get("log") || "无日志");
     ui.logText.movementMethod = ScrollingMovementMethod.getInstance()
-   // ui.logText.setMovementMethod(ScrollingMovementMethod.getInstance());
-    
+    // ui.logText.setMovementMethod(ScrollingMovementMethod.getInstance());
+
     ui.explain.setText(getExplain());
     ui.explain.setColourfulText(getExplainColorfuls());
     ui.find_step.addTuiTextChangedListener(new TextWatcher() {
@@ -382,17 +389,16 @@ function getExplain() {
    3.必须之前有提交过数据,暂时只帮点定位;
    4.定时任务需要锁屏密码且是数字密码或无密码(暂不支持手势密码);
    5.使用前先运行 其他->功能可用性测试 并逐项测试，可减少失败概率
-   
-已测试环境(钉钉6.5.10.11 MIUI12.5)`
+   6.公司的cropid可通过点击钉钉 企业主页->查看更多->分享到短信 链接提取出ding~%的部分,不含%.`
     return str;
 }
 
 function getAgreementColorfuls() {
     let colorfuls = [{
-            start: 87,
-            end: 149,
-            color: 0xffff6666
-         }];
+        start: 87,
+        end: 149,
+        color: 0xffff6666
+    }];
     return colorfuls;
 }
 
@@ -503,67 +509,6 @@ function numTimeToTiming(hours, minute) {
     hours = hours < 10 ? "0" + hours : hours;
     minute = minute < 10 ? "0" + minute : minute;
     return hours + ":" + minute;
-}
-
-function timingFormat(timing) {
-    let timef = timing.split(":");
-    toastLog(timef);
-    return [Number(timef[0]), Number(timef[1])];
-}
-
-function checkTimedTaskChange(task_milis) {
-    console.warn("checkTimedTaskChange:", task_milis, new Date(task_milis));
-}
-
-function tingChangedUpdateTask() {
-    if (config.auto_run_on_timing) {
-        let [_hours, _minute] = timingFormat(_tmp_timing);
-        // let new_time = new Date(0, 0, 0, _hours, _minute, 0).getTime();
-
-        //task.millis = new_time - new Date(0, 0, 0, 0, 0, 0).getTime();
-        console.warn("删除定时任务[", config.timers_id, "]", $timers.removeTimedTask(config.timers_id));
-        let new_task = $timers.addDailyTask({
-            path: config.script_path,
-            time: new Date(0, 0, 0, _hours, _minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
-        });
-        console.info("_tmp_timing 改变且开启定时状态", _hours, _minute, );
-        config.timers_id = new_task.id;
-        config.timing = _tmp_timing;
-        config.updateAll();
-    }
-}
-
-function addTimerIfNotExists(script_path) {
-    if (config.timers_id != null) {
-        let task = $timers.getTimedTask(config.timers_id);
-        // let all_tasks =  $timers.queryTimedTasks({ path: config.timer_path});
-        // console.info(config.timers_id, task);
-        //checkTimedTaskChange(task.millis);
-        if (task != null && !config.auto_run_on_timing) {
-
-            $timers.removeTimedTask(config.timers_id);
-            config.timers_id = null;
-            config.updateAll();
-            console.info("addTimerIfNotExists:", config.timers_id, task, config.auto_run_on_timing);
-        } else {
-            config.timers_id = null;
-            config.updateAll();
-            console.info(" if[false(task=null or auto_run_on_timing=true)]:", config.timers_id, task, config.auto_run_on_timing);
-        }
-    } else if (config.timers_id == null && config.auto_run_on_timing) {
-        let [hours, minute] = timingFormat(config.timing);
-        //toastLog(hours + ": " +minute + new Date(0, 0, 0, hours, minute, 0));
-        let task = $timers.addDailyTask({
-            path: script_path,
-            time: new Date(0, 0, 0, hours, minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
-        });
-        config.timers_id = task.id;
-        config.updateAll();
-        console.info("config.timers_id == null added");
-    } else {
-        console.info("addTimerIfNotExists:", config.timers_id, config.auto_run_on_timing);
-    }
-
 }
 
 function updatePermissionStatusView(view, statu) {

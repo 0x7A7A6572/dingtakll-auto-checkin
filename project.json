@@ -1,9 +1,9 @@
 {
   "assets": [],
   "build": {
-    "build_id": "1E84732D-43",
-    "build_number": 43,
-    "build_time": 1653834894413,
+    "build_id": "DED9CDE7-47",
+    "build_number": 47,
+    "build_time": 1653882963137,
     "release": false
   },
   "encryptLevel": 0,
@@ -19,7 +19,7 @@
   "main": "MainUi.js",
   "name": "钉钉自动健康打卡",
   "optimization": {
-    "obfuscateComponents": true,
+    "obfuscateComponents": false,
     "removeAccessibilityService": false,
     "removeOpenCv": true,
     "unusedResources": true
@@ -37,5 +37,5 @@
     "uuid": "818f5d29-ff1b-4c3f-9627-65aa84413360"
   },
   "versionCode": 1853,
-  "versionName": "2.0.2"
+  "versionName": "2.0.3"
 }

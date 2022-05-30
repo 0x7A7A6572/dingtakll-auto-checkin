@@ -42,7 +42,9 @@ var DingTalkUtil = {
         this.openUrl(templateString(this.yunClassroomUrl, [corpId]));
     },
     shareImageToDingTallk: function(groupName, imagePath) {
-        imagePath = imagePath || files.cwd() + "/screenshot.png";
+        imagePath = imagePath || context.getExternalCacheDir() + "/screenshot.png";
+        imagePath = tempTransit(imagePath, "png");
+        console.warn("[shareImageToDingTallk image_path:] -> " + imagePath)
         let findtext_dingtalk_sendwho = "钉钉好友";
         let findtext_dingtalk_sendgrup = groupName;
         let findtext_dindtalk_sendbutton = "发送";
@@ -73,6 +75,12 @@ var DingTalkUtil = {
         } catch (err) {
             console.error("查找点击[发送]按钮出现意外错误", err)
             // this.clickCoordinate();
+        } finally {
+            //删除临时文件- 5s是否充足？
+            setTimeout(() => {
+                console.verbose("删除临时文件->", $files.remove(imagePath), ":", imagePath);
+            }, 5000);
+
         }
 
     },
@@ -116,6 +124,21 @@ function templateString(template, strArray) {
         template = template.replace(substr, strArray[i]);
     }
     return template;
+}
+
+/*async*/
+function tempTransit(origin_file, file_type) {
+    let temp_path = "/sdcard/temp_transit_file_0x7a7a." + file_type;
+    /*await*/
+    /*if($files.copy(origin_file, temp_path)){
+        if(!$files.exists(temp_path)){
+            sleep(500);
+        }
+    }else if(){
+        this(origin_file,file_type);
+    }*/
+    $files.copy(origin_file, temp_path);
+    return temp_path;
 }
 
 module.exports = DingTalkUtil;

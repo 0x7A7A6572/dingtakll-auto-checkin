@@ -12,6 +12,9 @@ iConsole = require("components/consoleN.js");
 events.on("exit", function() {
     console.log(">>>auto punch in server EXit;")
     iConsole.close();
+    if ($files.exists(config.temp_img_path)) {
+        $files.remove(config.temp_img_path);
+    }
     //BroadcastUtil.send("iConsoleCloseView",true);
 });
 
@@ -116,10 +119,10 @@ function serviceMain() {
     textContains("的表单").waitFor();
 
     iConsole.watermarkModule(true);
-    SystemUtil.autoScreenshot();
+    SystemUtil.autoScreenshot(config.image_path);
     iConsole.watermarkModule(false);
     iConsole.info("已完成自动截屏，正在发送至" + config.group_name);
-    DingTalkUtil.shareImageToDingTallk(config.group_name);
+    DingTalkUtil.shareImageToDingTallk(config.group_name, config.image_path);
     sleep(1000);
     iConsole.info("打卡截图已发送");
     //记录日志 发送通知

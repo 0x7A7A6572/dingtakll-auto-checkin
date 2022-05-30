@@ -14,6 +14,9 @@ let NotifyUtil = require("./utils/NotifyUtil.js");
 
 events.on("exit", function() {
     log("结束测试");
+    if ($files.exists(config.temp_img_path)) {
+        $files.remove(config.temp_img_path);
+    }
 });
 
 //config.init();
@@ -64,15 +67,21 @@ UnitsTest.setTitle("单元测试")
         unitName: "截图分享测试",
         unit: () => {
             let group = dialogs.rawInput("请输入需要分享的群聊名，发给自己就输入\n我（姓名）\n括号为中文符", "");
-            SystemUtil.autoScreenshot(config.image_path);
-            DingTalkUtil.shareImageToDingTallk(group, config.image_path);
+            if (group != null && group != "") {
+                SystemUtil.autoScreenshot(config.image_path);
+                //UnitsTest.dismiss();
+                DingTalkUtil.shareImageToDingTallk(group, config.image_path);
+                sleep(2000)
+            } else {
+                toast("取消");
+            }
         }
     }).addUnitTest({
-        unitName: "截图路径查看",
+        unitName: "存储文件路径查看",
         unit: () => {
-            alert("截图保存路径",
-                "截图1:" + files.cwd() + "/screenshot.png" +
-                "\n\n截图2:" + config.image_path);
+            alert("保存路径",
+                "日志:" + context.getExternalCacheDir() + "/log.txt" +
+                "\n\n截图:" + config.image_path);
         }
     })
     .show()
@@ -82,7 +91,5 @@ sleep(3000);
 
 
 function lacksPermission() {
-
     return context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED;
-
 }

@@ -1,6 +1,6 @@
 /* 默认配置 及配置初始化 */
 let config = {
-    version: "v2.0.2",
+    version: "v2.0.3",
     last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
     _last_update: new Date(),
     auto_screenshot: true,
@@ -9,12 +9,14 @@ let config = {
     auto_delete_image: false,
     auto_run_on_timing: false, //是否开启定时任务
     show_logcat_flotwindow: true, //是否开启日志悬浮窗
-    find_form_step_is_from_text: "填写->运营分公司员工每日健康打卡->今天", //查找步骤文本
+    find_form_step_is_from_text: "填写>立即填写>今天", //查找步骤文本，{立即填写}换成指定表格名
     // form_title: "",
     group_name: null,
     lock_password: "",
-    image_path: "/sdcard/screenshot.png",
-    script_path: "./mainService.js",
+    temp_img_path: "/sdcard/temp_transit_file_0x7a7a.png", //(? dingtalkutil -> mod(x))
+    image_path: context.getExternalCacheDir() + "/screenshot.png",
+    log_path: context.getExternalCacheDir() + "/log.txt",
+    script_path: $files.cwd() + "/mainService.js",
     timing: "00:00",
     timers_id: null,
     // timer_path: $files.cwd() + '/mainService.js', /* mainService mainUI config 都在同级目录所以这里直接用$files.cwd() */
@@ -27,7 +29,7 @@ let config = {
     tui_storage_checkbox: storages.create("tuiWidgetDateBase:tuiCheckBox"),
     init: function() {
         console.setGlobalLogConfig({
-            "file": "./log/log.txt"
+            "file": this.log_path
         });
         this.CORP_ID = this.tui_storage_edittext.get("corp_id");
         this.group_name = this.tui_storage_edittext.get("group_name") || "每日健康打卡群";
@@ -59,20 +61,54 @@ let config = {
     addTimerIfNotExists: function(script_path) {
         if (this.timers_id != null) {
             let task = $timers.getTimedTask(this.timers_id);
+            // let all_tasks =  $timers.queryTimedTasks({ path: config.timer_path});
+            // console.info(config.timers_id, task);
+            //checkTimedTaskChange(task.millis);
             if (task != null && !this.auto_run_on_timing) {
-                $timers.removeTimedTask(this.timers_id.scheduledTaskId);
+
+                $timers.removeTimedTask(this.timers_id);
                 this.timers_id = null;
                 this.updateAll();
+                console.info("autoRun(false) -> delTimer");
+            } else {
+                config.timers_id = null;
+                config.updateAll();
+                console.warn("no catch -> delTimerid",
+                    "timers_id:", this.timers_id,
+                    "task:", task,
+                    "auto_run_on_timing:", this.auto_run_on_timing);
             }
         } else if (this.timers_id == null && this.auto_run_on_timing) {
             let [hours, minute] = timingFormat(this.timing);
+            //toastLog(hours + ": " +minute + new Date(0, 0, 0, hours, minute, 0));
             let task = $timers.addDailyTask({
                 path: script_path,
-                time: new Date(0, 0, 0, hours, minute, 0)
+                time: new Date(0, 0, 0, hours, minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
             });
             this.timers_id = task.id;
             this.updateAll();
-            console.info("config.timers_id == null  added");
+            console.info("[timers_id == null] -> added");
+        } else {
+            console.warn("no catch -> do noting",
+                "timers_id:", this.timers_id,
+                "task: null?",
+                "auto_run_on_timing:", this.auto_run_on_timing);;
+        }
+    },
+    tingChangedUpdateTask: function(_tmp_timing) {
+        if (this.auto_run_on_timing) {
+            let [_hours, _minute] = timingFormat(_tmp_timing);
+            // let new_time = new Date(0, 0, 0, _hours, _minute, 0).getTime();
+            //task.millis = new_time - new Date(0, 0, 0, 0, 0, 0).getTime();
+            console.info("删除定时任务[", this.timers_id, "]->", $timers.removeTimedTask(this.timers_id));
+            let new_task = $timers.addDailyTask({
+                path: this.script_path,
+                time: new Date(0, 0, 0, _hours, _minute - 5, 0) //minute - 5 设定的时间总会晚5分钟
+            });
+            console.verbose("[_tmp_timing(change) && auto_run_on_timing = true] -> add timer:", _hours, ":", _minute);
+            this.timers_id = new_task.id;
+            this.timing = _tmp_timing;
+            this.updateAll();
         }
     },
     checkTimedTaskExists: function() {

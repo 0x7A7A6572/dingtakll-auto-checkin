@@ -98,6 +98,9 @@ UnitsTest = {
             });
         }
     },
+    dismiss:function(){
+        this.dismiss();
+    },
     stopBeforeNext: function() {
         this.forcedStop = true;
     } //执行完该项测试才停止
