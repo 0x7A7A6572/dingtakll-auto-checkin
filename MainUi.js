@@ -49,6 +49,9 @@ ui.layout(
                                         <tui-text id="ps_rw_storage"  text="? 读写存储" textSize="12sp" color="red" textStyle="bold" padding="5" />
                                         <tui-text id="explain_ps" text="[?]" color="red" textSize="15sp" layout_weight="1" textStyle="bold" gravity="right"/>
                                     </linear>
+                                    <linear margin="8 0 8 0" padding="10 0 10 12" bg="#FFF9C4" w="*">
+                                        <text id="permission_explain" text="" visibility="gone" textSize="11sp" w="*" bg="#CCFFFFFF"padding="10 0 10 12" />
+                                    </linear>
                                 </vertical>
                             </vertical> <!-- box3-->
                             <vertical>
@@ -98,31 +101,55 @@ ui.layout(
                                         <tui-editText id="find_step" textSize="14sp" hint="查找表格步骤" prefKey="find_step" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
                                     </linear>
                                 </vertical> <!--/linear-->
-                            </vertical>
-                        </vertical> <!-- box4-->
-                        <vertical gravity="center" marginTop="10">
-                            <linear gravity="center">
-                                <tui-text id="title_log" text="日志-Logcat" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b"/> <!--tui-text id="title_log_detail" text="detail" textColor="#66ff66" textSize="15sp" padding="8" textStyle="normal"   layout_gravity="bottom" marginLeft="0"/-->
-                                <tui-text id="title_log_detail" text="[详细]" textColor="#6666ff" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
-                                <tui-text id="title_log_clear" text="[清除]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
-                            </linear>
-                            <!--ScrollView minHeight="200"-->
-                            <vertical background="#3333CC66" margin="18 0 18 20" height="200" padding="8">
-                                <tui-text id="logText" textSize="13sp" padding="0" color="#00B800" scrollbars="vertical"/>
-                                <globalconsole id="console" visibility="gone" textSize="13sp" bg="#002b36" padding="5"/>
-                            </vertical>
-                            <!--/ScrollView-->
-                        </vertical>
-                        <tui-text id="other_setting" text="其他-Other" textSize="16sp" padding="8" textStyle="bold" gravity="center" color="#2b2b2b"/>
-                        <vertical background="#3333CC66" margin="18 0 18 20">
-                            <tui-text id="unit_test" text="[功能可用性测试 ->>]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left"/>
-                                <tui-text id="beg_thankyou" text="[赞赏 ->>]" textColor="#faba33" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left" />
-                                    <tui-text id="github" text="[开源相关 ->>]" textColor="#33aa33" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left" />
-                                    </vertical>
+                                
+                                <tui-expand title="设备差异配置" background="#2233CC66" padding="8" marginTop="8" >
+                                    <vertical>
+                                        <linear marginTop="5" gravity="center">
+                                            <tui-text text="紧急呼叫文字:"  textStyle="bold" padding="5" textSize="13sp"/>
+                                            <tui-editText id="true_lock_call_text"  textSize="13sp" hint="紧急呼叫？紧急拨号？" prefKey="true_lock_call_text" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold" paddingLeft="5" layout_weight="1"/>
+                                        </linear>
+                                        
+                                        <tui-text  text="(?)解锁界面'紧急呼叫'实际文字,该文字有设备差异"  textSize="10sp"  bg="#66FFFFFF"margin="15 5 15 12" padding="5"/>
+                                        <linear marginTop="5" gravity="center">
+                                            <tui-text text="上滑手势路径:"  textStyle="bold" padding="5" textSize="13sp"/>
+                                            <tui-editText id="true_swap_path" text="0.6~0.3" textSize="13sp" hint="0.6~0.3" prefKey="true_swap_path" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold" paddingLeft="5" layout_weight="1"/>
+                                        </linear>
+                                        <tui-text text="(?)上滑进入解锁界面的路径，该操作有设备差异. 例: 0.6~0.3 表示从屏幕高度的0.6位置滑动到屏幕高度的0.3位置 "  textSize="10sp"  bg="#66FFFFFF"margin="15 5 15 12" padding="5"/>
+                                        <!--linear marginTop="5" gravity="center">
+                                            <tui-text text="定位描述文字:"  textStyle="bold" padding="5" textSize="13sp"/>
+                                            <tui-editText id="true_loction_text"  textSize="13sp" hint="定位服务？开启我的位置服务？" prefKey="true_location_text" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold" paddingLeft="5" layout_weight="1"/>
+                                        </linear>
+                                        <tui-text id="true_loction_text_explain" text="通过打开定位实际文字，进行开启关闭定位，该文字各厂商都不一样"  textSize="10sp" w="*" bg="#66FFFFFF"margin="15 5 15 12" padding="5"/-->
+ 
+
                                 </vertical>
-                            </ScrollView>
-                        </vertical> <tui-text text="──── {{config.version}} @zzerX ───" textSize="11sp" />
-                    </frame>);
+                                
+                            </tui-expand>
+                        </vertical>
+                    </vertical> <!-- box4-->
+                    <vertical gravity="center" marginTop="10">
+                        <linear gravity="center">
+                            <tui-text id="title_log" text="日志-Logcat" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b"/> <!--tui-text id="title_log_detail" text="detail" textColor="#66ff66" textSize="15sp" padding="8" textStyle="normal"   layout_gravity="bottom" marginLeft="0"/-->
+                            <tui-text id="title_log_detail" text="[详细]" textColor="#6666ff" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
+                            <tui-text id="title_log_clear" text="[清除]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
+                        </linear>
+                        <!--ScrollView minHeight="200"-->
+                        <vertical background="#3333CC66" margin="18 0 18 20" height="200" padding="8">
+                            <tui-text id="logText" textSize="13sp" padding="0" color="#00B800" scrollbars="vertical"/>
+                            <globalconsole id="console" visibility="gone" textSize="13sp" bg="#002b36" padding="5"/>
+                        </vertical>
+                        <!--/ScrollView-->
+                    </vertical>
+                    <tui-text id="other_setting" text="其他-Other" textSize="16sp" padding="8" textStyle="bold" gravity="center" color="#2b2b2b"/>
+                    <vertical background="#3333CC66" margin="18 0 18 20">
+                        <tui-text id="unit_test" text="[功能可用性测试 ->>]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left"/>
+                            <tui-text id="beg_thankyou" text="[赞赏 ->>]" textColor="#faba33" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left" />
+                                <tui-text id="github" text="[开源相关 ->>]" textColor="#33aa33" textSize="13sp" padding="8" textStyle="bold" layout_gravity="left" />
+                                </vertical>
+                            </vertical>
+                        </ScrollView>
+                    </vertical> <tui-text text="──── {{config.version}} @zzerX ───" textSize="11sp" />
+                </frame>);
 
 
 activity.getWindow().setStatusBarColor(Color.WHITE);
@@ -285,21 +312,8 @@ ui.ps_battery_opt.on("click", function() {
     }
 })
 
-ui.explain_ps.on("click", () => {
-    toast(`
-点击权限进入授权界面手动授权:
-________________
-1.无障碍权限[核心权限]
-2.悬浮窗权限[显示悬浮日志提示]
-3.后台弹出[打开钉钉]
-4.自启动和电池优化[定时打卡]
-5.读写存储［发送截图］
-__________________
-√ ->已授权 
-x ->未授权
-? ->无法判断
-    `, 8000);
-
+ui.explain_ps.on("click", (v) => {
+    ui.permission_explain.visibility = ui.permission_explain.visibility == View.GONE ? View.VISIBLE : View.GONE;
 });
 
 
@@ -322,6 +336,19 @@ function initlze() {
             config.find_form_step_is_from_text = s;
         }
     })
+    ui.permission_explain.setText(`
+点击权限进入授权界面手动授权:
+________________
+1.无障碍权限[核心权限]
+2.悬浮窗权限[显示悬浮日志提示，功能测试等对话框界面]
+3.后台弹出[打开钉钉，定位界面等]
+4.自启动和电池优化[定时打卡，手机重启后激活任务]
+5.读写存储［截图保存并发送截图］
+__________________
+√ ->已授权 
+x ->未授权
+? ->无法判断 （实际开启即可）
+    `);
     //更新定时器状态 
     ui.buttonToSetTiming.setText("定时打卡: " + config.timing);
     ui.auto_run_ontiming.setChecked(config.auto_run_on_timing);

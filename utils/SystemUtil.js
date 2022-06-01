@@ -62,9 +62,37 @@ SystemUtil = {
     /*
      * 解锁(小米)
      */
-    unlock: function(password, iunlockListen) {
+    unlock: function(password, iunlockListen, true_dev_set) {
+        
         let unlock_mode = 0; // 0 未锁屏, 1 数字解锁, 2 上滑解锁
         let HEIGHT = device.height == 0 ? 1080 : device.height; //锁屏时获取的可能是0 
+        let split_swap = {start:0.6, end:0.3};
+        let split_swap_error = false;
+        if (true_dev_set != null && typeof true_dev_set == "object") {
+            if (true_dev_set.lock_call == null || true_dev_set.lock_call == "" || true_dev_set.lock_call == undefined) {
+                true_dev_set.lock_call = "紧急呼叫";
+            }
+            if (true_dev_set.swap_path == null || true_dev_set.swap_path == "" || true_dev_set.swap_path == undefined) {
+                
+                try{
+                   [split_swap.start,split_swap.end] = swap_path.split("~");
+                   if(split_swap.length != 2 && typeof split_swap.start != "number" && typeof split_swap.end != "number"){
+                       throw new Error('滑动路径配置有误')
+                   }
+                }catch(e){
+                    split_swap_error = true;
+                    toast("滑动路径配置有误");
+                    console.error("滑动路径配置有误",true_dev_set,split_swap)
+                }finally{
+                    split_swap = {start:0.6, end:0.3};
+                }
+            }else{
+                
+            }
+        }else{
+            true_dev_set = {lock_call:"紧急呼叫", swap_path:"0.6~0.3"};
+            split_swap = {start:0.6, end:0.3};
+        }
         let errorMessage = function(msg) {
             console.error(msg);
             device.isScreenOn() && KeyCode(26); //判断是否锁屏
@@ -90,7 +118,7 @@ SystemUtil = {
         while (!isUnlocked() && max_try_times_swipe--) {
             //锁屏待解锁界面底部会有<紧急呼叫>按钮
 
-            if (text("紧急呼叫").exists()) {
+            if (text(true_dev_set.lock_call).exists()) {
 
                 let [isExist, numberPosition] = findAllNumber();
                 console.verbose("是数字解锁", isExist, numberPosition);
@@ -114,7 +142,7 @@ SystemUtil = {
             /*不存在[紧急呼叫]时滑动屏幕*/
             swipe_time += swipe_time_increment;
 
-            gesture(swipe_time, [540, HEIGHT * 0.5], [540, HEIGHT * 0.1]); //模拟手势
+            gesture(swipe_time, [540, HEIGHT * split_swap.start], [540, HEIGHT * split_swap.end]); //模拟手势
             //launch("com.miui.home")//尝试用这个触发
 
             sleep(1200);
@@ -282,5 +310,35 @@ function findAllNumber() {
     return (sum == 9) ? [false, null] : [true, numberPosition];
 }
 
+function handleDevSetdata(setdata){
+    if(setdata != null && typeof setdata == "object") {
+        if (setdata.lock_call == null || setdata.lock_call == "" || setdata.lock_call == undefined) {
+                setdata.lock_call = "紧急呼叫";
+            }
+         if (setdata.swap_path == null || setdata.swap_path == "" || setdata.swap_path == undefined) {
+                
+                try{
+                   [split_swap.start,split_swap.end] = swap_path.split("~");
+                   if(split_swap.length != 2 && typeof split_swap.start != "number" && typeof split_swap.end != "number"){
+                       throw new Error('滑动路径配置有误')
+                   }
+                }catch(e){
+                    split_swap_error = true;
+                    toast("滑动路径配置有误");
+                    console.error("滑动路径配置有误",true_dev_set,split_swap)
+                }finally{
+                    split_swap = {start:0.6, end:0.3};
+                }
+            }else{
+                split_swap = {start:0.6, end:0.3};
+            }   
+            return [true_dev_set,split_swap];
+    }else{
+        console.warn("handleDevSetdata:setdata格式错误");
+        true_dev_set = {lock_call:"紧急呼叫", swap_path:"0.6~0.3"};
+        split_swap = {start:0.6, end:0.3};
+        return [true_dev_set,split_swap]
+    }
+}
 
 module.exports = SystemUtil;

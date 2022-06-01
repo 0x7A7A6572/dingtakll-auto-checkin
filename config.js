@@ -1,7 +1,7 @@
 /* 默认配置 及配置初始化 */
 let config = {
-    version: "v2.0.3",
-    last_release_time: "Sun May 29 2022 GMT+0800 (GMT+08:00)",
+    version: "v2.1.0",
+    last_release_time: "Wed Jun 01 2022 13:32:46 GMT+0800 (GMT+08:00)",
     _last_update: new Date(),
     auto_screenshot: true,
     auto_share_after_screenshot: true,
@@ -10,6 +10,11 @@ let config = {
     auto_run_on_timing: false, //是否开启定时任务
     show_logcat_flotwindow: true, //是否开启日志悬浮窗
     find_form_step_is_from_text: "填写>立即填写>今天", //查找步骤文本，{立即填写}换成指定表格名
+    true_device_text:{
+        lock_call:null,
+        swap_path:"0.6~0.3",
+        location:null //不需要
+    },
     // form_title: "",
     group_name: null,
     lock_password: "",
@@ -37,6 +42,9 @@ let config = {
         this.find_form_step_is_from_text = this.tui_storage_edittext.get("find_step");
         this.auto_run_on_timing = this.tui_storage_checkbox.get("auto_run_on_timing") || false;
         this.show_logcat_flotwindow = this.tui_storage_checkbox.get("show_logcat_flotwindow"); // 这里不应该使用 || true -> false || true 导致永为真
+        this.true_device_text.lock_call = this.tui_storage_edittext.get("true_lock_call_text");
+        this.true_device_text.location = this.tui_storage_edittext.get("true_location_text");
+        this.true_device_text.swap_path = this.tui_storage_edittext.get("true_swap_path");
         this.timers_id = this.storage.get("timing_id");
         // console.info("checkTimedTaskExists:", this.checkTimedTaskExists(), this.timers_id);
         if (!this.checkTimedTaskExists()) {
@@ -133,8 +141,8 @@ function formatObj(obj, str) {
     }
     Object.keys(obj)
         .forEach(function(k) {
-            if (typeof(v) == "object") {
-                this(obj[k], _str);
+            if (typeof obj[k]  == "object") {
+                //this(obj[k], _str); error
             } else {
                 if (typeof(obj[k]) == "string") {
                     _str += k + ": \"" + obj[k] + "\",\n";

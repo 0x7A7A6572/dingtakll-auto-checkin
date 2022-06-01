@@ -30,7 +30,7 @@ SystemUtil.unlock(config.lock_password, {
     failed: function(log) {
         console.warn(log);
     }
-});
+},config.true_device_text);
 
 function serviceMain() {
     DingTalkUtil.openTablePage(config.CORP_ID);

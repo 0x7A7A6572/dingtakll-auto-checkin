@@ -14,8 +14,8 @@ importClass(android.view.View.OnClickListener);
 importClass(android.graphics.Typeface);
 importClass(android.text.TextWatcher);
 
-JavaUtil = require("../utils/JavaUtil.js");
-var tf = Typeface.createFromFile(java.io.File(files.path("./res/linux.ttf")));
+let JavaUtil = require("../utils/JavaUtil.js");
+let tf = Typeface.createFromFile(java.io.File(files.path("./res/linux.ttf")));
 
 /* _____________
  *  tuiText
@@ -38,7 +38,7 @@ var tuiText = (function() {
         //设置字体
         view.setTypeface(tf);
         //添加点击事件
-        /*
+        /* 例:
          * colorfuls= [{start:0,end:6,color:"#ff0000",background:0xffff0000}
                        {...}, 可设置多个
                        ...]
@@ -120,8 +120,14 @@ var tuiEditText = (function() {
     function tuiEditText() {
         var pref_key;
         var textStyle;
+        
         //调用父类构造函数
         ui.Widget.call(this);
+        /*this.defineAttr("text", (view, attr, value, defineSetter) => {
+            if (null != value) {
+                view.origin_text = value;
+            }
+        });*/
         this.defineAttr("prefKey", (view, attr, value, defineSetter) => {
             // if(tuiInput.isAutoStorage() && null!=value && "" != value){
             if (null != value && "" != value) {
@@ -147,7 +153,8 @@ var tuiEditText = (function() {
         //控件方法
         this.render = function() {
             return (
-                <input tetextStyle="{{this.textStyle}}" bg="#ff0000"/>);
+                <input tetextStyle="{{this.textStyle}}" bg="#ff0000"/>
+            );
 
         };
         this.onViewCreated = function(view) {
@@ -178,7 +185,7 @@ var tuiEditText = (function() {
             view.setTypeface(tf);
             if (null != view.getPrefKey()) {
                 let pref_text = tuiEditText.getPref().get(view.getPrefKey());
-                pref_text = pref_text == null ? "" : pref_text;
+                pref_text = (pref_text == null || pref_text == "" || pref_text == undefined) ? view.getText() : pref_text;
                 view.setText(pref_text);
             }
             view.addTextChangedListener(new TextWatcher({
@@ -212,7 +219,70 @@ var tuiEditText = (function() {
     ui.registerWidget("tui-editText", tuiEditText);
     return tuiEditText;
 })();
+/* _____________
+ *  tuiExpand
+ */
+var tuiExpand = (function() {
+    util.extend(tuiExpand, ui.Widget);
 
+    function tuiExpand() {
+        
+        //调用父类构造函数
+        ui.Widget.call(this);
+        this.defineAttr("title", (view, attr, value, defineSetter) => {
+            if (null != value) {
+                view.title = value;
+                /*let statu_text = view.statu ? "[≡]" : "[-]";
+                view.getChildAt(0).setText(statu_text + value);
+                */
+            }
+        });
+        this.defineAttr("statu", (view, attr, value, defineSetter) => {
+            if (null != value) {
+                view.statu = value;
+            }
+        });
+        
+        this.render = ()=> {
+        return (
+            <vertical w="*">
+              <tui-text w="*" textStyle="bold" paddingBottom="5"/>
+           </vertical>);
+    };
+
+    }
+    
+
+    tuiExpand.prototype.onFinishInflation = (view) => {
+        view.statu = true;
+        view.updateTitleStatu = function(){
+            let statu_text = view.statu ? ">< " : "<> ";
+            let title_view = view.getChildAt(0);
+            title_view.setText(statu_text + title_view.getText().substring(statu_text.length));
+        }
+        view.setTitle = function(title){
+            let title_view = view.getChildAt(0);
+            title_view.setText("<> " + title);
+            view.updateTitleStatu();
+        }
+        view.setExpandEnable = function(statu) {
+            if (view.getChildAt(1) != null){
+                view.getChildAt(1).setVisibility(statu ? View.VISIBLE : View.GONE);
+                view.statu = statu;
+                view.updateTitleStatu();
+            }
+        }
+        view.getChildAt(0).on("click",()=>{
+           // toastLog(view.statu);
+            view.setExpandEnable(!view.statu);
+        });
+        
+        view.setTitle(view.title);
+    }
+
+    ui.registerWidget("tui-expand", tuiExpand);
+    return tuiExpand;
+})();
 /* _____________
  *  tuiCheckBox
  */

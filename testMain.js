@@ -11,7 +11,6 @@ let AutoJsUtil = require("./utils/AutoJsUtil.js");
 let DateUtil = require("./utils/DateUtil.js");
 let NotifyUtil = require("./utils/NotifyUtil.js");
 
-
 events.on("exit", function() {
     log("结束测试");
     if ($files.exists(config.temp_img_path)) {
@@ -19,7 +18,7 @@ events.on("exit", function() {
     }
 });
 
-//config.init();
+config.init();
 let ctx = context;
 UnitsTest.setTitle("单元测试")
     .addUnitTest({
@@ -56,7 +55,7 @@ UnitsTest.setTitle("单元测试")
                     failed: function(log) {
                         UnitsTest.setTestStatu(this.unitName, UnitsTest.FAILED);
                     }
-                });
+                },config.true_device_text);
             } else {
                 toast("取消")
             }
