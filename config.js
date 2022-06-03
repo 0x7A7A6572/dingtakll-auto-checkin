@@ -12,8 +12,10 @@ let config = {
     find_form_step_is_from_text: "填写>立即填写>今天", //查找步骤文本，{立即填写}换成指定表格名
     true_device_text:{
         lock_call:null,
-        swap_path:"0.6~0.3",
-        location:null //不需要
+      //  swap_path:"0.6~0.3",
+        swap_path_start: 0.6,
+        swap_path_end: 0.3,
+      //  location:null //不需要
     },
     // form_title: "",
     group_name: null,
@@ -43,8 +45,11 @@ let config = {
         this.auto_run_on_timing = this.tui_storage_checkbox.get("auto_run_on_timing") || false;
         this.show_logcat_flotwindow = this.tui_storage_checkbox.get("show_logcat_flotwindow"); // 这里不应该使用 || true -> false || true 导致永为真
         this.true_device_text.lock_call = this.tui_storage_edittext.get("true_lock_call_text");
-        this.true_device_text.location = this.tui_storage_edittext.get("true_location_text");
-        this.true_device_text.swap_path = this.tui_storage_edittext.get("true_swap_path");
+      //  this.true_device_text.location = this.tui_storage_edittext.get("true_location_text");
+        //this.true_device_text.swap_path = this.tui_storage_edittext.get("true_swap_path");
+        this.true_device_text.swap_path_start = this.tui_storage_edittext.get("true_swap_path:start");
+        this.true_device_text.swap_path_end = this.tui_storage_edittext.get("true_swap_path:end");
+
         this.timers_id = this.storage.get("timing_id");
         // console.info("checkTimedTaskExists:", this.checkTimedTaskExists(), this.timers_id);
         if (!this.checkTimedTaskExists()) {

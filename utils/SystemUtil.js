@@ -66,34 +66,9 @@ SystemUtil = {
         
         let unlock_mode = 0; // 0 未锁屏, 1 数字解锁, 2 上滑解锁
         let HEIGHT = device.height == 0 ? 1080 : device.height; //锁屏时获取的可能是0 
-        let split_swap = {start:0.6, end:0.3};
-        let split_swap_error = false;
-        if (true_dev_set != null && typeof true_dev_set == "object") {
-            if (true_dev_set.lock_call == null || true_dev_set.lock_call == "" || true_dev_set.lock_call == undefined) {
-                true_dev_set.lock_call = "紧急呼叫";
-            }
-            if (true_dev_set.swap_path == null || true_dev_set.swap_path == "" || true_dev_set.swap_path == undefined) {
-                
-                try{
-                   [split_swap.start,split_swap.end] = swap_path.split("~");
-                   if(split_swap.length != 2 && typeof split_swap.start != "number" && typeof split_swap.end != "number"){
-                       throw new Error('滑动路径配置有误')
-                   }
-                }catch(e){
-                    split_swap_error = true;
-                    toast("滑动路径配置有误");
-                    console.error("滑动路径配置有误",true_dev_set,split_swap)
-                }finally{
-                    split_swap = {start:0.6, end:0.3};
-                }
-            }else{
-                
-            }
-        }else{
-            true_dev_set = {lock_call:"紧急呼叫", swap_path:"0.6~0.3"};
-            split_swap = {start:0.6, end:0.3};
-        }
-        let errorMessage = function(msg) {
+        let true_dev_set,swap_path = handleDevSetdata(true_dev_set);
+        console.verbose("handleDevSetdata result：true_dev_set,swap_pat =>" ,true_dev_set,swap_path);
+        let errorMessage = function(msg) { 
             console.error(msg);
             device.isScreenOn() && KeyCode(26); //判断是否锁屏
             //exit();
@@ -138,6 +113,10 @@ SystemUtil = {
                     iunlockListen.failed("找不到数字锁屏界面");
                 }
                 // break;
+            }else if(max_try_times_swipe == 0){
+                toastLog("找不到" + true_dev_set.lock_call + ",请检查配置");
+                iunlockListen.failed("找不到" + true_dev_set.lock_call + ",请检查配置");
+               // exit();
             }
             /*不存在[紧急呼叫]时滑动屏幕*/
             swipe_time += swipe_time_increment;
@@ -311,33 +290,32 @@ function findAllNumber() {
 }
 
 function handleDevSetdata(setdata){
+    let swap_path = split_swap = {start:0.6, end:0.3};
     if(setdata != null && typeof setdata == "object") {
         if (setdata.lock_call == null || setdata.lock_call == "" || setdata.lock_call == undefined) {
                 setdata.lock_call = "紧急呼叫";
             }
-         if (setdata.swap_path == null || setdata.swap_path == "" || setdata.swap_path == undefined) {
-                
+         if (setdata.swap_path != null && setdata.swap_path != "" && setdata.swap_path != undefined) {     
                 try{
-                   [split_swap.start,split_swap.end] = swap_path.split("~");
-                   if(split_swap.length != 2 && typeof split_swap.start != "number" && typeof split_swap.end != "number"){
-                       throw new Error('滑动路径配置有误')
+                   [split_swap.start,split_swap.end] = setdata.swap_path.split("~");
+                   if(split_swap.length != 2 && isNaN(split_swap.start)){
+                       throw new Error('滑动路径配置有误' + split_swap.length + " " + isNaN(split_swap.start))
                    }
                 }catch(e){
                     split_swap_error = true;
                     toast("滑动路径配置有误");
-                    console.error("滑动路径配置有误",true_dev_set,split_swap)
-                }finally{
+                    console.error("滑动路径配置有误",setdata,split_swap," ->已还原配置");
                     split_swap = {start:0.6, end:0.3};
                 }
             }else{
                 split_swap = {start:0.6, end:0.3};
             }   
-            return [true_dev_set,split_swap];
+            return [setdata,split_swap];
     }else{
         console.warn("handleDevSetdata:setdata格式错误");
-        true_dev_set = {lock_call:"紧急呼叫", swap_path:"0.6~0.3"};
+        setdata = {lock_call:"紧急呼叫", swap_path:"0.6~0.3"};
         split_swap = {start:0.6, end:0.3};
-        return [true_dev_set,split_swap]
+        return [setdata,split_swap]
     }
 }
 

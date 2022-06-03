@@ -110,11 +110,17 @@ ui.layout(
                                         </linear>
                                         
                                         <tui-text  text="(?)解锁界面'紧急呼叫'实际文字,该文字有设备差异"  textSize="10sp"  bg="#66FFFFFF"margin="15 5 15 12" padding="5"/>
-                                        <linear marginTop="5" gravity="center">
+                                        <!--linear marginTop="5" gravity="center">
                                             <tui-text text="上滑手势路径:"  textStyle="bold" padding="5" textSize="13sp"/>
                                             <tui-editText id="true_swap_path" text="0.6~0.3" textSize="13sp" hint="0.6~0.3" prefKey="true_swap_path" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold" paddingLeft="5" layout_weight="1"/>
-                                        </linear>
-                                        <tui-text text="(?)上滑进入解锁界面的路径，该操作有设备差异. 例: 0.6~0.3 表示从屏幕高度的0.6位置滑动到屏幕高度的0.3位置 "  textSize="10sp"  bg="#66FFFFFF"margin="15 5 15 12" padding="5"/>
+                                        </linear-->
+                                        <linear marginTop="5" gravity="center">
+                                            <tui-text text="上滑手势路径:"  textStyle="bold" padding="5" textSize="13sp"/>
+                                            <tui-editText id="true_swap_path_start" text="0.6"inputType="number|numberDecimal" textSize="13sp" hint="0.6" prefKey="true_swap_path:start" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold"gravity="center" paddingLeft="5" layout_weight="1"/>   
+                                            <tui-text text="~"  textStyle="bold" padding="5" textSize="13sp" gravity="center"/>
+                                            <tui-editText id="true_swap_path_end" text="0.3"inputType="number|numberDecimal" textSize="13sp" hint="0.6" prefKey="true_swap_path:end" singleLine="true"  color="#FFFFFF" bg="#332B2B2B" textStyle="bold" gravity="center" paddingLeft="5" layout_weight="1"/>
+                                       </linear>
+                                        <tui-text text="(?)上滑进入解锁界面的路径，该操作有设备差异. 例: 0.6~0.3 表示从屏幕高度的0.6位置(以状态栏位置为0)滑动到屏幕高度的0.3位置(上滑) "  textSize="10sp"  bg="#66FFFFFF"margin="15 5 15 12" padding="5"/>
                                         <!--linear marginTop="5" gravity="center">
                                             <tui-text text="定位描述文字:"  textStyle="bold" padding="5" textSize="13sp"/>
                                             <tui-editText id="true_loction_text"  textSize="13sp" hint="定位服务？开启我的位置服务？" prefKey="true_location_text" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold" paddingLeft="5" layout_weight="1"/>

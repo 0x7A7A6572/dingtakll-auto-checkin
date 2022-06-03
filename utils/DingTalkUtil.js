@@ -76,10 +76,10 @@ var DingTalkUtil = {
             console.error("查找点击[发送]按钮出现意外错误", err)
             // this.clickCoordinate();
         } finally {
-            //删除临时文件- 5s是否充足？
+            //删除临时文件- 15s是否充足？
             setTimeout(() => {
                 console.verbose("删除临时文件->", $files.remove(imagePath), ":", imagePath);
-            }, 5000);
+            }, 15000);
 
         }
 
