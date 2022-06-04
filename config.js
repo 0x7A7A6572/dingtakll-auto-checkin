@@ -1,6 +1,6 @@
 /* 默认配置 及配置初始化 */
 let config = {
-    version: "v2.1.0",
+    version: "v2.1.1",
     last_release_time: "Wed Jun 01 2022 13:32:46 GMT+0800 (GMT+08:00)",
     _last_update: new Date(),
     auto_screenshot: true,

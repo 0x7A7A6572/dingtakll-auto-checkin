@@ -1,9 +1,9 @@
 {
   "assets": [],
   "build": {
-    "build_id": "018092E5-51",
-    "build_number": 51,
-    "build_time": 1654247479237,
+    "build_id": "A34E7F11-52",
+    "build_number": 52,
+    "build_time": 1654342445969,
     "release": false
   },
   "encryptLevel": 0,
@@ -37,5 +37,5 @@
     "uuid": "818f5d29-ff1b-4c3f-9627-65aa84413360"
   },
   "versionCode": 1853,
-  "versionName": "2.1.0"
+  "versionName": "2.1.1"
 }
