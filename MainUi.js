@@ -210,6 +210,11 @@ ui.auto_run_ontiming.addOnCheckListen(function(checked) {
     config.auto_run_on_timing = checked;
     config.addTimerIfNotExists(config.script_path);
     toast((checked ? "开启" : "关闭") + "定时任务");
+      /* @Discard  addTimerIfNotExists已修复可以判断是否删除 */
+    if(!checked){
+        config.clearTimedTasks(config.timers_id);
+    }
+    //config.tingChangedUpdateTask(config.timing);
 });
 
 ui.show_logcat_flotwindow.addOnCheckListen(function(checked) {

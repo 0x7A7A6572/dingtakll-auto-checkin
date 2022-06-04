@@ -84,9 +84,9 @@ let config = {
                 this.updateAll();
                 console.info("autoRun(false) -> delTimer");
             } else {
-                config.timers_id = null;
+                config.timers_id = task.id;
                 config.updateAll();
-                console.warn("no catch -> delTimerid",
+                console.warn("no catch -> updateTimerid",
                     "timers_id:", this.timers_id,
                     "task:", task,
                     "auto_run_on_timing:", this.auto_run_on_timing);
@@ -133,8 +133,15 @@ let config = {
             isExists = false;
         }
         return isExists;
-    }
-
+    },
+    /* @Discard*/
+    clearTimedTasks: function(timeid){
+        if(timeid != null){
+        $timers.removeTimedTask(timeid);
+        }else{
+            console.warn("removeTimeTask failed:",timeid)
+        }
+    },
 }
 
 function formatObj(obj, str) {
