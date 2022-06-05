@@ -119,7 +119,7 @@ function serviceMain() {
     textContains("的表单").waitFor();
 
     iConsole.watermarkModule(true);
-    SystemUtil.autoScreenshot(config.image_path);
+    SystemUtil.autoScreenshot(config.image_path,config.true_device_text.autoScreenshot);
     iConsole.watermarkModule(false);
     iConsole.info("已完成自动截屏，正在发送至" + config.group_name);
     DingTalkUtil.shareImageToDingTallk(config.group_name, config.image_path);

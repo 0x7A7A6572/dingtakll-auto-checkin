@@ -148,13 +148,13 @@ SystemUtil = {
         iunlockListen.success();
 
     },
-    autoScreenshot: function(image_path) {
+    autoScreenshot: function(image_path,allow_screenshort_text) {
         image_path = image_path || context.getExternalCacheDir() + "/screenshot.png";
         console.warn("[autoScreenshot image_path:] -> " + image_path);
         let agree_thread = threads.start(function() {
             //  sleep(1000) //反悔时间
             var beginBtn;
-            if (beginBtn = classNameContains("Button").textContains("立即开始").findOne(2000)) {
+            if (beginBtn = classNameContains("Button").textContains(allow_screenshort_text).findOne(2000)) {
                 beginBtn.click();
             }
         });
@@ -163,7 +163,7 @@ SystemUtil = {
             agree_thread = null;
             return null;
         }
-        if (!classNameContains("Button").textContains("立即开始").findOne(2000)) {
+        if (!classNameContains("Button").textContains(allow_screenshort_text).findOne(2000)) {
             let img = captureScreen();
             images.saveImage(img, image_path);
             agree_thread = null;

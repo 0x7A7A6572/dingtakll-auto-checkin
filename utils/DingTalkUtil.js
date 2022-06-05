@@ -127,6 +127,7 @@ function templateString(template, strArray) {
 }
 
 /*async*/
+/* 更好的android10解决方案是使用应用间共享文件 */
 function tempTransit(origin_file, file_type) {
     let temp_path = "/sdcard/temp_transit_file_0x7a7a." + file_type;
     /*await*/

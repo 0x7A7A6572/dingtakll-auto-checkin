@@ -67,9 +67,9 @@ UnitsTest.setTitle("单元测试")
         unit: () => {
             let group = dialogs.rawInput("请输入需要分享的群聊名，发给自己就输入\n我（姓名）\n括号为中文符", "");
             if (group != null && group != "") {
-                SystemUtil.autoScreenshot(config.image_path);
+                 SystemUtil.autoScreenshot(config.image_path,config.true_device_text.allow_screenshort);
                 //UnitsTest.dismiss();
-                DingTalkUtil.shareImageToDingTallk(group, config.image_path);
+                 DingTalkUtil.shareImageToDingTallk(group, config.image_path);
                 sleep(2000)
             } else {
                 toast("取消");

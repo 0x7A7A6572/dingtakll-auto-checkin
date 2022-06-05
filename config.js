@@ -1,7 +1,7 @@
 /* 默认配置 及配置初始化 */
 let config = {
-    version: "v2.1.1",
-    last_release_time: "Wed Jun 01 2022 13:32:46 GMT+0800 (GMT+08:00)",
+    version: "v2.1.2",
+    last_release_time: "Wed Jun 01 2022 13:32:46",
     _last_update: new Date(),
     auto_screenshot: true,
     auto_share_after_screenshot: true,
@@ -9,12 +9,13 @@ let config = {
     auto_delete_image: false,
     auto_run_on_timing: false, //是否开启定时任务
     show_logcat_flotwindow: true, //是否开启日志悬浮窗
-    find_form_step_is_from_text: "填写>立即填写>今天", //查找步骤文本，{立即填写}换成指定表格名
+    find_form_step_is_from_text: "填写>立即填写>员工每日健康打卡>今天", //查找步骤文本，{立即填写}换成指定表格名
     true_device_text:{
         lock_call:null,
       //  swap_path:"0.6~0.3",
         swap_path_start: 0.6,
         swap_path_end: 0.3,
+        allow_screenshort: "立即开始"
       //  location:null //不需要
     },
     // form_title: "",
@@ -49,7 +50,8 @@ let config = {
         //this.true_device_text.swap_path = this.tui_storage_edittext.get("true_swap_path");
         this.true_device_text.swap_path_start = this.tui_storage_edittext.get("true_swap_path:start");
         this.true_device_text.swap_path_end = this.tui_storage_edittext.get("true_swap_path:end");
-
+        this.true_device_text.allow_screenshort = this.tui_storage_edittext.get("true_allow_screenshort_text","立即开始");
+console.error("this.true_device_text.allow_screenshort",this.true_device_text.allow_screenshort)
         this.timers_id = this.storage.get("timing_id");
         // console.info("checkTimedTaskExists:", this.checkTimedTaskExists(), this.timers_id);
         if (!this.checkTimedTaskExists()) {
@@ -61,7 +63,7 @@ let config = {
         //初始化定时任务
         this.addTimerIfNotExists(this.script_path);
         console.info("配置初始化完毕!");
-        console.verbose(formatObj(this));
+        console.verbose(JSON.stringify(this, null, 2));
     },
     updateAll: function() {
         //处理除了tui_storage_ 控件自动存储以外的config
@@ -143,7 +145,7 @@ let config = {
         }
     },
 }
-
+/** JSON.stringify() 更优秀
 function formatObj(obj, str) {
     let _str;
     if (str == null) {
@@ -152,9 +154,16 @@ function formatObj(obj, str) {
         _str += "{\n"
     }
     Object.keys(obj)
-        .forEach(function(k) {
+        .forEach((k) => {
             if (typeof obj[k]  == "object") {
-                //this(obj[k], _str); error
+                // console.warn( obj[k])
+                // if(obj[k] != com.stardust.autojs.core.storage.LocalStorage){
+                //    formatObj(obj[k], _str);
+
+                // }else{
+                //     _str += k + ": [Object LocalStorage],\n";
+                // }
+                _str += obj[k].toString() + ",\n";
             } else {
                 if (typeof(obj[k]) == "string") {
                     _str += k + ": \"" + obj[k] + "\",\n";
@@ -168,7 +177,7 @@ function formatObj(obj, str) {
     _str += "\n},\n";
     return _str;
 }
-
+*/
 function timingFormat(timing) {
     let timef = timing.split(":");
     return [Number(timef[0]), Number(timef[1])];
