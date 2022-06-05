@@ -1,6 +1,7 @@
 /* 默认配置 及配置初始化 */
+importClass(android.content.pm.PackageManager)
 let config = {
-    version: "v2.1.2",
+    version: getPackageName(),
     last_release_time: "Wed Jun 01 2022 13:32:46",
     _last_update: new Date(),
     auto_screenshot: true,
@@ -48,8 +49,8 @@ let config = {
         this.true_device_text.lock_call = this.tui_storage_edittext.get("true_lock_call_text");
       //  this.true_device_text.location = this.tui_storage_edittext.get("true_location_text");
         //this.true_device_text.swap_path = this.tui_storage_edittext.get("true_swap_path");
-        this.true_device_text.swap_path_start = this.tui_storage_edittext.get("true_swap_path:start");
-        this.true_device_text.swap_path_end = this.tui_storage_edittext.get("true_swap_path:end");
+        this.true_device_text.swap_path_start = this.tui_storage_edittext.get("true_swap_path:start",0.6);
+        this.true_device_text.swap_path_end = this.tui_storage_edittext.get("true_swap_path:end", 0.3);
         this.true_device_text.allow_screenshort = this.tui_storage_edittext.get("true_allow_screenshort_text","立即开始");
 console.error("this.true_device_text.allow_screenshort",this.true_device_text.allow_screenshort)
         this.timers_id = this.storage.get("timing_id");
@@ -143,7 +144,7 @@ console.error("this.true_device_text.allow_screenshort",this.true_device_text.al
         }else{
             console.warn("removeTimeTask failed:",timeid)
         }
-    },
+    }
 }
 /** JSON.stringify() 更优秀
 function formatObj(obj, str) {
@@ -183,6 +184,28 @@ function timingFormat(timing) {
     return [Number(timef[0]), Number(timef[1])];
 }
 
+function getPackageCode() {
+    let manager = context.getPackageManager();
+    let code = 0;
+    try {
+        let info = manager.getPackageInfo(context.getPackageName(), 0);
+        code = info.versionCode;
+    } catch (e) {
+        e.printStackTrace();
+    }
+    return code;
+}
+function getPackageName() {
+    let manager = context.getPackageManager();
+    let name = null;
+    try {
+        let info = manager.getPackageInfo(context.getPackageName(), 0);
+         name = info.versionName;
+    } catch (e) {
+        e.printStackTrace();
+    }
+    return name;
+}
 
 
 module.exports = config;
