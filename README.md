@@ -13,6 +13,6 @@
 ## 需要的数据
       corpid 群名 表格名 锁屏密码
 ## 下载apk
-[release_v2.1.1.apk](https://zzerx.cn/download/releass_v2.1.1.apk)
+[release_v2.1.2.apk](https://zzerx.cn/download/releass_v2.1.2.apk)
 ## 感谢支持
 <img src="https://zzerx.cn/blogimages/beg_wx.png"  height="200" width="200"/>
