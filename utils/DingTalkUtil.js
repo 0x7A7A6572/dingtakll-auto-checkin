@@ -61,8 +61,10 @@ var DingTalkUtil = {
         if (button_group_name != null) {
             button_group_name.clickCenter();
         } else {
+            searchGroupToShare(groupName);
+            console.log("会话", groupName, "不在群聊列表，使用searchGroupToShare")
             //否则提示没有找到
-            toastLog("没有找到会话" + groupName);
+            // toastLog("没有找到会话" + groupName);
         }
         /*try{
     text(findtext_dingtalk_sendgrup).findOne(500).parent().parent().parent().parent().click();
@@ -114,6 +116,14 @@ var DingTalkUtil = {
 
 };
 
+function searchGroupToShare(groupName) {
+    let search_bar = id("view_search").findOne(2000);
+    search_bar.click()
+    let search_src_text = id("search_src_text").findOne(2000)
+    search_src_text.setText(groupName);
+    textContains(groupName + "(").findOne(2000).clickCenter();
+}
+
 /*
  * 模板字符串
  * ${?} => 仿java式的模板字符串
@@ -125,6 +135,7 @@ function templateString(template, strArray) {
     }
     return template;
 }
+
 
 /*async*/
 /* 更好的android10解决方案是使用应用间共享文件 */
