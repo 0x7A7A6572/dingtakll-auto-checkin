@@ -10,7 +10,7 @@
 《有点》模糊😂，将就一下
 
 ## 流程
-     <img src="https://zzerx.cn/blogimages/auto_ding_flowchart.png"  />
+ <img src="https://zzerx.cn/blogimages/auto_ding_flowchart.png" />
 ## 需要的权限: 
      无障碍 悬浮窗 开机自启 电池优化 后台弹出 读写存储
 ## 需要的数据
