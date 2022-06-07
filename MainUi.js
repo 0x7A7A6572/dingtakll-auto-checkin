@@ -15,9 +15,11 @@ config.init();
 
 //脚本退出监听
 events.on("exit", function() {
-    if ($files.exists(config.temp_img_path)) {
+   /* 先不删除
+   if ($files.exists(config.temp_img_path)) {
         $files.remove(config.temp_img_path);
     }
+    */
 });
 
 ui.layoutFile("./main.xml");

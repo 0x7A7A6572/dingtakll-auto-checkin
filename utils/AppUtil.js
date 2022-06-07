@@ -7,18 +7,18 @@
  */
 importClass(android.location.LocationManager);
 importClass(android.content.Context);
-  var AutoJsUtil = require("./AutoJsUtil.js")
+  var AutojsUtil = require("./AutojsUtil.js")
   var AppUtil = {};
   AppUtil.stopApp = function(appName) {
       var pageName = getPackageName(appName);
       openAppSetting(pageName);
       sleep(1000)
       if (text("强制停止").exists()) {
-          AutoJsUtil.clickCoordinate(text("强制停止").findOne(2000));
+          AutojsUtil.clickCoordinate(text("强制停止").findOne(2000));
       } else if (text("关闭应用").exists()) {
-          AutoJsUtil.clickCoordinate(text("关闭应用").findOne(2000));
+          AutojsUtil.clickCoordinate(text("关闭应用").findOne(2000));
       } else if (text("结束运行").exists()) {
-          AutoJsUtil.clickCoordinate(text("结束运行").findOne(2000));
+          AutojsUtil.clickCoordinate(text("结束运行").findOne(2000));
       } else {
           var isnofind = ",未找到应用'" + appName + "'";
           toastLog("关闭应用失败" + (pageName == null ? isnofind : ""));

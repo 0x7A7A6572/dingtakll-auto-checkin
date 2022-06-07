@@ -79,10 +79,11 @@ var DingTalkUtil = {
             // this.clickCoordinate();
         } finally {
             //删除临时文件- 15s是否充足？
-            setTimeout(() => {
+          
+          /* 先不删除 setTimeout(() => {
                 console.verbose("删除临时文件->", $files.remove(imagePath), ":", imagePath);
             }, 15000);
-
+         */
         }
 
     },
@@ -150,6 +151,8 @@ function tempTransit(origin_file, file_type) {
         this(origin_file,file_type);
     }*/
     $files.copy(origin_file, temp_path);
+    //把图片加入相册 
+    media.scanFile(temp_path);
     return temp_path;
 }
 

@@ -12,9 +12,10 @@ iConsole = require("components/consoleN.js");
 events.on("exit", function() {
     console.log(">>>auto punch in server EXit;")
     iConsole.close();
-    if ($files.exists(config.temp_img_path)) {
+   /*先不删除
+   if ($files.exists(config.temp_img_path)) {
         $files.remove(config.temp_img_path);
-    }
+    }*/
     //BroadcastUtil.send("iConsoleCloseView",true);
 });
 
