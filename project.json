@@ -1,9 +1,9 @@
 {
   "assets": [],
   "build": {
-    "build_id": "A34E7F11-52",
-    "build_number": 52,
-    "build_time": 1654342445969,
+    "build_id": "3887B4F4-53",
+    "build_number": 53,
+    "build_time": 1654619030879,
     "release": false
   },
   "encryptLevel": 0,
@@ -32,10 +32,10 @@
   },
   "scripts": {},
   "signingConfig": {
-    "alias": "zzerx_sign",
-    "keystore": "/storage/emulated/0/脚本/.keystore/autojspro.jks",
-    "uuid": "818f5d29-ff1b-4c3f-9627-65aa84413360"
+    "alias": "zzerX",
+    "keystore": "/storage/emulated/0/AutoProProject/.keystore/autojspro.jks",
+    "uuid": "3f5dc0b6-fb43-4ff9-a1fe-ec99d30a135b"
   },
   "versionCode": 1853,
-  "versionName": "2.1.2"
+  "versionName": "2.2.0"
 }

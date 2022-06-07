@@ -24,7 +24,7 @@ events.on("exit", function () {
 
 config.init();
 let ctx = context;
-UnitsTest.setTitle("单元测试")
+UnitsTest.setTitle("🧩单元测试")
     .addUnitTest({
         unitName: "打开/关闭定位",
         //unitScript:"./testUtil.js",
