@@ -2,10 +2,9 @@
     <vertical>
         <linear bg="#ffffff" padding="0" h="40" w="*">
             <tui-text id="title_set" text="▍钉钉自动健康打卡" textSize="12sp" textStyle="bold" padding="5" layout_weight="1" color="#2b2b2b" />
-            <!--tui-button id="vip" text="[VIP]" textSize="16sp" gravity="right" color="#FFAA00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
             <tui-button id="run_script" text="[>>>]" textSize="16sp" gravity="center" color="#00dd00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="stop_script" text="[停止]" textSize="18sp" color="#99cf00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
             <tui-button id="exit_script" text="[X]" textSize="18sp" color="#ff2f00" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /> <!--tui-button id="unit_test" text=">单元测试" textSize="12sp" layout_weight="1" color="#4ff2f6" margin="0" textStyle="bold" background="?selectableItemBackgroundBorderless" /-->
-        </linear> <!--tui-text text="──── version 1.2.0 ───          ──── @zzerX ────" textSize="8sp" / -->
+        </linear> 
         <ScrollView layout_gravity="center">
             <vertical w="*">
                 <vertical w="*" margin="0 20 0 0">
@@ -15,7 +14,7 @@
                         <tui-text id="title_device_info" text=" 当前环境" textSize="16sp" padding="8" layout_gravity="center" textStyle="bold" color="#2b2b2b" />
                     </linear>
                     <vertical margin="10 0 10 10">
-                        <tui-text id="explain" margin="8" textSize="12sp" padding="8" color="#33CC66" bg="#3333CC66" textStyle="bold" />
+                        <tui-text id="explain" margin="8" textSize="12sp" padding="8" color="#33CC66" bg="#3333CC66" textStyle="bold"/>
                         <linear id="permission_status" w="*" margin="8 0 8 0" padding="12" bg="#FFF9C4">
                             <tui-text id="ps_accessibility" layout_weight="1" text="x 无障碍" textSize="12sp" color="red" textStyle="bold" padding="5" />
                             <tui-text id="ps_floatwindow" layout_weight="1" text="x 悬浮窗" textSize="12sp" color="red" textStyle="bold" padding="5" />
@@ -31,10 +30,10 @@
                             <text id="permission_explain" text="" visibility="gone" textSize="11sp" w="*" bg="#CCFFFFFF" padding="10 0 10 12" />
                         </linear>
                     </vertical>
-                </vertical> <!-- box3-->
+                </vertical> 
                 <vertical>
                     <linear gravity="center">
-                        <tui-text id="title_share" text="打卡设置-PunchInSet" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b" /> <!--tui-text id="title_log_control" text="reset" textColor="#55ccff" textSize="12sp" textStyle="normal"  layout_gravity="bottom" marginLeft="0"/-->
+                        <tui-text id="title_share" text="打卡设置-PunchInSet" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b" /> 
                     </linear>
                     <vertical margin="10" padding="10" bg="#2233CC66">
                         <tui-checkBox id="show_logcat_flotwindow" text="显示日志悬浮窗" prefKey="show_logcat_flotwindow" textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" />
@@ -45,26 +44,7 @@
                                 <tui-text text="锁屏数字密码:" color="#33CC66" padding="5" gravity="center" h="*" textStyle="bold" />
                                 <tui-editText id="lock_num" text="24568" inputType="textPassword" textSize="14sp" hint="当定时触发手机是锁屏时需要" prefKey="lock_num" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" password="true" />
                             </linear>
-                            <!--frame>
-                                    <vertical id="vip_func" w="*" margin="0 8 0 8" padding="12" bg="#BBFFF9C4">
-                                        <tui-text _weight="1" text="排班设置" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" />
-                                        <HorizontalScrollView >
-                                            <linear bg="#3333CC66" >
-                                                <tui-text   text="23" bg="#99FFFFFF" color="#33CC66" textSize="12sp"  textStyle="bold" padding="15" margin="5" />
-                                                <tui-text  text="24" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
-                                                <tui-text   text="25" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
-                                                <tui-text   text="26" bg="#99FFFFFF" color="#33CC66" textSize="12sp"  textStyle="bold" padding="15" margin="5" />
-                                                <tui-text  text="27" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
-                                                <tui-text  text="28" textSize="12sp" color="#33CC66" textStyle="bold" padding="5" padding="15" margin="5"/>
-                                            </linear>
-                                        </HorizontalScrollView>
-                                    </vertical>
-                                    <vertical gravity="center" bg="#A8FFFFFF" margin="0 8 0 8" >
-                                        <tui-text text=" - 仅限VIP用户  -"  w="*" h="*" color="#FFBB00" textSize="16sp" textStyle="bold"  gravity="center" layout_gravity="center"/>
-                                    </vertical>
-                                </frame-->
                         </vertical>
-                        <!--tui-checkBox id="logcat_float_window" text="打卡时显示实时日志悬浮窗" prefKey="logcat_float_window" bg="#2233CC66" textStyle="bold" padding="10" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" margin="0 10 0 0"/-->
                         <vertical layout_weight="1">
                             <linear marginTop="5" gravity="center">
                                 <tui-text text="CORPID:" color="#33CC66" textStyle="bold" padding="5" />
@@ -78,8 +58,13 @@
                                 <tui-text text="查找步骤:" color="#33CC66" textStyle="bold" padding="5" />
                                 <tui-editText id="find_step" textSize="14sp" hint="查找表格步骤" prefKey="find_step" singleline="true" marginLeft="14" color="#FFFFFF" bg="#3300dd00" textStyle="bold" padding="5" />
                             </linear>
-                        </vertical> <!--/linear-->
-
+                        </vertical> 
+                        <tui-expand id="expand_form_diff" title="表格差异配置" background="#2233CC66" padding="8" marginTop="8" color="#00FF33">
+                            <vertical>
+                                <tui-checkBox id="expand_form_diff_location" text="当前位置" prefKey="expand_form_diff_location" textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666"/>
+                                <tui-checkBox id="expand_form_diff_travelcard" text="上传行程卡" prefKey="expand_form_diff_travelcard" textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" />
+                            </vertical>
+                        </tui-expand>
                         <tui-expand id="expand_dev_diff" title="设备差异配置" background="#2233CC66" padding="8" marginTop="8">
                             <vertical>
                                 <linear marginTop="5" gravity="center">
@@ -99,33 +84,21 @@
                                     <tui-text text="允许截屏按钮文字:" textStyle="bold" padding="5" textSize="13sp" />
                                     <tui-editText id="true_allow_screenshort_text" text="立即开始" textSize="13sp" hint="允许/立即开始/？" prefKey="true_allow_screenshort_text" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold" paddingLeft="5" layout_weight="1" />
                                 </linear>
-
-                                <tui-text text="(?)请求截屏时会弹出是否允许截屏的按钮，该按钮的描述文字有设备差异" textSize="10sp" bg="#66FFFFFF" margin="15 5 15 12" padding="5" />
-                                
-                                <!--linear marginTop="5" gravity="center">
-                                        <tui-text text="定位描述文字:"  textStyle="bold" padding="5" textSize="13sp"/>
-                                        <tui-editText id="true_loction_text"  textSize="13sp" hint="定位服务？开启我的位置服务？" prefKey="true_location_text" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold" paddingLeft="5" layout_weight="1"/>
-                                    </linear>
-                                    <tui-text id="true_loction_text_explain" text="通过打开定位实际文字，进行开启关闭定位，该文字各厂商都不一样"  textSize="10sp" w="*" bg="#66FFFFFF"margin="15 5 15 12" padding="5"/-->
-
-
+                                <tui-text text="(?)请求截屏时会弹出是否允许截屏的按钮，该按钮的描述文字有设备差异" textSize="10sp" bg="#66FFFFFF" margin="15 5 15 12" padding="5" />      
                             </vertical>
-
                         </tui-expand>
                     </vertical>
-                </vertical> <!-- box4-->
+                </vertical> 
                 <vertical gravity="center" marginTop="10">
                     <linear gravity="center">
-                        <tui-text id="title_log" text="日志-Logcat" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b" /> <!--tui-text id="title_log_detail" text="detail" textColor="#66ff66" textSize="15sp" padding="8" textStyle="normal"   layout_gravity="bottom" marginLeft="0"/-->
+                        <tui-text id="title_log" text="日志-Logcat" textSize="16sp" padding="8" textStyle="bold" color="#2b2b2b" /> 
                         <tui-text id="title_log_detail" text="[详细]" textColor="#6666ff" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
                         <tui-text id="title_log_clear" text="[清除]" textColor="#ff6666" textSize="13sp" padding="8" textStyle="bold" layout_gravity="bottom" marginLeft="0" />
                     </linear>
-                    <!--ScrollView minHeight="200"-->
                     <vertical background="#3333CC66" margin="18 0 18 20" height="200" padding="8">
                         <tui-text id="logText" textSize="13sp" padding="0" color="#00B800" scrollbars="vertical" />
                         <globalconsole id="console" visibility="gone" textSize="13sp" bg="#002b36" padding="5" />
                     </vertical>
-                    <!--/ScrollView-->
                 </vertical>
                 <tui-text id="other_setting" text="其他-Other" textSize="16sp" padding="8" textStyle="bold" gravity="center" color="#2b2b2b" />
                 <vertical background="#3333CC66" margin="18 0 18 20">

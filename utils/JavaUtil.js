@@ -12,6 +12,9 @@ JavaUtil = {
             jsnum = -(~jsnum + 1);
         }
         return jsnum;
+    },
+    load_Time: function () {
+        return new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
     }
 }
 

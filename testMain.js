@@ -5,17 +5,21 @@ importClass(android.Manifest.permission);
 UnitsTest = require("./unit/UnitsTest.js");
 let DingTalkUtil = require("./utils/DingTalkUtil.js");
 let config = require("./config.js");
-let AppUtil = require("./utils/AppUtil.js");
 let SystemUtil = require("./utils/SystemUtil.js");
 let AutojsUtil = require("./utils/AutojsUtil.js");
 let DateUtil = require("./utils/DateUtil.js");
 let NotifyUtil = require("./utils/NotifyUtil.js");
+let JavaUtil = require("utils/JavaUtil.js");
+let _img_target = null;
 
-events.on("exit", function() {
+let test_cropid = "dingbbba5d77bd1bf41eacaaa37764f94726";
+let test_group_name = "软件测试(DEBUG)";
+let test_step = "填写->全员健康每日打卡->今天";
+
+
+events.on("exit", function () {
     log("结束测试");
-    /*先不删除  if ($files.exists(config.temp_img_path)) {
-          $files.remove(config.temp_img_path);
-      }*/
+    removeTempImage(config.temp_img_path_list);
 });
 
 config.init();
@@ -49,10 +53,10 @@ UnitsTest.setTitle("单元测试")
                 toast("现在请锁屏等待触发")
                 sleep(6000);
                 SystemUtil.unlock(password.toString(), {
-                    success: function() {
+                    success: function () {
                         UnitsTest.setTestStatu(this.unitName, UnitsTest.SUCCESS);
                     },
-                    failed: function(log) {
+                    failed: function (log) {
                         UnitsTest.setTestStatu(this.unitName, UnitsTest.FAILED);
                     }
                 }, config.true_device_text);
@@ -85,101 +89,37 @@ UnitsTest.setTitle("单元测试")
     }).addUnitTest({
         unitName: "点击获取定位(表格界面)",
         unit: () => {
+            toFormPage();
             clickGetAddress(5)
         }
     })
     .addUnitTest({
         unitName: "行程卡截图上传",
         unit: () => {
-            DingTalkUtil.openTablePage("dingbbba5d77bd1bf41eacaaa37764f94726");
-            waitForActivity(config.TABLE_PAGE_ACTIVITY, 5000);
-            toastLog("启动钉钉智能填表页面");
-            
-            let array_find_step = "填写->全员健康每日打卡->今天".split("->");
-            let find_form_failure_limit = 5;
-            for (let i = 0; i < array_find_step.length; i++) {
-                //findOne(5000) -> 可能因网络不佳，内存不足等多种问题造成延迟
-                if (textContains(array_find_step[i]).findOne(5000) != null) {
-                    click(array_find_step[i]);
-                    if (array_find_step[i] == "填写") {
-                        sleep(2000);
-                        if (text("暂无数据").exists()) {
-                            //如果表格未显示，就在"已完成"找
-                            click("已完成");
-                        }
-                    }
-                } else {
-                    toastLog("未找到[" + array_find_step[i] + "]");
-                    iConsole.error("未找到[" + array_find_step[i] + "]");
-                    exit();
-                }
-            }
-            toastLog("进入健康打卡表");
-
-
-
-
-            //打开通信大数据行程卡
-            launchPackage("com.caict.xingchengka");
-
-            AutojsUtil.untilTask.do(() => {
-                    return AutojsUtil.waitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 3000);
-                }).ifnot(() => {
-                    toastLog("重新尝试")
-                    back();
-                    sleep(800);
-                    launchPackage("com.caict.xingchengka");
-                }, 5)
-                .start();
-            SystemUtil.autoScreenshot(config.image_path, config.true_device_text.allow_screenshort);
-            let temp_path = tempTransit(config.image_path, "png")
-            back();
-            //app.startActivity("com.alibaba.lightapp.runtime.activity.CommonWebViewActivity");
-            AutojsUtil.waitForActivity("com.alibaba.lightapp.runtime.activity.CommonWebViewActivity", 200,5000);
-            toastLog("等待表格加载...")
-            sleep(2000)
-            className("android.widget.Image").text("plus").findOne(2000).click()
-            id("album_item_media_cbx_icon").findOne(2000).click();
-            
-
-            
-            
-            let target = $images.read("./images/correct_selection_tripcard_true.png");
-           // let capimg = $images.read("/sdcard/test.png");
-            $events.on('exit', () => {target.recycle();});
-            let pos = $images.findImage(captureScreen(), target);
-            // 打印
-            console.log("找到图片>",pos);
-            /*// 监听屏幕截图
-            $images.on("screen_capture", capture => {
-                // 找图
-                let pos = $images.findImage(capture, target);
-                // 打印
-                console.log(pos);
-            });*/
-
-            id("btn_send").findOne(2000).clickCenter()
-        }
-    }).addUnitTest({
-        unitName: "其他",
-        unit: () => {
-            /*app.startActivity({
-                action: "VIEW",
-                //支付宝行程卡appid
-                data: "alipays://platformapi/startapp?appId=2021002170600786"
-            });*/
-            //toastLog(iwaitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 5000));
-            AutojsUtil.untilTask.do(() => {
-                    return AutojsUtil.waitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 3000);
-                }).ifnot(() => {
-                    toastLog("重新尝试")
-                    back();
-                    sleep(800);
-                    launchPackage("com.caict.xingchengka");
-                }, 5)
-                .start();
+            toFormPage();
+            uploadTheTravelCard();
         }
     })
+    // .addUnitTest({
+    //     unitName: "其他",
+    //     unit: () => {
+    //         /*app.startActivity({
+    //             action: "VIEW",
+    //             //支付宝行程卡appid
+    //             data: "alipays://platformapi/startapp?appId=2021002170600786"
+    //         });*/
+    //         //toastLog(iwaitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 5000));
+    //         AutojsUtil.untilTask.do(() => {
+    //             return AutojsUtil.waitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 3000);
+    //         }).ifnot(() => {
+    //             toastLog("重新尝试")
+    //             back();
+    //             sleep(800);
+    //             launchPackage("com.caict.xingchengka");
+    //         }, 5)
+    //             .start();
+    //     }
+    // })
     .show()
 sleep(3000);
 
@@ -210,21 +150,97 @@ function clickGetAddress(limit) {
 }
 
 function tempTransit(origin_file, file_type) {
-    let temp_path = "/sdcard/temp_transit_file_0x7a7a" + load_Time() + "." + file_type;
-    /*await*/
-    /*if($files.copy(origin_file, temp_path)){
-        if(!$files.exists(temp_path)){
-            sleep(500);
-        }
-    }else if(){
-        this(origin_file,file_type);
-    }*/
+    let temp_path = "/sdcard/temp_transit_file_0x7a7a" + JavaUtil.load_Time() + "." + file_type;
+    config.temp_img_path_list.push(temp_path);
     $files.copy(origin_file, temp_path);
-    //把图片加入相册 
+    //通知相册，让钉钉选择图片时能获取到最新截图 
     media.scanFile(temp_path);
     return temp_path;
 }
 
-function load_Time() {
-    return new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
+/* 点击表格上传行程卡*/
+function uploadTheTravelCard() {
+    //打开通信大数据行程卡
+    if (launchPackage("com.caict.xingchengka")) {
+        let travelcardResult = AutojsUtil.untilTask.do(() => {
+            return AutojsUtil.waitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 3000);
+        }).ifnot(() => {
+            toastLog("重新尝试查询行程卡")
+            back();
+            sleep(800);
+            launchPackage("com.caict.xingchengka");
+        }, 5)
+            .start();
+        if (!travelcardResult) {
+            toastLog("获取行程卡失败！");
+            console.error("travelcardResult -> ",travelcardResult);
+            return false;
+        }
+        SystemUtil.autoScreenshot(config.img_path_travelcard, config.true_device_text.allow_screenshort);
+        tempTransit(config.img_path_travelcard, "png");
+        back();
+        AutojsUtil.waitForActivity("com.alibaba.lightapp.runtime.activity.CommonWebViewActivity", 200, 5000);
+        toastLog("等待表格加载完毕...");
+        sleep(2000);
+        let plus_img = className("android.widget.Image").text("plus").findOne(2000);
+        if(plus_img != null){
+            plus_img.click();
+        }else{
+            toastLog("表格中找不到上传行程卡选项！");
+            console.error("plus_img -> ",plus_img);
+            return false;
+        }
+        id("album_item_media_cbx_icon").findOne(2000).click();
+        _img_target = $images.read("./images/correct_selection_tripcard_true.png");
+        let pos = $images.findImage(captureScreen(), _img_target);
+        if (pos) {
+            id("btn_send").findOne(2000).clickCenter();
+        } else {
+            toastLog("选择的图片可能不是行程卡！取消上传");
+            console.error("findImage 匹配行程卡 -> false")
+        }
+        /*// 监听屏幕截图(异步 暂时不使用)
+        $images.on("screen_capture", capture => {
+            let pos = $images.findImage(capture, target);
+        });*/
+        return true;
+    } else {
+        toast("请检查是否安装通信行程卡APP");
+        console.error("launchPackage(com.caict.xingchengka) = fasle", "请检查是否安装通信行程卡APP");
+        return false;
+    }
+}
+
+function toFormPage(){
+    DingTalkUtil.openTablePage(test_cropid);
+    waitForActivity(config.TABLE_PAGE_ACTIVITY, 5000);
+    toastLog("启动钉钉智能填表页面");
+    let array_find_step = test_step.split("->");
+    for (let i = 0; i < array_find_step.length; i++) {
+        //findOne(5000) -> 可能因网络不佳，内存不足等多种问题造成延迟
+        if (textContains(array_find_step[i]).findOne(5000) != null) {
+            click(array_find_step[i]);
+            if (array_find_step[i] == "填写") {
+                sleep(2000);
+                if (text("暂无数据").exists()) {
+                    //如果表格未显示，就在"已完成"找
+                    click("已完成");
+                }
+            }
+        } else {
+            toastLog("未找到[" + array_find_step[i] + "]");
+            iConsole.error("未找到[" + array_find_step[i] + "]");
+            exit();
+        }
+    }
+    toastLog("进入健康打卡表");
+}
+
+function removeTempImage(tamplist){
+    for(let i = 0;i < tamplist.length; i++){
+        $files.remove(tamplist[i]);
+    }
+    if(_img_target != null){
+        _img_target.recycle();
+    }
 }

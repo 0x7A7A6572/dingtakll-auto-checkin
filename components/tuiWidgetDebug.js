@@ -301,6 +301,7 @@ var tuiCheckBox = (function() {
                 this.pref_key = value;
             }
         });
+
         this.defineAttr("text", (view, attr, value, defineSetter) => {
             if (null != value) {
                 view.getChildAt(1).setText(value);
@@ -357,6 +358,11 @@ var tuiCheckBox = (function() {
                 }
             } else {
                 throw new Error("The property value must be a non empty string and contain three forms separated by '|'")
+            }
+        });
+        this.defineAttr("checked", (view, attr, value, defineSetter) => {
+            if (null != value && "" != value) {
+                this.checked = value;
             }
         });
 

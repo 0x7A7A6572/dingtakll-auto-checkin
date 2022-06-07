@@ -87,6 +87,15 @@ ui.show_logcat_flotwindow.addOnCheckListen(function(checked) {
     config.show_logcat_flotwindow = checked;
     toast((checked ? "开启" : "关闭") + "悬浮窗日志");
 });
+ui.expand_form_diff_travelcard.addOnCheckListen(function(checked) {
+    if(checked && getAppName("com.caict.xingchengka") == null){
+        toast( "未安装通信行程卡APP");
+        ui.expand_form_diff_travelcard.setChecked(false);
+    }else{
+        toast((checked ? "开启" : "关闭") +"上传行程卡");
+    }
+    config.form_diff.travelcard = checked;
+});
 /*ui.stop_script.on("click", () => {
     toast("已为您停止启动脚本");
     SCRIPT_RUN_AUO = false; 

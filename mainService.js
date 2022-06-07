@@ -4,18 +4,17 @@ let AppUtil = require("utils/AppUtil.js");
 let SystemUtil = require("utils/SystemUtil.js");
 let DateUtil = require("utils/DateUtil.js");
 let NotifyUtil = require("utils/NotifyUtil.js");
+let JavaUtil = require("utils/JavaUtil.js");
 //iConsole = require("components/iConsole.js");
 // let BroadcastUtil = require("utils/BroadcastUtil.js");
-iConsole = require("components/consoleN.js");
+let iConsole = require("components/consoleN.js");
 
+let _img_target = null;
 //脚本退出监听
-events.on("exit", function() {
-    console.log(">>>auto punch in server EXit;")
+events.on("exit", function () {
+    console.log(">>>auto punch in server Exit;");
     iConsole.close();
-   /*先不删除
-   if ($files.exists(config.temp_img_path)) {
-        $files.remove(config.temp_img_path);
-    }*/
+    removeTempImage(config.temp_img_path_list);
     //BroadcastUtil.send("iConsoleCloseView",true);
 });
 
@@ -25,13 +24,13 @@ if (config.show_logcat_flotwindow) {
     iConsole.init(null, engines.myEngine());
 }
 SystemUtil.unlock(config.lock_password, {
-    success: function() {
+    success: function () {
         serviceMain();
     },
-    failed: function(log) {
+    failed: function (log) {
         console.warn(log);
     }
-},config.true_device_text);
+}, config.true_device_text);
 
 function serviceMain() {
     DingTalkUtil.openTablePage(config.CORP_ID);
@@ -58,54 +57,21 @@ function serviceMain() {
         }
     }
     iConsole.info("进入健康打卡表");
-    // missionAccomplished = (notfound && i == FIND_FORM_STEP_IS_FROM_TEXT.length - 1) ? false : true;
-    //while ( text(FORM_TITLE).findOne()) {}
-    // Util.gpsCheck(DING_TAILK_PAGE_NAME, true);
-    //console.log(currentActivity());
-    SystemUtil.gpsCheckAndDo(config.DING_TAILK_PAGE_NAME, true, 5);
-    iConsole.info("打开GPS定位成功");
-    /* importClass(android.location.LocationManager);
+    if(config.form_diff.location){
+        SystemUtil.gpsCheckAndDo(config.DING_TAILK_PAGE_NAME, true, 5);
+        iConsole.info("打开GPS定位成功");
+        waitForPackage(config.DING_TAILK_PAGE_NAME, 3000);
+        iConsole.verbose("跳转回表格界面");
+        clickGetAddress(5);
+        iConsole.info("点击获取√");
+        toast("正在关闭定位");
+        SystemUtil.gpsCheckAndDo(config.DING_TAILK_PAGE_NAME, false, 5);
+    }
 
-    importClass(android.content.Context);
+    if(config.form_diff.travelcard){
+        uploadTheTravelCard();
+    }
 
-    var locationManager = context.getSystemService(Context.LOCATION_SERVICE);
-  
-    console.warn("GPS是否打开",locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
-  */
-    waitForPackage(config.DING_TAILK_PAGE_NAME, 3000);
-    iConsole.verbose("跳转回表格界面");
-    //textContains("获取").waitFor();
-    //toastLog("waitForPackage(DING_TAILK_PAGE_NAME) ok")
-    //autojs 控件查找不在屏幕上也可以点击
-    /* 报错空值
-   className("android.view.View")
-    .text("获取")
-    .findOne(2000)
-    .click();
-  toastLog("auto click 获取 ok")
-  */
-    /*while (!text("获取").exists()){
-        print("text 获取 no exitsts , do swipe");
-        swipe(900, 1000, 900, 900, 1000);
-        sleep(1000);
-    }*/
-    clickGetAddress(5);
-    /*AutoJsUtil.clickCoordinate(className("android.view.View")
-        .text("获取")
-        .findOne());
-        
-    // toastLog("util click 获取 ok")
-    //textContains("刷新").waitFor();
-    while (!text("刷新").exists() || !text("地点微调").exists()) {
-        console.log("点击获取ing")
-        text("获取")
-            .findOne().clickCenter();
-        sleep(1000);
-    }*/
-
-    iConsole.info("点击获取√")
-    toast("正在关闭定位");
-    SystemUtil.gpsCheckAndDo(config.DING_TAILK_PAGE_NAME, false, 5);
     //获取定位之后直接拉到最后提交{控件"提交"没在页面显示时也存在}
     //有时候不存在 原因不明
     while (!text("提交").exists()) {
@@ -115,12 +81,12 @@ function serviceMain() {
     }
     text("提交").findOne().click()
 
-    iConsole.info("你成功提交运营分公司每日健康打卡");
+    iConsole.info("你成功提交每日健康打卡");
     //查看你(提交/修改)的表单
     textContains("的表单").waitFor();
 
     iConsole.watermarkModule(true);
-    SystemUtil.autoScreenshot(config.image_path,config.true_device_text.autoScreenshot);
+    SystemUtil.autoScreenshot(config.image_path, config.true_device_text.autoScreenshot);
     iConsole.watermarkModule(false);
     iConsole.info("已完成自动截屏，正在发送至" + config.group_name);
     DingTalkUtil.shareImageToDingTallk(config.group_name, config.image_path);
@@ -135,7 +101,6 @@ function serviceMain() {
     iConsole.close();
     //结束所有脚本
     exit();
-
 }
 
 /**
@@ -148,7 +113,7 @@ function writeLog(text) {
     storage.put("log", str);
 }
 
-/* */
+/* 点击表格定位*/
 function clickGetAddress(limit) {
     let stopCount = 0;
     while (!text("刷新").exists() || !text("地点微调").exists()) {
@@ -168,6 +133,74 @@ function clickGetAddress(limit) {
 
 }
 
+/* 点击表格上传行程卡*/
+function uploadTheTravelCard() {
+    //打开通信大数据行程卡
+    if (launchPackage("com.caict.xingchengka")) {
+        let travelcardResult = AutojsUtil.untilTask.do(() => {
+            return AutojsUtil.waitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 3000);
+        }).ifnot(() => {
+            toastLog("重新尝试查询行程卡")
+            back();
+            sleep(800);
+            launchPackage("com.caict.xingchengka");
+        }, 5)
+            .start();
+        if (!travelcardResult) {
+            toastLog("获取行程卡失败！");
+            console.error("travelcardResult -> ",travelcardResult);
+            return false;
+        }
+        SystemUtil.autoScreenshot(config.img_path_travelcard, config.true_device_text.allow_screenshort);
+        tempTransit(config.img_path_travelcard, "png");
+        back();
+        AutojsUtil.waitForActivity("com.alibaba.lightapp.runtime.activity.CommonWebViewActivity", 200, 5000);
+        toastLog("等待表格加载完毕...");
+        sleep(2000);
+        let plus_img = className("android.widget.Image").text("plus").findOne(2000);
+        if(plus_img != null){
+            plus_img.click();
+        }else{
+            toastLog("表格中找不到上传行程卡选项！");
+            console.error("plus_img -> ",plus_img);
+            return false;
+        }
+        id("album_item_media_cbx_icon").findOne(2000).click();
+        _img_target = $images.read("./images/correct_selection_tripcard_true.png");
+        let pos = $images.findImage(captureScreen(), _img_target);
+        if (pos) {
+            id("btn_send").findOne(2000).clickCenter();
+        } else {
+            toastLog("选择的图片可能不是行程卡！取消上传");
+            console.error("findImage 匹配行程卡 -> false")
+        }
+        /*// 监听屏幕截图(异步 暂时不使用)
+        $images.on("screen_capture", capture => {
+            let pos = $images.findImage(capture, target);
+        });*/
+        return true;
+    } else {
+        toast("请检查是否安装通信行程卡APP");
+        console.error("launchPackage(com.caict.xingchengka) = fasle", "请检查是否安装通信行程卡APP");
+        return false;
+    }
+}
 
+function tempTransit(origin_file, file_type) {
+    let temp_path = "/sdcard/temp_transit_file_0x7a7a" + JavaUtil.load_Time() + "." + file_type;
+    config.temp_img_path_list.push(temp_path);
+    $files.copy(origin_file, temp_path);
+    //通知相册，让钉钉选择图片时能获取到最新截图 
+    media.scanFile(temp_path);
+    return temp_path;
+}
 
-setInterval(() => {}, 2000);
+function removeTempImage(tamplist){
+    for(let i = 0;i < tamplist.length; i++){
+        $files.remove(tamplist[i]);
+    }
+    if(_img_target != null){
+        _img_target.recycle();
+    }
+}
+setInterval(() => { }, 2000);

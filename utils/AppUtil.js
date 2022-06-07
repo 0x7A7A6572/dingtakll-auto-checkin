@@ -7,7 +7,7 @@
  */
 importClass(android.location.LocationManager);
 importClass(android.content.Context);
-  var AutojsUtil = require("./AutojsUtil.js")
+  var AutojsUtil = require("./AutojsUtil.js");
   var AppUtil = {};
   AppUtil.stopApp = function(appName) {
       var pageName = getPackageName(appName);

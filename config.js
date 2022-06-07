@@ -11,48 +11,56 @@ let config = {
     auto_run_on_timing: false, //是否开启定时任务
     show_logcat_flotwindow: true, //是否开启日志悬浮窗
     find_form_step_is_from_text: "填写>立即填写>员工每日健康打卡>今天", //查找步骤文本，{立即填写}换成指定表格名
-    true_device_text:{
-        lock_call:null,
-      //  swap_path:"0.6~0.3",
+    true_device_text: {
+        lock_call: null,
+        //  swap_path:"0.6~0.3",
         swap_path_start: 0.6,
         swap_path_end: 0.3,
         allow_screenshort: "立即开始"
-      //  location:null //不需要
+        //  location:null //不需要
+    },
+    form_diff: {
+        location: false,
+        travelcard: false,
     },
     // form_title: "",
     group_name: null,
     lock_password: "",
     temp_img_path: "/sdcard/temp_transit_file_0x7a7a.png", //(? dingtalkutil -> mod(x))
+    img_path_travelcard: context.getExternalCacheDir() + "/travelcard.png",
     image_path: context.getExternalCacheDir() + "/screenshot.png",
     log_path: context.getExternalCacheDir() + "/log.txt",
     script_path: $files.cwd() + "/mainService.js",
     timing: "00:00",
     timers_id: null,
     // timer_path: $files.cwd() + '/mainService.js', /* mainService mainUI config 都在同级目录所以这里直接用$files.cwd() */
-    CORP_ID: "", //ding00853d06912ba8d3bc961a6cb783455b
+    CORP_ID: "", //ding00853d06912ba8d3bc961a6cb783455b test CORP_ID 需要加入测试组织
     TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
     DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
     log: "",
+    temp_img_path_list: [], /* 临时图片路径 不在脚本间共享 */
     storage: storages.create("AutoHealthPunchInDataBase"), //tui自带的配置保存
     tui_storage_edittext: storages.create("tuiWidgetDateBase:tuiEditText"),
     tui_storage_checkbox: storages.create("tuiWidgetDateBase:tuiCheckBox"),
-    init: function() {
+    init: function () {
         console.setGlobalLogConfig({
             "file": this.log_path
         });
         this.CORP_ID = this.tui_storage_edittext.get("corp_id");
-        this.group_name = this.tui_storage_edittext.get("group_name") || "每日健康打卡群";
+        this.group_name = this.tui_storage_edittext.get("group_name","软件测试(DEBUG)"); /* 软件测试(DEBUG) 为测试群 */
         this.lock_password = this.tui_storage_edittext.get("lock_num");
         this.find_form_step_is_from_text = this.tui_storage_edittext.get("find_step");
-        this.auto_run_on_timing = this.tui_storage_checkbox.get("auto_run_on_timing") || false;
-        this.show_logcat_flotwindow = this.tui_storage_checkbox.get("show_logcat_flotwindow"); // 这里不应该使用 || true -> false || true 导致永为真
+        this.auto_run_on_timing = this.tui_storage_checkbox.get("auto_run_on_timing",false);
+        this.show_logcat_flotwindow = this.tui_storage_checkbox.get("show_logcat_flotwindow",false); 
         this.true_device_text.lock_call = this.tui_storage_edittext.get("true_lock_call_text");
-      //  this.true_device_text.location = this.tui_storage_edittext.get("true_location_text");
-        //this.true_device_text.swap_path = this.tui_storage_edittext.get("true_swap_path");
-        this.true_device_text.swap_path_start = this.tui_storage_edittext.get("true_swap_path:start",0.6);
+
+        this.true_device_text.swap_path_start = this.tui_storage_edittext.get("true_swap_path:start", 0.6);
         this.true_device_text.swap_path_end = this.tui_storage_edittext.get("true_swap_path:end", 0.3);
-        this.true_device_text.allow_screenshort = this.tui_storage_edittext.get("true_allow_screenshort_text","立即开始");
-console.error("this.true_device_text.allow_screenshort",this.true_device_text.allow_screenshort)
+        this.true_device_text.allow_screenshort = this.tui_storage_edittext.get("true_allow_screenshort_text", "立即开始");
+
+        this.form_diff.location = this.tui_storage_checkbox.get("form_diff_location",false);
+        this.form_diff.travelcard = this.tui_storage_checkbox.get("form_diff_travelcard",false);
+
         this.timers_id = this.storage.get("timing_id");
         // console.info("checkTimedTaskExists:", this.checkTimedTaskExists(), this.timers_id);
         if (!this.checkTimedTaskExists()) {
@@ -66,7 +74,7 @@ console.error("this.true_device_text.allow_screenshort",this.true_device_text.al
         console.info("配置初始化完毕!");
         console.verbose(JSON.stringify(this, null, 2));
     },
-    updateAll: function() {
+    updateAll: function () {
         //处理除了tui_storage_ 控件自动存储以外的config
         this.storage.put("timing", this.timing);
         this.storage.put("timing_id", this.timers_id);
@@ -74,7 +82,7 @@ console.error("this.true_device_text.allow_screenshort",this.true_device_text.al
         //再更新控件没有更新到config的配置
         // this.init();
     },
-    addTimerIfNotExists: function(script_path) {
+    addTimerIfNotExists: function (script_path) {
         if (this.timers_id != null) {
             let task = $timers.getTimedTask(this.timers_id);
             // let all_tasks =  $timers.queryTimedTasks({ path: config.timer_path});
@@ -111,7 +119,7 @@ console.error("this.true_device_text.allow_screenshort",this.true_device_text.al
                 "auto_run_on_timing:", this.auto_run_on_timing);;
         }
     },
-    tingChangedUpdateTask: function(_tmp_timing) {
+    tingChangedUpdateTask: function (_tmp_timing) {
         if (this.auto_run_on_timing) {
             let [_hours, _minute] = timingFormat(_tmp_timing);
             // let new_time = new Date(0, 0, 0, _hours, _minute, 0).getTime();
@@ -127,7 +135,7 @@ console.error("this.true_device_text.allow_screenshort",this.true_device_text.al
             this.updateAll();
         }
     },
-    checkTimedTaskExists: function() {
+    checkTimedTaskExists: function () {
         let isExists = false;
         if (this.timers_id != null) {
             let task = $timers.getTimedTask(this.timers_id);
@@ -138,11 +146,11 @@ console.error("this.true_device_text.allow_screenshort",this.true_device_text.al
         return isExists;
     },
     /* @Discard*/
-    clearTimedTasks: function(timeid){
-        if(timeid != null){
-        $timers.removeTimedTask(timeid);
-        }else{
-            console.warn("removeTimeTask failed:",timeid)
+    clearTimedTasks: function (timeid) {
+        if (timeid != null) {
+            $timers.removeTimedTask(timeid);
+        } else {
+            console.warn("removeTimeTask failed:", timeid)
         }
     }
 }
@@ -200,7 +208,7 @@ function getPackageName() {
     let name = null;
     try {
         let info = manager.getPackageInfo(context.getPackageName(), 0);
-         name = info.versionName;
+        name = info.versionName;
     } catch (e) {
         e.printStackTrace();
     }
