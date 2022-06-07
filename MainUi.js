@@ -1,4 +1,5 @@
 "ui";
+importClass(android.view.WindowManager);
 importClass(android.text.method.ScrollingMovementMethod);
 importClass(android.widget.LinearLayout);
 importClass(android.widget.LinearLayout.LayoutParams);
@@ -196,6 +197,13 @@ initlze();
 
 
 function initlze() {
+
+    // ---修改状态栏字体和背景颜色 
+    ui.statusBarColor("#FFFFFF");
+    let syswindow = activity.getWindow();
+    syswindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+    syswindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    syswindow.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
     // console.warn(config.timers_id,$timers.getTimedTask(config.timers_id),$timers.queryTimedTasks({ path: $files.cwd() + "/mainService.js"}));
     ui.logText.setText(config.storage.get("log") || "无日志");
