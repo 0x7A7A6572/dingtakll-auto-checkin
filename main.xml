@@ -61,8 +61,8 @@
                         </vertical> 
                         <tui-expand id="expand_form_diff" title="表格差异配置" background="#2233CC66" padding="8" marginTop="8" color="#00FF33">
                             <vertical>
-                                <tui-checkBox id="expand_form_diff_location" text="当前位置" prefKey="expand_form_diff_location" textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666"/>
-                                <tui-checkBox id="expand_form_diff_travelcard" text="上传行程卡" prefKey="expand_form_diff_travelcard" textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" />
+                                <tui-checkBox id="expand_form_diff_location" text="当前位置" prefKey="form_diff_location" textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666"/>
+                                <tui-checkBox id="expand_form_diff_travelcard" text="上传行程卡" prefKey="form_diff_travelcard" textStyle="bold" padding="5" color="#33CC66" statusStyle="[开启]|[关闭]|[禁用]" statuColor="#FF6666" />
                             </vertical>
                         </tui-expand>
                         <tui-expand id="expand_dev_diff" title="设备差异配置" background="#2233CC66" padding="8" marginTop="8">

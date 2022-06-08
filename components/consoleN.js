@@ -14,6 +14,7 @@ importClass("android.view.Gravity");
 
 let consoleN = {
     // 悬浮实例
+    floatWindow_statu: false,
     BROADCAST_CLOSE_EXTRA: "iConsoleCloseView",
     logList: [],
     stopScriptOnExit: true,
@@ -60,6 +61,7 @@ let consoleN = {
         
         ui.post(() => {
             wm.addView(this.instacne, lp);
+            this.floatWindow_statu = true;
         });
 
          /*  threads.start(() => {
@@ -74,7 +76,10 @@ let consoleN = {
     
     close: function() {
         //console.warn(".close");
-        getWindowManager().removeView(this.instacne);
+        if(this.instacne != null && this.floatWindow_statu == true){
+          getWindowManager().removeView(this.instacne);
+          this.floatWindow_statu = false;
+        }
         if (this.stopScriptOnExit) {
             $engines.stopAll();
         }
@@ -107,7 +112,7 @@ let consoleN = {
         this.logList.push(arg);
         let [limit_array, maxlength] = getTextLines(this.logList,  this.logLine, true);
         let line_text = createLineText("_", maxlength);
-        if (this.instacne != null) {
+        if (this.instacne != null && this.instacne.logText!=null) {
             ui.post(() => {
              this.instacne.logText.setText(line_text + "\n" + limit_array.join("\n"));
             });
