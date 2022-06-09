@@ -43,6 +43,16 @@ var AutojsUtil = {
         }
         return true;
     },
+    waitForPackage: function(packageName, period, limitTime) {
+        let currentTime = new Date();
+        while (packageName != currentPackage()) {
+            if (new Date() - currentTime >= limitTime) {
+                return false;
+            }
+            sleep(period);
+        }
+        return true;
+    },
 /*
 *  当dofunc()不满足时，执行ifNot  n次
     dofunc必须有返回值 true/false
