@@ -2,8 +2,8 @@
 importClass(android.content.pm.PackageManager)
 let config = {
     version: getPackageName(),
-    last_release_time: "Wed Jun 01 2022 13:32:46",
-    _last_update: new Date(),
+   // last_release_time: "Wed Jun 01 2022 13:32:46",
+    //_last_update: new Date(),
     auto_screenshot: true,
     auto_share_after_screenshot: true,
     auto_run_when_opened: false,
@@ -72,7 +72,7 @@ let config = {
         //初始化定时任务
         this.addTimerIfNotExists(this.script_path);
         console.info("配置初始化完毕!");
-        console.verbose(JSON.stringify(this, null, 2));
+        console.verbose(JSON.stringify(this, null, 1));
     },
     updateAll: function () {
         //处理除了tui_storage_ 控件自动存储以外的config

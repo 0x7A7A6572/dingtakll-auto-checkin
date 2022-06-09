@@ -20,7 +20,7 @@ let consoleN = {
     stopScriptOnExit: true,
     instacne: null,
     thread: null,
-    logLine: 4, //显示的日志条目
+    logLine: 8, //显示的日志条目
     getDecorView: function() {
         return this.floatWindow;
     },
@@ -35,14 +35,14 @@ let consoleN = {
     // 初始化
 
     init: function(wm) {
-        
+
         if (!!this.instacne) return;
-        
+
         this.instacne = ui.inflate(
-            <vertical bg="#FFFFFF">
-              <text id="logText" textSize="10sp" textColor="green" text=""/>
-              <text text="POWER FOR zzerX →" textStyle="bold" textColor="green" textSize="16"/>
-            </vertical>);
+            <vertical bg="#000000">
+                        <text text="consoleN" textStyle="bold" textColor="red"/>
+                        <text id="logText" textSize="10sp" textColor="green" text=""/>
+                    </vertical>);
         wm = wm || getWindowManager();
         let lp = new WindowManager.LayoutParams();
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
@@ -55,16 +55,16 @@ let consoleN = {
             WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
         //这个Gravity  移动需要
-        lp.gravity = Gravity.LEFT | Gravity.TOP;
+        lp.gravity = Gravity.LEFT | Gravity.BOTTOM;
         lp.alpha = 0.5; //穿透必须
 
-        
+
         ui.post(() => {
             wm.addView(this.instacne, lp);
             this.floatWindow_statu = true;
         });
 
-         /*  threads.start(() => {
+        /*  threads.start(() => {
             //设置一个空的定时来保持线程的运行状态
             setInterval(function() {}, 1000);
         });*/
@@ -73,12 +73,12 @@ let consoleN = {
 
     // 销毁
 
-    
+
     close: function() {
         //console.warn(".close");
-        if(this.instacne != null && this.floatWindow_statu == true){
-          getWindowManager().removeView(this.instacne);
-          this.floatWindow_statu = false;
+        if (this.instacne != null && this.floatWindow_statu == true) {
+            getWindowManager().removeView(this.instacne);
+            this.floatWindow_statu = false;
         }
         if (this.stopScriptOnExit) {
             $engines.stopAll();
@@ -86,45 +86,46 @@ let consoleN = {
     },
     log: function() {
         this.updateLogView([].slice.call(arguments));
-        console.log(arguments);
+        console.log([].slice.call(arguments));
     },
     verbose: function() {
         this.updateLogView([].slice.call(arguments));
-        console.verbose(arguments);
+        console.verbose([].slice.call(arguments));
     },
     warn: function() {
         this.updateLogView([].slice.call(arguments));
-        console.warn(arguments);
+        console.warn([].slice.call(arguments));
     },
     info: function() {
         this.updateLogView([].slice.call(arguments));
-        console.info(arguments);
+        console.info([].slice.call(arguments));
     },
-    error: function(){
+    error: function() {
         this.updateLogView([].slice.call(arguments));
-        console.error(arguments);
+        console.error([].slice.call(arguments));
     },
-    updateLogView: function(){
+    updateLogView: function() {
         let arg = "";
         for (let i = 0; i < arguments.length; i++) {
             arg += arguments[i] + " ";
         }
         this.logList.push(arg);
-        let [limit_array, maxlength] = getTextLines(this.logList,  this.logLine, true);
+        let [limit_array, maxlength] = getTextLines(this.logList, this.logLine, true);
         let line_text = createLineText("_", maxlength);
-        if (this.instacne != null && this.instacne.logText!=null) {
+        if (this.instacne != null && this.instacne.logText != null) {
             ui.post(() => {
-             this.instacne.logText.setText(line_text + "\n" + limit_array.join("\n"));
+                this.instacne.logText.setText(line_text + "\n" + limit_array.join("\n"));
             });
         }
-        
+
     },
-    watermarkModule: function(isSet){
+    watermarkModule: function(isSet) {
         ui.post(() => {
             this.instacne.logText.setVisibility(isSet ? View.GONE : View.VISIBLE);
         });
     }
 }
+
 function getWindowManager() {
     return context.getSystemService(Context.WINDOW_SERVICE);
 }

@@ -158,10 +158,12 @@ SystemUtil = {
                 beginBtn.click();
             }
         });
-        if (!requestScreenCapture()) {
+        if($images.getScreenCaptureOptions() == null){
+          if (!requestScreenCapture()) {
             toast("请求截图失败");
             agree_thread = null;
             return null;
+          }
         }
         if (!classNameContains("Button").textContains(allow_screenshort_text).findOne(2000)) {
             let img = captureScreen();

@@ -100,6 +100,13 @@ UnitsTest.setTitle("🧩单元测试")
             uploadTheTravelCard();
         }
     })
+    .addUnitTest({
+        unitName:"打开日志界面导出",
+        unit: ()=>{
+            app.startActivity("console");
+            exit();
+        }
+    })
     // .addUnitTest({
     //     unitName: "其他",
     //     unit: () => {

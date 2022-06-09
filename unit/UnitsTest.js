@@ -76,7 +76,9 @@ UnitsTest = {
                     } catch (e) {
                         //let trace = new System.Diagnostics.StackTrace(e, true);            
                         //console.WriteLine("Line: " + trace.GetFrame(0).GetFileLineNumber());
-                        console.error("UnitTest[" + this.unitList[select].unitName + ":line:"+ e.stack +"] Error: " + e);
+                        if(e != "JavaException: com.stardust.autojs.runtime.exception.ScriptInterruptedException: null"){
+                        console.error("UnitTest[" + this.unitList[select].unitName + ":Error:"+ e +"] Line: " + e.stack);
+                        }
                         this.setTestStatu(this.unitList[select].unitName, this.FAILED);
                     } finally {
                         
