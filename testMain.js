@@ -17,7 +17,7 @@ let test_group_name = "软件测试(DEBUG)";
 let test_step = "填写->全员健康每日打卡->今天";
 
 
-events.on("exit", function () {
+events.on("exit", function() {
     log("结束测试");
     removeTempImage(config.temp_img_path_list);
 });
@@ -53,10 +53,10 @@ UnitsTest.setTitle("🧩单元测试")
                 toast("现在请锁屏等待触发")
                 sleep(6000);
                 SystemUtil.unlock(password.toString(), {
-                    success: function () {
+                    success: function() {
                         UnitsTest.setTestStatu(this.unitName, UnitsTest.SUCCESS);
                     },
-                    failed: function (log) {
+                    failed: function(log) {
                         UnitsTest.setTestStatu(this.unitName, UnitsTest.FAILED);
                     }
                 }, config.true_device_text);
@@ -101,8 +101,8 @@ UnitsTest.setTitle("🧩单元测试")
         }
     })
     .addUnitTest({
-        unitName:"打开日志界面导出",
-        unit: ()=>{
+        unitName: "打开日志界面导出",
+        unit: () => {
             app.startActivity("console");
             exit();
         }
@@ -139,19 +139,26 @@ function lacksPermission() {
 
 function clickGetAddress(limit) {
     let stopCount = 0;
-    while (!text("刷新").exists() || !text("地点微调").exists()) {
-        console.log("点击获取.. (" + stopCount + "/" + limit + ")");
-        if (text("获取").exists()) {
-            text("获取")
-                .findOne().clickCenter();
-            sleep(1000);
-        } else {
-            console.log("[获取]按钮已不存在");
+    /* 判断表格加载完成*/
+    if (className("android.widget.Button").text("提交").findOne(5000)) {
+        while (!text("刷新").exists() || !text("地点微调").exists()) {
+            console.log("点击获取.. (" + stopCount + "/" + limit + ")");
+            if (text("获取").exists()) {
+                text("获取")
+                    .findOne().clickCenter();
+                sleep(1000);
+            } else {
+                console.log("[获取]按钮已不存在");
+            }
+            stopCount++;
+            if (stopCount >= limit) {
+                break;
+            }
         }
-        stopCount++;
-        if (stopCount >= limit) {
-            break;
-        }
+        return true;
+    } else {
+        toastLog("表格加载失败");
+        return false;
     }
 
 }
@@ -170,17 +177,17 @@ function uploadTheTravelCard() {
     //打开通信大数据行程卡
     if (launchPackage("com.caict.xingchengka")) {
         let travelcardResult = AutojsUtil.untilTask.do(() => {
-            return AutojsUtil.waitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 3000);
-        }).ifnot(() => {
-            toastLog("重新尝试查询行程卡")
-            back();
-            sleep(800);
-            launchPackage("com.caict.xingchengka");
-        }, 5)
+                return AutojsUtil.waitForActivity("com.caict.xingchengka.activity.ResultActivity", 200, 3000);
+            }).ifnot(() => {
+                toastLog("重新尝试查询行程卡")
+                back();
+                sleep(800);
+                launchPackage("com.caict.xingchengka");
+            }, 5)
             .start();
         if (!travelcardResult) {
             toastLog("获取行程卡失败！");
-            console.error("travelcardResult -> ",travelcardResult);
+            console.error("travelcardResult -> ", travelcardResult);
             return false;
         }
         SystemUtil.autoScreenshot(config.img_path_travelcard, config.true_device_text.allow_screenshort);
@@ -190,11 +197,11 @@ function uploadTheTravelCard() {
         toastLog("等待表格加载完毕...");
         sleep(2000);
         let plus_img = className("android.widget.Image").text("plus").findOne(2000);
-        if(plus_img != null){
+        if (plus_img != null) {
             plus_img.click();
-        }else{
+        } else {
             toastLog("表格中找不到上传行程卡选项！");
-            console.error("plus_img -> ",plus_img);
+            console.error("plus_img -> ", plus_img);
             return false;
         }
         id("album_item_media_cbx_icon").findOne(2000).click();
@@ -218,7 +225,7 @@ function uploadTheTravelCard() {
     }
 }
 
-function toFormPage(){
+function toFormPage() {
     DingTalkUtil.openTablePage(test_cropid);
     waitForActivity(config.TABLE_PAGE_ACTIVITY, 5000);
     toastLog("启动钉钉智能填表页面");
@@ -243,11 +250,11 @@ function toFormPage(){
     toastLog("进入健康打卡表");
 }
 
-function removeTempImage(tamplist){
-    for(let i = 0;i < tamplist.length; i++){
+function removeTempImage(tamplist) {
+    for (let i = 0; i < tamplist.length; i++) {
         $files.remove(tamplist[i]);
     }
-    if(_img_target != null){
+    if (_img_target != null) {
         _img_target.recycle();
     }
 }

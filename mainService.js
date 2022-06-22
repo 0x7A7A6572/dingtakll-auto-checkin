@@ -131,19 +131,26 @@ function writeLog(text) {
 /* 点击表格定位*/
 function clickGetAddress(limit) {
     let stopCount = 0;
-    while (!text("刷新").exists() || !text("地点微调").exists()) {
-        iConsole.log("点击获取.. (" + stopCount + "/" + limit + ")");
-        if (text("获取").exists()) {
-            text("获取")
-                .findOne().clickCenter();
-            sleep(1000);
-        } else {
-            iConsole.log("[获取]按钮已不存在");
+    /* 判断表格加载完成*/
+    if (className("android.widget.Button").text("提交").findOne(5000)) {
+        while (!text("刷新").exists() || !text("地点微调").exists()) {
+            console.log("点击获取.. (" + stopCount + "/" + limit + ")");
+            if (text("获取").exists()) {
+                text("获取")
+                    .findOne().clickCenter();
+                sleep(1000);
+            } else {
+                console.log("[获取]按钮已不存在");
+            }
+            stopCount++;
+            if (stopCount >= limit) {
+                break;
+            }
         }
-        stopCount++;
-        if (stopCount >= limit) {
-            break;
-        }
+        return true;
+    } else {
+        toastLog("表格加载失败");
+        return false;
     }
 
 }

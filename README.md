@@ -17,6 +17,7 @@
 ## 需要的数据
       corpid 群名 表格名 锁屏密码
 ## 下载apk
+最新打包
 [release_newest.apk](https://zzerx.cn/download/releass_newest.apk)
 ## 感谢支持
 <img src="https://zzerx.cn/blogimages/beg_wx.png"  height="200" width="200"/>

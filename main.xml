@@ -87,6 +87,15 @@
                                 <tui-text text="(?)请求截屏时会弹出是否允许截屏的按钮，该按钮的描述文字有设备差异" textSize="10sp" bg="#66FFFFFF" margin="15 5 15 12" padding="5" />      
                             </vertical>
                         </tui-expand>
+                       <tui-expand id="expand_adv_setting" title="高级配置" background="#2233CC66" padding="8" marginTop="8" color="#00FF33">
+                            <vertical>
+                                <text text="暂无" />
+                               <!--linear marginTop="5" gravity="center"-->
+                                    <!--tui-text text="智能填表Activity:" textStyle="bold" padding="5" textSize="11sp" color="#6B6B6B" />
+                                    <tui-editText id="true_lock_call_text" textSize="13sp" hint="com.alibaba.lightapp.runtime.activity.CommonWebViewActivitySwipe" prefKey="true_form_activity" singleLine="true" marginLeft="14" color="#FFFFFF" bg="#332B2B2B" textStyle="bold" paddingLeft="5" layout_weight="1" /-->
+                                <!--/linear-->
+                            </vertical>
+                        </tui-expand>
                     </vertical>
                 </vertical> 
                 <vertical gravity="center" marginTop="10">

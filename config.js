@@ -35,7 +35,7 @@ let config = {
     timers_id: null,
     // timer_path: $files.cwd() + '/mainService.js', /* mainService mainUI config 都在同级目录所以这里直接用$files.cwd() */
     CORP_ID: "", //ding00853d06912ba8d3bc961a6cb783455b test CORP_ID 需要加入测试组织
-    TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity",
+    TABLE_PAGE_ACTIVITY: "com.alibaba.lightapp.runtime.activity.CommonWebViewActivitySwipe",
     DING_TAILK_PAGE_NAME: "com.alibaba.android.rimet",
     log: "",
     temp_img_path_list: [], /* 临时图片路径 不在脚本间共享 */
