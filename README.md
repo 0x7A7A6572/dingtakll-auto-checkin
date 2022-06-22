@@ -1,4 +1,5 @@
 ## introduce
+<img src="./images/ic_app_logo.png" alt="logo" height="50" width="50"/>
   每日健康打卡已经成为常态，但要求打卡还要截图发打卡群觉得有些多余，于是就写了个自动健康打卡发打卡群
 ## 界面&真机测试效果
 界面：
