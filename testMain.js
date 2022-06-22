@@ -164,12 +164,12 @@ function clickGetAddress(limit) {
 }
 
 function tempTransit(origin_file, file_type) {
-    let temp_path = "/sdcard/temp_transit_file_0x7a7a" + JavaUtil.load_Time() + "." + file_type;
-    config.temp_img_path_list.push(temp_path);
-    $files.copy(origin_file, temp_path);
+    config.temp_img_path = "/sdcard/temp_transit_file_0x7a7a" + JavaUtil.load_Time() + "." + file_type;
+    config.temp_img_path_list.push(config.temp_img_path);
+    $files.copy(origin_file, config.temp_img_path);
     //通知相册，让钉钉选择图片时能获取到最新截图 
-    media.scanFile(temp_path);
-    return temp_path;
+    media.scanFile(config.temp_img_path);
+    return  config.temp_img_path;
 }
 
 /* 点击表格上传行程卡*/

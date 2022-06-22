@@ -30,6 +30,7 @@ SystemUtil.unlock(config.lock_password, {
     },
     failed: function(log) {
         console.warn(log);
+        exit();
     }
 }, config.true_device_text);
 
@@ -99,9 +100,10 @@ function serviceMain() {
 
     //iConsole.watermarkModule(true);
     SystemUtil.autoScreenshot(config.image_path, config.true_device_text.autoScreenshot);
+    config.temp_img_path = tempTransit(config.image_path, "png");
     //iConsole.watermarkModule(false);
     iConsole.info("已完成自动截屏，正在发送至" + config.group_name);
-    DingTalkUtil.shareImageToDingTallk(config.group_name, config.image_path);
+    DingTalkUtil.shareImageToDingTallk(config.group_name, config.temp_img_path);
     sleep(1000);
     iConsole.info("打卡截图已发送");
     //记录日志 发送通知
@@ -216,12 +218,12 @@ function uploadTheTravelCard() {
 }
 
 function tempTransit(origin_file, file_type) {
-    let temp_path = "/sdcard/temp_transit_file_0x7a7a" + JavaUtil.load_Time() + "." + file_type;
-    config.temp_img_path_list.push(temp_path);
-    $files.copy(origin_file, temp_path);
+    config.temp_img_path = "/sdcard/temp_transit_file_0x7a7a" + JavaUtil.load_Time() + "." + file_type;
+    config.temp_img_path_list.push(config.temp_img_path);
+    $files.copy(origin_file, config.temp_img_path);
     //通知相册，让钉钉选择图片时能获取到最新截图 
-    media.scanFile(temp_path);
-    return temp_path;
+    media.scanFile(config.temp_img_path);
+    return  config.temp_img_path;
 }
 
 function removeTempImage(tamplist) {

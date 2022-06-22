@@ -1,9 +1,9 @@
 {
   "assets": [],
   "build": {
-    "build_id": "EA38E013-67",
-    "build_number": 67,
-    "build_time": 1655886828628,
+    "build_id": "62D7B0B2-71",
+    "build_number": 71,
+    "build_time": 1655941700396,
     "release": false
   },
   "encryptLevel": 0,
@@ -123,6 +123,6 @@
     "keystore": "/storage/emulated/0/AutoProProject/.keystore/autojspro.jks",
     "uuid": "3f5dc0b6-fb43-4ff9-a1fe-ec99d30a135b"
   },
-  "versionCode": 1853,
-  "versionName": "2.2.5"
+  "versionCode": 20206,
+  "versionName": "2.2.6"
 }

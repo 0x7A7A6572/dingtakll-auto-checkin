@@ -43,7 +43,7 @@ var DingTalkUtil = {
     },
     shareImageToDingTallk: function(groupName, imagePath) {
         imagePath = imagePath || context.getExternalCacheDir() + "/screenshot.png";
-        imagePath = tempTransit(imagePath, "png");
+        // 在传入时做修改imagePath = tempTransit(imagePath, "png");
         console.warn("[shareImageToDingTallk image_path:] -> " + imagePath)
         let findtext_dingtalk_sendwho = "钉钉好友";
         let findtext_dingtalk_sendgrup = groupName;
@@ -140,20 +140,13 @@ function templateString(template, strArray) {
 
 /*async*/
 /* 更好的android10解决方案是使用应用间共享文件 */
-function tempTransit(origin_file, file_type) {
+/*function tempTransit(origin_file, file_type) {
     let temp_path = "/sdcard/temp_transit_file_0x7a7a." + file_type;
-    /*await*/
-    /*if($files.copy(origin_file, temp_path)){
-        if(!$files.exists(temp_path)){
-            sleep(500);
-        }
-    }else if(){
-        this(origin_file,file_type);
-    }*/
+
     $files.copy(origin_file, temp_path);
     //把图片加入相册 
     media.scanFile(temp_path);
     return temp_path;
-}
+}*/
 
 module.exports = DingTalkUtil;
